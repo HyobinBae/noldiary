@@ -5,6 +5,8 @@ const colors = {
   mainGrey: "8F8F8F",
   white: "#FFFFFF",
   black: "#000000",
+  kakaoYellow: "#FEE500",
+  naverGreen: "#03C75A",
 };
 
 const fontSize = {
