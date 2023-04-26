@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { API_KEY, REDIRECT_URL } from "./KakaoAuth";
 
 interface Props {
   src: string;
@@ -7,9 +8,14 @@ interface Props {
   color: string;
 }
 
+const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
+const NAVER_AUTH_URL = process.env.REACT_APP_URL;
+
 const LoginButton = ({ src, text, color }: Props) => {
+  const AUTH_URL = text === "카카오 로그인" ? KAKAO_AUTH_URL : NAVER_AUTH_URL;
+
   return (
-    <Button style={{ backgroundColor: color }}>
+    <Button href={AUTH_URL} style={{ backgroundColor: color }}>
       <IconBox>
         <img src={src} alt="login icon" width="20px" />
       </IconBox>
@@ -20,7 +26,7 @@ const LoginButton = ({ src, text, color }: Props) => {
   );
 };
 
-const Button = styled.button`
+const Button = styled.a`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -40,7 +46,6 @@ const IconBox = styled.div`
   align-items: center;
 
   border-right: 0.5px solid white;
-  padding-right: 5px;
 
   width: 40px;
   height: 100%;
