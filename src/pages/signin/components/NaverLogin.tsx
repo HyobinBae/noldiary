@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { API } from "../../../config";
-import LoadingKakaoLogin from "./LoadingKakaoLogin";
+import LoadingLogin from "./LoadingLogin";
 
-export const API_KEY = process.env.REACT_APP_API_KEY_KAKAO;
-export const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL_KAKAO;
+export const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
+export const NAVER_CALLBACK_URL = process.env.REACT_APP_REDIRECT_URL_NAVER;
+export const STATE = Math.random();
 
-const KakaoAuth = () => {
+const NaverLogin = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const code = searchParams.get("code");
-  console.log(code);
 
   const getToken = async () => {
     try {
-      const kakaoRes = await fetch(`${API.signInKakao}?code=${code}`, {
+      const NaverRes = await fetch(`${API.signInNaver}?code=${code}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,11 +22,11 @@ const KakaoAuth = () => {
         body: JSON.stringify({ code }),
       });
 
-      const response = await kakaoRes.json();
+      const response = await NaverRes.json();
       console.log(response);
 
       if (!response.token) {
-        alert("카카오 로그인 실패");
+        alert("네이버 로그인 실패");
         return navigate("/signin");
       }
 
@@ -40,9 +40,11 @@ const KakaoAuth = () => {
 
   useEffect(() => {
     getToken();
-  }, []);
+  });
 
-  return <LoadingKakaoLogin />;
+  return (
+    <LoadingLogin src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirW8CQe24atXnY8zPlmIQ84ALhqgLI6bjkQ&usqp=CAU" />
+  );
 };
 
-export default KakaoAuth;
+export default NaverLogin;

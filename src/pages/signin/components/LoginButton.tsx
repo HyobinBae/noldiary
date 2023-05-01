@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { API_KEY, REDIRECT_URL } from "./KakaoAuth";
+import { API_KEY, REDIRECT_URL } from "./KakaoLogin";
+import { NAVER_CLIENT_ID, NAVER_CALLBACK_URL, STATE } from "./NaverLogin";
 
 interface Props {
   src: string;
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
-const NAVER_AUTH_URL = process.env.REACT_APP_URL;
+const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&redirect_uri=${NAVER_CALLBACK_URL}&state=${STATE}`;
 
 const LoginButton = ({ src, text, color }: Props) => {
   const AUTH_URL = text === "카카오 로그인" ? KAKAO_AUTH_URL : NAVER_AUTH_URL;

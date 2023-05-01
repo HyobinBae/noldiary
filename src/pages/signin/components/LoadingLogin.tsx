@@ -1,15 +1,12 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const LoadingKakaoLogin = () => {
+const LoadingKakaoLogin = ({ src }: { src: string }) => {
   return (
     <>
       <Loading>
         <LoadingText>곧 만날 수 있어요!</LoadingText>
-        <LoadingImg
-          src="https://devtalk.kakao.com/uploads/default/original/2X/8/8d3426581b592b46157de64b919d4378b504d346.gif"
-          alt="로그인 중"
-        />
+        <LoadingImg src={src} alt="로그인 중" />
       </Loading>
       ;
     </>

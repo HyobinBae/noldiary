@@ -1,4 +1,4 @@
-export const BASE_URL = "http://192.168.244.210:3000";
+export const BASE_URL = "http://192.168.123.116:3000";
 export const API = {
   kakaoAuth: "https://kauth.kakao.com/oauth/token",
   signInKakao: `${BASE_URL}/auth/login/kakao`,
