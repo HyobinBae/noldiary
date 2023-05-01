@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { API } from "../../../config";
-import LoadingLogin from "./LoadingLogin";
+import LoadingKakaoLogin from "./LoadingLogin";
 
 export const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
 export const NAVER_CALLBACK_URL = process.env.REACT_APP_REDIRECT_URL_NAVER;
-export const STATE = Math.random();
+export const STATE = crypto.randomUUID();
 
 const NaverLogin = () => {
   const [searchParams] = useSearchParams();
@@ -14,25 +14,27 @@ const NaverLogin = () => {
 
   const getToken = async () => {
     try {
-      const NaverRes = await fetch(`${API.signInNaver}?code=${code}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ code }),
-      });
+      const localRes = await fetch(
+        `${API.signInNaver}?code=${code}&state=${STATE}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ code, STATE }),
+        }
+      );
 
-      const response = await NaverRes.json();
-      console.log(response);
+      const { accessToken } = await localRes.json();
+      console.log(localRes);
 
-      if (!response.token) {
+      if (!accessToken) {
         alert("네이버 로그인 실패");
         return navigate("/signin");
+      } else {
+        localStorage.setItem("token", accessToken);
+        navigate("/");
       }
-
-      localStorage.setItem("token", response.token);
-
-      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -40,10 +42,10 @@ const NaverLogin = () => {
 
   useEffect(() => {
     getToken();
-  });
+  }, []);
 
   return (
-    <LoadingLogin src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQirW8CQe24atXnY8zPlmIQ84ALhqgLI6bjkQ&usqp=CAU" />
+    <LoadingKakaoLogin src="https://media3.giphy.com/media/kEKcOWl8RMLde/giphy.gif" />
   );
 };
 
