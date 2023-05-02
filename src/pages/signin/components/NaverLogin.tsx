@@ -14,6 +14,7 @@ const NaverLogin = () => {
 
   const getToken = async () => {
     try {
+      //네이버 인가코드 백에 전달 & jwToken 받아오기
       const localRes = await fetch(
         `${API.signInNaver}?code=${code}&state=${STATE}`,
         {
@@ -26,7 +27,6 @@ const NaverLogin = () => {
       );
 
       const { accessToken } = await localRes.json();
-      console.log(localRes);
 
       if (!accessToken) {
         alert("네이버 로그인 실패");

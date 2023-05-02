@@ -13,6 +13,7 @@ const KakaoLogin = () => {
 
   const getToken = async () => {
     try {
+      //카카오 로그인 토큰 받아오기
       const kakaoRes = await fetch(`${API.kakaoAuth}`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -20,14 +21,13 @@ const KakaoLogin = () => {
       });
 
       const { access_token } = await kakaoRes.json();
-      console.log(code);
-      console.log(access_token);
 
       if (!access_token) {
         alert("카카오 로그인 실패");
         return navigate("/signin");
       }
 
+      //카카오 토큰으로 백 서버 jwToken 받아오기
       const localRes = await fetch(`${API.signInKakao}`, {
         method: "POST",
         headers: {
@@ -36,7 +36,7 @@ const KakaoLogin = () => {
       });
 
       const { accessToken } = await localRes.json();
-      console.log(accessToken);
+
       if (!accessToken) {
         alert("카카오 로그인 실패");
         return navigate("/signin");
