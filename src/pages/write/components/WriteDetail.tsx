@@ -4,7 +4,8 @@ import styled from "styled-components";
 const WriteDetail = () => {
   const [departure, setDeparture] = useState("");
   const [destination, setDestination] = useState("");
-  const [date, setDate] = useState("");
+  const [departureDate, setDepartureDate] = useState("");
+  const [arrivalDate, setArrivalDate] = useState("");
 
   const departtureHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDeparture(e.target.value);
@@ -12,10 +13,12 @@ const WriteDetail = () => {
   const destinationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDestination(e.target.value);
   };
-  const DateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
+  const departureDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDepartureDate(e.target.value);
   };
-  console.log(departure, "ddddd", destination, "ddddd", date);
+  const arrivalDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setArrivalDate(e.target.value);
+  };
 
   return (
     <Container>
@@ -30,8 +33,17 @@ const WriteDetail = () => {
       <DetailContainer>
         <Title>Date</Title>
         <DetailContainer>
-          <Detail type="date" value={date} onChange={DateHandler} />~
-          <Detail type="date" value={date} />
+          <DateDetail
+            type="date"
+            value={departureDate}
+            onChange={departureDateHandler}
+          />
+          <TinyDetail>~</TinyDetail>
+          <DateDetail
+            type="date"
+            value={arrivalDate}
+            onChange={arrivalDateHandler}
+          />
         </DetailContainer>
       </DetailContainer>
     </Container>
@@ -67,8 +79,33 @@ const Detail = styled.input`
   display: flex;
   align-items: center;
   margin: 3px 5px;
+  border: none;
 
   width: 50%;
+  height: 40px;
+
+  font-size: 20px;
+`;
+
+const DateDetail = styled.input`
+  display: flex;
+  align-items: center;
+  margin: 3px 5px;
+  border: none;
+
+  width: 15vw;
+  height: 40px;
+
+  font-size: 20px;
+`;
+
+const TinyDetail = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3px 5px;
+
+  width: 40px;
   height: 40px;
 
   border: none;
