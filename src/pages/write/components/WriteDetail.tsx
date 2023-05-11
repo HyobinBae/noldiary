@@ -84,7 +84,7 @@ const Detail = styled.input`
   width: 50%;
   height: 40px;
 
-  font-size: 20px;
+  font-size: 14px;
 `;
 
 const DateDetail = styled.input`
@@ -96,7 +96,7 @@ const DateDetail = styled.input`
   width: 15vw;
   height: 40px;
 
-  font-size: 20px;
+  font-size: 14px;
 `;
 
 const TinyDetail = styled.div`
