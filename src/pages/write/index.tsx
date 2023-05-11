@@ -1,10 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import WriteHeader from "./components/WriteHeader";
+import Editor from "./components/WriteMain";
 
 const Write = () => {
-  return <Title>글쓰기</Title>;
+  return (
+    <Container>
+      <WriteHeader />
+      <Editor />
+    </Container>
+  );
 };
 
-const Title = styled.div``;
+const Container = styled.div`
+  margin: 10px 25vw;
+`;
 
 export default Write;
