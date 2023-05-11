@@ -10,4 +10,6 @@ const Line = styled.div`
   width: 100%;
   height: 1px;
   background-color: #bbbbbb;
+
+  margin: 10px 0px;
 `;

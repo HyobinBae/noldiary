@@ -1,62 +1,46 @@
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import {
-  faFilm,
-  faImage,
-  faLocationDot,
-  faPlus,
-  faT,
-} from "@fortawesome/free-solid-svg-icons";
+import { GrImage, GrLocation, GrVideo } from "react-icons/gr";
+import { AiOutlinePlus } from "react-icons/ai";
+import { RxText } from "react-icons/rx";
 
-const Editor = () => {
+import Editors from "./Editors";
+
+const WriteMain = () => {
   return (
     <MainContainer>
-      <Main></Main>
       <IconContainer>
         <OptionBox>
-          <FontAwesomeIcon icon={faPlus as IconProp} size="lg" color="white" />
+          <AiOutlinePlus color="white" />
         </OptionBox>
         <ContentsBox>
           <IconBox>
-            <FontAwesomeIcon icon={faT as IconProp} size="xl" color="#9e9e9e" />
+            <RxText size="20" />
           </IconBox>
           <IconBox>
-            <FontAwesomeIcon
-              icon={faImage as IconProp}
-              size="xl"
-              color="#909090"
-            />
+            <GrImage size="20" />
           </IconBox>
           <IconBox>
-            <FontAwesomeIcon
-              icon={faFilm as IconProp}
-              size="xl"
-              color="#909090"
-            />
+            <GrVideo size="20" />
           </IconBox>
           <IconBox>
-            <FontAwesomeIcon
-              icon={faLocationDot as IconProp}
-              size="xl"
-              color="#909090"
-            />
+            <GrLocation size="20" />
           </IconBox>
         </ContentsBox>
       </IconContainer>
+      <Editors />
     </MainContainer>
   );
 };
 
-export default Editor;
+export default WriteMain;
 const MainContainer = styled.main`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
 
-  margin: 3px 5px;
+  margin: 10px 5px;
 `;
-const Main = styled.div``;
 
 const IconContainer = styled.div`
   display: flex;
@@ -95,6 +79,8 @@ const ContentsBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
   height: 30px;
   width: 200px;
+  margin: 5px 0px;
 `;

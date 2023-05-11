@@ -1,19 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 import WriteHeader from "./components/WriteHeader";
-import Editor from "./components/WriteMain";
+import WriteMain from "./components/WriteMain";
 
 const Write = () => {
   return (
     <Container>
-      <WriteHeader />
-      <Editor />
+      <Box>
+        <WriteHeader />
+        <WriteMain />
+      </Box>
     </Container>
   );
 };
 
 const Container = styled.div`
-  margin: 10px 25vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 100px 0px 30px 0px;
+`;
+
+const Box = styled.div`
+  width: 760px;
 `;
 
 export default Write;

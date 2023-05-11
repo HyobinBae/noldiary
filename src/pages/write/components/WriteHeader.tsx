@@ -28,7 +28,7 @@ export default WriteHeader;
 
 const TitleBox = styled.input`
   width: 100%;
-  height: 50px;
+  height: 55px;
 
   border: none;
   font-size: 30px;
@@ -36,6 +36,8 @@ const TitleBox = styled.input`
   ::placeholder {
     display: flex;
     align-items: center;
+
+    padding: 10px 0px;
     font-size: 30px;
   }
 `;
