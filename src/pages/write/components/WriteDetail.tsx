@@ -80,6 +80,7 @@ const Detail = styled.input`
   align-items: center;
   margin: 3px 5px;
   border: none;
+  outline: none;
 
   width: 50%;
   height: 40px;
@@ -92,6 +93,7 @@ const DateDetail = styled.input`
   align-items: center;
   margin: 3px 5px;
   border: none;
+  outline: none;
 
   width: 15vw;
   height: 40px;

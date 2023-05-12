@@ -31,6 +31,7 @@ const TitleBox = styled.input`
   height: 55px;
 
   border: none;
+  outline: none;
   font-size: 30px;
 
   ::placeholder {

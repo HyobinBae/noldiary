@@ -52,6 +52,7 @@ const IconContainer = styled.div`
 const OptionBox = styled.div`
   width: 25px;
   height: 25px;
+  margin: 5px;
 
   display: flex;
   justify-content: center;
@@ -59,7 +60,8 @@ const OptionBox = styled.div`
 
   background-color: #d8d8d8;
 
-  margin: 5px;
+  position: sticky;
+  transform: translate(-50px);
 `;
 
 const IconBox = styled.div`
