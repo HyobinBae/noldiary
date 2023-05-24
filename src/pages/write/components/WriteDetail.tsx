@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../../services/store";
+import {
+  setDeparture,
+  setDestination,
+  setDepartureDate,
+  setArrivalDate,
+} from "../services/write.slice";
 
 const WriteDetail = () => {
-  const [departure, setDeparture] = useState("");
-  const [destination, setDestination] = useState("");
-  const [departureDate, setDepartureDate] = useState("");
-  const [arrivalDate, setArrivalDate] = useState("");
+  const dispatch = useAppDispatch();
+
+  const departure = useAppSelector((state) => state.write.departure);
+  const destination = useAppSelector((state) => state.write.destination);
+  const departureDate = useAppSelector((state) => state.write.departureDate);
+  const arrivalDate = useAppSelector((state) => state.write.arrivalDate);
 
   const departtureHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDeparture(e.target.value);
+    dispatch(setDeparture(e.target.value));
   };
   const destinationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDestination(e.target.value);
+    dispatch(setDestination(e.target.value));
   };
   const departureDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDepartureDate(e.target.value);
+    dispatch(setDepartureDate(e.target.value));
   };
   const arrivalDateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArrivalDate(e.target.value);
+    dispatch(setArrivalDate(e.target.value));
   };
 
   return (

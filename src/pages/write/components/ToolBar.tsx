@@ -1,7 +1,7 @@
 import React from "react";
 
 export const ToolBar = () => (
-  <div id="toolbar">
+  <div id="toolbar" style={{ border: "none" }}>
     <span className="ql-formats">
       <select className="ql-size" defaultValue="medium">
         <option value="small">Small</option>

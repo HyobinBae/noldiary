@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import DivideLine from "./DivideLine";
 import WriteDetail from "./WriteDetail";
 import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../../services/store";
+import { setTitle } from "../services/write.slice";
 
 const WriteHeader = () => {
-  const [title, setTitle] = useState("");
+  const dispatch = useAppDispatch();
+  const title = useAppSelector((state) => state.write.title);
+
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    dispatch(setTitle(e.target.value));
   };
 
   return (

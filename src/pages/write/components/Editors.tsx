@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { ToolBar, formats, modules } from "./ToolBar";
+import styled from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../../services/store";
+import { setWriteContents } from "../services/write.slice";
 
 const Editors = () => {
-  const [value, setValue] = useState("");
+  const dispatch = useAppDispatch();
+  const writeContents = useAppSelector((state) => state.write.writeContents);
 
-  const editorStyle = {
-    marginTop: "30px",
-    height: "40vh",
+  const contentsHandler = (value: string) => {
+    dispatch(setWriteContents(value));
   };
-
-  console.log(value);
 
   return (
     <>
       <ToolBar />
-      <ReactQuill
+      <QuillStyle
         placeholder="당신의 여정을 입력해보세요"
-        theme="snow"
-        value={value}
-        onChange={setValue}
-        style={editorStyle}
+        value={writeContents}
+        onChange={contentsHandler}
         formats={formats}
         modules={modules}
       />
@@ -30,3 +29,14 @@ const Editors = () => {
 };
 
 export default Editors;
+const QuillStyle = styled(ReactQuill)`
+  margin-top: 30px;
+  height: 100vh;
+
+  ::placeholder {
+    font-size: 40px;
+  }
+  .ql-container {
+    border: none;
+  }
+`;
