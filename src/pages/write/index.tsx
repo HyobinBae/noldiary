@@ -8,6 +8,7 @@ import { useAppSelector } from "../../services/store";
 
 const Write = () => {
   const diary = useAppSelector((state) => state.write.diary);
+  console.log(diary);
   const navigate = useNavigate();
   const [postDiary] = usePostDiaryMutation();
 
@@ -15,7 +16,6 @@ const Write = () => {
     postDiary(diary);
     navigate("/diary");
   };
-  console.log(diary);
 
   return (
     <>

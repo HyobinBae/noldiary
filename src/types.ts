@@ -2,9 +2,8 @@ export interface WriteProps {
   title: string;
   departure: string;
   destination: string;
-  departureDate: string;
-  arrivalDate: string;
-  thumnailImage?: string;
+  departureDate: Date;
+  arrivalDate: Date;
   contents: string;
   bookmark?: boolean;
   public?: boolean;
