@@ -11,10 +11,12 @@ import {
 const WriteDetail = () => {
   const dispatch = useAppDispatch();
 
-  const departure = useAppSelector((state) => state.write.departure);
-  const destination = useAppSelector((state) => state.write.destination);
-  const departureDate = useAppSelector((state) => state.write.departureDate);
-  const arrivalDate = useAppSelector((state) => state.write.arrivalDate);
+  const departure = useAppSelector((state) => state.write.diary.departure);
+  const destination = useAppSelector((state) => state.write.diary.destination);
+  const departureDate = useAppSelector(
+    (state) => state.write.diary.departureDate
+  );
+  const arrivalDate = useAppSelector((state) => state.write.diary.arrivalDate);
 
   const departtureHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setDeparture(e.target.value));

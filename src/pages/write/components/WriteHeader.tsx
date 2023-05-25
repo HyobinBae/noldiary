@@ -7,7 +7,7 @@ import { setTitle } from "../services/write.slice";
 
 const WriteHeader = () => {
   const dispatch = useAppDispatch();
-  const title = useAppSelector((state) => state.write.title);
+  const title = useAppSelector((state) => state.write.diary.title);
 
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setTitle(e.target.value));

@@ -1,58 +1,59 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { WriteProps } from "../../../types";
-import { RootState } from "../../../services/store";
 
 interface WriteState {
-  combineWriteContents: WriteProps[];
-  getImageUrl: string;
-  title: string;
-  departure: string;
-  destination: string;
-  departureDate: string;
-  arrivalDate: string;
-  writeContents: string;
+  diary: WriteProps;
+  imageUrl: string;
 }
 
 const initialState: WriteState = {
-  combineWriteContents: [],
-  getImageUrl: "",
-  title: "",
-  departure: "",
-  destination: "",
-  departureDate: "",
-  arrivalDate: "",
-  writeContents: "",
+  diary: {
+    title: "",
+    departure: "",
+    destination: "",
+    departureDate: "",
+    arrivalDate: "",
+    thumnailImage: "",
+    contents: "",
+    bookmark: false,
+    public: false,
+  },
+  imageUrl: "",
 };
 
 export const WriteSlice = createSlice({
   name: "write",
   initialState,
   reducers: {
+    setDiary: (state, action) => {
+      state.diary = action.payload;
+    },
     setImageUrl: (state, action) => {
-      state.getImageUrl = action.payload;
+      state.imageUrl = action.payload;
     },
     setTitle: (state, action) => {
-      state.title = action.payload;
+      state.diary.title = action.payload;
     },
     setDeparture: (state, action) => {
-      state.departure = action.payload;
+      state.diary.departure = action.payload;
     },
     setDestination: (state, action) => {
-      state.destination = action.payload;
+      state.diary.destination = action.payload;
     },
     setDepartureDate: (state, action) => {
-      state.departureDate = action.payload;
+      state.diary.departureDate = action.payload;
     },
     setArrivalDate: (state, action) => {
-      state.arrivalDate = action.payload;
+      state.diary.arrivalDate = action.payload;
     },
     setWriteContents: (state, action) => {
-      state.writeContents = action.payload;
+      state.diary.contents = action.payload;
     },
   },
 });
 
 export const {
+  setDiary,
   setImageUrl,
   setTitle,
   setDeparture,
@@ -62,5 +63,3 @@ export const {
   setWriteContents,
 } = WriteSlice.actions;
 export default WriteSlice.reducer;
-export const selectWriteContents = (state: RootState) =>
-  state.write.writeContents;

@@ -2,13 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import WriteHeader from "./components/WriteHeader";
 import WriteMain from "./components/WriteMain";
-import { useAppDispatch, useAppSelector } from "../../services/store";
+import { usePostDiaryMutation } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../services/store";
 
 const Write = () => {
-  const dispatch = useAppDispatch();
-  const writeContents = useAppSelector(state.)
+  const diary = useAppSelector((state) => state.write.diary);
+  const navigate = useNavigate();
+  const [postDiary] = usePostDiaryMutation();
 
-  const publishHandler = () => {};
+  const publishHandler = () => {
+    postDiary(diary);
+    navigate("/diary");
+  };
+  console.log(diary);
 
   return (
     <>
@@ -39,13 +46,14 @@ const Header = styled.header`
 
 const BorderButton = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   border: 1px solid #2192ff;
   border-radius: 15px;
 
-  width: 60px;
+  width: 55px;
   height: 30px;
   margin-right: 10px;
   background-color: white;
@@ -60,7 +68,7 @@ const ColorButton = styled.div`
   border: none;
   border-radius: 15px;
 
-  width: 60px;
+  width: 55px;
   height: 30px;
   margin-right: 10px;
   background-color: #2192ff;

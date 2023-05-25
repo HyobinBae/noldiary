@@ -8,7 +8,7 @@ import { setWriteContents } from "../services/write.slice";
 
 const Editors = () => {
   const dispatch = useAppDispatch();
-  const writeContents = useAppSelector((state) => state.write.writeContents);
+  const writeContents = useAppSelector((state) => state.write.diary.contents);
 
   const contentsHandler = (value: string) => {
     dispatch(setWriteContents(value));
