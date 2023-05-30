@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { WriteProps } from "../../../types";
+import { PresignedUrlProps, WriteProps } from "../../../types";
+import { RootState } from "../../../services/store";
+import { getPresignedUrl } from "../../../services/api";
 
 interface WriteState {
   diary: WriteProps;
   imageUrl: string;
+  presignedUrl: PresignedUrlProps;
 }
 
 const initialState: WriteState = {
@@ -18,6 +21,10 @@ const initialState: WriteState = {
     public: false,
   },
   imageUrl: "",
+  presignedUrl: {
+    url: "",
+    file: "",
+  },
 };
 
 export const WriteSlice = createSlice({
@@ -48,8 +55,19 @@ export const WriteSlice = createSlice({
     setWriteContents: (state, action) => {
       state.diary.contents = action.payload;
     },
+    setPresignedUrl: (state, action) => {
+      state.presignedUrl = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(getPresignedUrl.matchFulfilled, (state, { payload }) => {
+      state.presignedUrl = payload;
+    });
   },
 });
+
+export const selectPresignedUrl = (state: RootState) =>
+  state.write.presignedUrl;
 
 export const {
   setDiary,

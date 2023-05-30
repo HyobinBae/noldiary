@@ -13,6 +13,7 @@ export interface Image {
   image: string;
 }
 
-export interface PresignedUrl {
+export interface PresignedUrlProps {
   url: string;
+  file: string;
 }

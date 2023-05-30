@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { WriteProps } from "../types";
+import { WriteProps, PresignedUrlProps } from "../types";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://192.168.122.210:3000",
@@ -27,20 +27,49 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    // postImage: builder.mutation<PresignedUrl, string>({
-    //   query: (image) => ({
-    //     url: `/diary/create/presigned`,
-    //     method: "post",
-    //     body: image,
-    //   }),
-    //   transformResponse: (response: PresignedUrl) => {
-    //     return response;
-    //   },
-    //   transformErrorResponse: (response: { status: string | number }) => {
-    //     return response.status;
-    //   },
-    // }),
+    getPresignedUrl: builder.mutation<PresignedUrlProps, string>({
+      query: (file) => ({
+        url: `/diary/presigned`,
+        headers: {
+          Accept: "application/json",
+          // Authorization: `Bearer ${token}`,
+        },
+        method: "post",
+        body: file,
+      }),
+      transformResponse: (response: PresignedUrlProps) => {
+        return response;
+      },
+      transformErrorResponse: (response: { status: string | number }) => {
+        return response.status;
+      },
+    }),
+    uploadImage: builder.mutation<PresignedUrlProps, PresignedUrlProps>({
+      query: ({ url, file }) => ({
+        url: url,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        method: "put",
+        body: file,
+      }),
+      transformResponse: (response: PresignedUrlProps) => {
+        return response;
+      },
+      transformErrorResponse: (response: { status: string | number }) => {
+        return response.status;
+      },
+    }),
   }),
 });
 
-export const { usePostDiaryMutation } = apiSlice;
+export const {
+  usePostDiaryMutation,
+  useGetPresignedUrlMutation,
+  useUploadImageMutation,
+} = apiSlice;
+
+export const {
+  endpoints: { getPresignedUrl },
+} = apiSlice;
