@@ -9,11 +9,15 @@ export interface WriteProps {
   public?: boolean;
 }
 
-export interface Image {
-  image: string;
+export interface ImageUrl {
+  url: string;
 }
 
-export interface PresignedUrlProps {
+export interface PutPresignedUrlProps {
   url: string;
   file: string;
+}
+
+export interface GetPresignedUrl {
+  url: string;
 }

@@ -1,15 +1,18 @@
 import React from "react";
+import { Quill } from "react-quill";
 import {
   useGetPresignedUrlMutation,
   useUploadImageMutation,
 } from "../../../services/api";
 import { useAppSelector } from "../../../services/store";
-import { selectPresignedUrl } from "../services/write.slice";
+import { selectImageUrl, selectPresignedUrl } from "../services/write.slice";
+import ImageResize from "quill-image-resize";
 
-export const ToolBar = () => {
+export const ToolBar = (quillRef) => {
   const [getPresignedUrl] = useGetPresignedUrlMutation();
   const [uploadImage] = useUploadImageMutation();
-  const url = useAppSelector(selectPresignedUrl);
+  const presignedUrl = useAppSelector(selectPresignedUrl).url;
+  const imageUrl = useAppSelector(selectImageUrl);
 
   const imageHandler = () => {
     const input = document.createElement("input");
@@ -22,13 +25,15 @@ export const ToolBar = () => {
 
     input.onchange = async () => {
       const [file]: any = input.files;
+      const formData = new FormData();
+      formData.append("img", file);
+
       await getPresignedUrl(file);
-      await uploadImage({ url: url, file: file });
-      // 현재 커서 위치에 이미지를 삽입하고 커서 위치를 +1 하기
-      // const range = quillRef.current.getEditorSelection();
-      // quillRef.current.getEditor().insertEmbed(range.index, "image", imageURL);
-      // quillRef.current.getEditor().setSelection(range.index + 1);
-      // document.body.querySelector(":scope > input").remove();
+      await uploadImage({ url: presignedUrl, file: file });
+
+      const editor = quillRef.current.getEditor();
+      const range = editor.getSelection();
+      editor.insertEmbed(range.index, "image", imageUrl);
     };
   };
 
@@ -78,19 +83,22 @@ const redoChange = (quill: any) => {
   quill.history.redo();
 };
 
+Quill.register("modules/ImageResize", ImageResize);
 export const modules = {
   toolbar: {
     container: "#toolbar",
     handlers: {
       undo: undoChange,
       redo: redoChange,
-      // image: imageHandler,
     },
   },
   history: {
     delay: 500,
     maxStack: 100,
     userOnly: true,
+  },
+  ImageResize: {
+    parchment: Quill.import("parchment"),
   },
 };
 

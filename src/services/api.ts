@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { WriteProps, PresignedUrlProps } from "../types";
+import { WriteProps, PutPresignedUrlProps, GetPresignedUrl } from "../types";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://192.168.122.210:3000",
@@ -27,7 +27,7 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getPresignedUrl: builder.mutation<PresignedUrlProps, string>({
+    getPresignedUrl: builder.mutation<GetPresignedUrl, string>({
       query: (file) => ({
         url: `/diary/presigned`,
         headers: {
@@ -37,14 +37,14 @@ export const apiSlice = createApi({
         method: "post",
         body: file,
       }),
-      transformResponse: (response: PresignedUrlProps) => {
+      transformResponse: (response: GetPresignedUrl) => {
         return response;
       },
       transformErrorResponse: (response: { status: string | number }) => {
         return response.status;
       },
     }),
-    uploadImage: builder.mutation<PresignedUrlProps, PresignedUrlProps>({
+    uploadImage: builder.mutation<PutPresignedUrlProps, PutPresignedUrlProps>({
       query: ({ url, file }) => ({
         url: url,
         headers: {
@@ -54,7 +54,7 @@ export const apiSlice = createApi({
         method: "put",
         body: file,
       }),
-      transformResponse: (response: PresignedUrlProps) => {
+      transformResponse: (response: PutPresignedUrlProps) => {
         return response;
       },
       transformErrorResponse: (response: { status: string | number }) => {
@@ -71,5 +71,5 @@ export const {
 } = apiSlice;
 
 export const {
-  endpoints: { getPresignedUrl },
+  endpoints: { getPresignedUrl, uploadImage },
 } = apiSlice;

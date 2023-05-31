@@ -6,6 +6,10 @@ import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { setWriteContents } from "../services/write.slice";
 
+interface ToolBarProps {
+  quillRef: React.RefObject<ReactQuill>;
+}
+
 const Editors = () => {
   const quillRef = useRef<ReactQuill | null>(null);
   const dispatch = useAppDispatch();
@@ -17,7 +21,7 @@ const Editors = () => {
 
   return (
     <>
-      <ToolBar />
+      <ToolBar quillRef={quillRef} />
       <QuillEditor
         ref={quillRef}
         placeholder="당신의 여정을 입력해보세요"
