@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { WriteProps } from "../types";
+import { WriteProps, PresignedUrl } from "../types";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://192.168.123.117:3000",
@@ -29,19 +29,19 @@ export const apiSlice = createApi({
         return response.status;
       },
     }),
-    // postImage: builder.mutation<PresignedUrl, string>({
-    //   query: (image) => ({
-    //     url: `/diary/create/presigned`,
-    //     method: "post",
-    //     body: image,
-    //   }),
-    //   transformResponse: (response: PresignedUrl) => {
-    //     return response;
-    //   },
-    //   transformErrorResponse: (response: { status: string | number }) => {
-    //     return response.status;
-    //   },
-    // }),
+    postImage: builder.mutation<PresignedUrl, string>({
+      query: (image) => ({
+        url: `/diary/create/presigned`,
+        method: "post",
+        body: image,
+      }),
+      transformResponse: (response: PresignedUrl) => {
+        return response;
+      },
+      transformErrorResponse: (response: { status: string | number }) => {
+        return response.status;
+      },
+    }),
   }),
 });
 

@@ -1,10 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import Header from "./components/Header";
 
 const Diary = () => {
-  return <Title>내 일기</Title>;
+  return (
+    <>
+      <Header></Header>
+    </>
+  );
 };
-
-const Title = styled.div``;
 
 export default Diary;
