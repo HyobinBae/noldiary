@@ -6,7 +6,7 @@ export interface WriteProps {
   arrivalDate: Date;
   contents: string;
   bookmark?: boolean;
-  public?: boolean;
+  isPublic?: boolean;
 }
 
 export interface ImageUrl {
@@ -15,9 +15,8 @@ export interface ImageUrl {
 
 export interface PutPresignedUrlProps {
   url: string;
-  file: string;
 }
 
 export interface GetPresignedUrl {
-  url: string;
+  fileName: string;
 }

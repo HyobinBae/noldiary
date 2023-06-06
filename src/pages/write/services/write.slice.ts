@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GetPresignedUrl, ImageUrl, WriteProps } from "../../../types";
 import { RootState } from "../../../services/store";
-import { getPresignedUrl, uploadImage } from "../../../services/api";
+import { getPresignedUrl } from "../../../services/api";
 
 interface WriteState {
   diary: WriteProps;
@@ -18,13 +18,13 @@ const initialState: WriteState = {
     arrivalDate: new Date(),
     contents: "",
     bookmark: false,
-    public: false,
+    isPublic: false,
   },
   imageUrl: {
     url: "",
   },
   presignedUrl: {
-    url: "",
+    fileName: "",
   },
 };
 
@@ -63,9 +63,6 @@ export const WriteSlice = createSlice({
   extraReducers: (builder) => {
     builder.addMatcher(getPresignedUrl.matchFulfilled, (state, { payload }) => {
       state.presignedUrl = payload;
-    });
-    builder.addMatcher(uploadImage.matchFulfilled, (state, { payload }) => {
-      state.imageUrl = payload;
     });
   },
 });
