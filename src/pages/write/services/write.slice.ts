@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { WriteProps } from "../../../types";
+import { GetPresignedUrl, ImageUrl, WriteProps } from "../../../types";
+import { RootState } from "../../../services/store";
+import { getPresignedUrl } from "../../../services/api";
 
 interface WriteState {
   diary: WriteProps;
-  imageUrl: string;
+  imageUrl: ImageUrl;
+  presignedUrl: GetPresignedUrl;
+  isModalOpen: boolean;
 }
 
 const initialState: WriteState = {
@@ -11,14 +15,20 @@ const initialState: WriteState = {
     title: "",
     departure: "",
     destination: "",
-    departureDate: "",
-    arrivalDate: "",
-    thumnailImage: "",
+    departureDate: new Date(),
+    arrivalDate: new Date(),
     contents: "",
     bookmark: false,
-    public: false,
+    isPublic: false,
   },
-  imageUrl: "",
+  imageUrl: {
+    url: "",
+  },
+  presignedUrl: {
+    url: "",
+    fileName: "",
+  },
+  isModalOpen: false,
 };
 
 export const WriteSlice = createSlice({
@@ -49,8 +59,30 @@ export const WriteSlice = createSlice({
     setWriteContents: (state, action) => {
       state.diary.contents = action.payload;
     },
+    setPresignedUrl: (state, action) => {
+      state.presignedUrl = action.payload;
+    },
+    setBookmark: (state, action) => {
+      state.diary.bookmark = action.payload;
+    },
+    setIsPublic: (state, action) => {
+      state.diary.isPublic = action.payload;
+    },
+    setIsModalOpen: (state, action) => {
+      state.isModalOpen = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(getPresignedUrl.matchFulfilled, (state, { payload }) => {
+      state.presignedUrl = payload;
+    });
   },
 });
+
+export const selectPresignedUrl = (state: RootState) =>
+  state.write.presignedUrl;
+
+export const selectImageUrl = (state: RootState) => state.write.imageUrl;
 
 export const {
   setDiary,
@@ -61,5 +93,8 @@ export const {
   setDepartureDate,
   setArrivalDate,
   setWriteContents,
+  setBookmark,
+  setIsPublic,
+  setIsModalOpen,
 } = WriteSlice.actions;
 export default WriteSlice.reducer;

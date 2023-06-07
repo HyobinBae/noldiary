@@ -1,5 +1,5 @@
 import React from "react";
-import DivideLine from "./DivideLine";
+import DivideLine from "./Atoms/DivideLine";
 import WriteDetail from "./WriteDetail";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
