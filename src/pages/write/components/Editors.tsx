@@ -33,7 +33,10 @@ const Editors = () => {
 
     input.addEventListener("change", async () => {
       const [file]: any = input.files;
-      const fileName = { fileName: file.name };
+      const fileName = {
+        url: "",
+        fileName: file.name,
+      };
       setImageFile(file);
 
       await getPresignedUrl(fileName);

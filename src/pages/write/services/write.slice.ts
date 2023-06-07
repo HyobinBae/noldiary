@@ -7,6 +7,7 @@ interface WriteState {
   diary: WriteProps;
   imageUrl: ImageUrl;
   presignedUrl: GetPresignedUrl;
+  isModalOpen: boolean;
 }
 
 const initialState: WriteState = {
@@ -24,8 +25,10 @@ const initialState: WriteState = {
     url: "",
   },
   presignedUrl: {
+    url: "",
     fileName: "",
   },
+  isModalOpen: false,
 };
 
 export const WriteSlice = createSlice({
@@ -59,6 +62,15 @@ export const WriteSlice = createSlice({
     setPresignedUrl: (state, action) => {
       state.presignedUrl = action.payload;
     },
+    setBookmark: (state, action) => {
+      state.diary.bookmark = action.payload;
+    },
+    setIsPublic: (state, action) => {
+      state.diary.isPublic = action.payload;
+    },
+    setIsModalOpen: (state, action) => {
+      state.isModalOpen = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(getPresignedUrl.matchFulfilled, (state, { payload }) => {
@@ -81,5 +93,8 @@ export const {
   setDepartureDate,
   setArrivalDate,
   setWriteContents,
+  setBookmark,
+  setIsPublic,
+  setIsModalOpen,
 } = WriteSlice.actions;
 export default WriteSlice.reducer;

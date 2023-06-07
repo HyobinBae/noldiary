@@ -18,5 +18,6 @@ export interface PutPresignedUrlProps {
 }
 
 export interface GetPresignedUrl {
+  url: string;
   fileName: string;
 }
