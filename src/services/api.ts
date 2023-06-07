@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { WriteProps, PresignedUrl } from "../types";
+import { WriteProps, PresignedUrl, DiaryProps } from "../types";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://192.168.123.117:3000",
@@ -36,6 +36,26 @@ export const apiSlice = createApi({
         body: image,
       }),
       transformResponse: (response: PresignedUrl) => {
+        return response;
+      },
+      transformErrorResponse: (response: { status: string | number }) => {
+        return response.status;
+      },
+    }),
+    getDiaryList: builder.query<DiaryProps, string>({
+      query: () => ({
+        url: `/diary`,
+        method: "get",
+        prepareHeaders: async (headers: Headers) => {
+          const token = localStorage.token;
+          if (token) {
+            headers.set("Accept", "application/json");
+            headers.set("Authorization", `Bearer ${token}`);
+          }
+          return headers;
+        },
+      }),
+      transformResponse: (response: DiaryProps) => {
         return response;
       },
       transformErrorResponse: (response: { status: string | number }) => {
