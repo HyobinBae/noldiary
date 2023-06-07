@@ -1,41 +1,61 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { WriteProps } from "../types";
+import { WriteProps, GetPresignedUrl, PutPresignedUrlProps } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.123.117:3000",
+  baseUrl: "http://10.58.52.122:3000",
 });
+
+const token = localStorage.getItem("token");
 
 export const apiSlice = createApi({
   baseQuery: baseQuery,
   endpoints: (builder) => ({
-    postDiary: builder.mutation<WriteProps, string>({
+    postDiary: builder.mutation<WriteProps, WriteProps>({
       query: (diary) => ({
-        url: `/diary/create`,
+        url: `/diary`,
         method: "post",
-        prepareHeaders: async (headers: Headers) => {
-          const token = localStorage.token;
-          if (token) {
-            headers.set("Accept", "application/json");
-            headers.set("Authorization", `Bearer ${token}`);
-          }
-          return headers;
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: diary,
       }),
       transformResponse: (response: WriteProps) => {
         return response;
       },
-      transformErrorResponse: (response: { status: string | number }) => {
-        return response.status;
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
       },
     }),
-    // postImage: builder.mutation<PresignedUrl, string>({
-    //   query: (image) => ({
-    //     url: `/diary/create/presigned`,
-    //     method: "post",
-    //     body: image,
+    getPresignedUrl: builder.mutation<GetPresignedUrl, PutPresignedUrlProps>({
+      query: (fileName) => ({
+        url: `/diary/presigned`,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        method: "post",
+        body: fileName,
+      }),
+      transformResponse: (response: GetPresignedUrl) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    // uploadImage: builder.mutation<PutPresignedUrlProps, PutPresignedUrlProps>({
+    //   query: ({ url, file }) => ({
+    //     url: url,
+    //     headers: {
+    //       Accept: "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //     method: "put",
+    //     body: file,
     //   }),
-    //   transformResponse: (response: PresignedUrl) => {
+    //   transformResponse: (response: PutPresignedUrlProps) => {
+    //     console.log("이미지 업로드함?", response);
     //     return response;
     //   },
     //   transformErrorResponse: (response: { status: string | number }) => {
@@ -45,4 +65,8 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { usePostDiaryMutation } = apiSlice;
+export const { usePostDiaryMutation, useGetPresignedUrlMutation } = apiSlice;
+
+export const {
+  endpoints: { getPresignedUrl },
+} = apiSlice;

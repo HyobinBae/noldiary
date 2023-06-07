@@ -2,18 +2,22 @@ export interface WriteProps {
   title: string;
   departure: string;
   destination: string;
-  departureDate: string;
-  arrivalDate: string;
-  thumnailImage?: string;
+  departureDate: Date;
+  arrivalDate: Date;
   contents: string;
   bookmark?: boolean;
-  public?: boolean;
+  isPublic?: boolean;
 }
 
-export interface Image {
-  image: string;
-}
-
-export interface PresignedUrl {
+export interface ImageUrl {
   url: string;
+}
+
+export interface PutPresignedUrlProps {
+  url: string;
+}
+
+export interface GetPresignedUrl {
+  url: string;
+  fileName: string;
 }
