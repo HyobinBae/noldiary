@@ -26,7 +26,7 @@ const Button = styled.div<{ width: string; height: string }>`
 
   width: ${({ width }) => width};
   height: ${({ height }) => height};
-  margin-right: 10px;
+  margin-right: 20px;
   background-color: #2192ff;
   color: white;
 
