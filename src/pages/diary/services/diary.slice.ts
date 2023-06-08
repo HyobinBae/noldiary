@@ -30,14 +30,11 @@ export const DiarySlice = createSlice({
   name: "diary",
   initialState,
   reducers: {
-    setDiaryList: (state, action) => {
-      state.diary = action.payload;
-    },
     setNavTitle: (state, action) => {
       state.diary = action.payload;
     },
   },
 });
 
-export const { setDiaryList, setNavTitle } = DiarySlice.actions;
+export const { setNavTitle } = DiarySlice.actions;
 export default DiarySlice.reducer;

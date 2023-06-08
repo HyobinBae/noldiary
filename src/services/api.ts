@@ -1,5 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { WriteProps, GetPresignedUrl, PutPresignedUrlProps } from "../types";
+import {
+  WriteProps,
+  GetPresignedUrl,
+  PutPresignedUrlProps,
+  DiaryProps,
+} from "../types";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://10.58.52.122:3000",
@@ -44,29 +49,31 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    // uploadImage: builder.mutation<PutPresignedUrlProps, PutPresignedUrlProps>({
-    //   query: ({ url, file }) => ({
-    //     url: url,
-    //     headers: {
-    //       Accept: "application/json",
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //     method: "put",
-    //     body: file,
-    //   }),
-    //   transformResponse: (response: PutPresignedUrlProps) => {
-    //     console.log("이미지 업로드함?", response);
-    //     return response;
-    //   },
-    //   transformErrorResponse: (response: { status: string | number }) => {
-    //     return response.status;
-    //   },
-    // }),
+    getDiaryList: builder.query<DiaryProps, DiaryProps>({
+      query: () => ({
+        url: `/diary`,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        method: "get",
+      }),
+      transformResponse: (response: DiaryProps) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
   }),
 });
 
-export const { usePostDiaryMutation, useGetPresignedUrlMutation } = apiSlice;
+export const {
+  usePostDiaryMutation,
+  useGetPresignedUrlMutation,
+  useGetDiaryListQuery,
+} = apiSlice;
 
 export const {
-  endpoints: { getPresignedUrl },
+  endpoints: { getPresignedUrl, getDiaryList },
 } = apiSlice;

@@ -17,7 +17,7 @@ export interface Styles {
 const Navbar = () => {
   const InitialButtonStyle = {
     button: { color: "#8F8F8F" },
-    bar: { background: "#dedede" },
+    bar: { background: "#ffffff" },
   };
 
   const SelectedButtonStyle = {
@@ -72,14 +72,8 @@ export default Navbar;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-start;
-
-  padding: 10px 20%;
-  width: 100%;
-  height: 64px;
-
-  background: #ffffff;
 
   cursor: pointer;
 `;
@@ -89,10 +83,8 @@ const ButtonBox = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
 
-  width: calc(100% / 3);
-  height: 55px;
+  width: calc(50% / 3);
 
   background: #ffffff;
   border-style: none;
@@ -104,9 +96,10 @@ const ButtonBox = styled.button`
 
 const ButtonText = styled.div`
   width: 80px;
-  margin-bottom: 10px;
+  padding: 15px 0;
 
-  font-size: 14px;
+  font-size: 18px;
+  font-weight: 700;
 
   color: #8f8f8f;
 `;

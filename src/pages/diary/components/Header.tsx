@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ProfileIcon from "./ProfileIcon";
-import TextButton from "./TextButton";
+
 import { useNavigate } from "react-router-dom";
+import ColorButton from "../../write/components/Atoms/ColorButton";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,7 +17,12 @@ const Header = () => {
         <img src="/images/놀다이어리 logo.png" alt="놀다이어리" width={100} />
       </LogoBox>
       <ButtonBox>
-        <TextButton onClick={buttonHandler} />
+        <ColorButton
+          width={"90px"}
+          height={"40px"}
+          text={"글쓰기"}
+          onClick={buttonHandler}
+        ></ColorButton>
         <ProfileIcon size={55} color={"grey"} />
       </ButtonBox>
     </Container>
@@ -30,12 +36,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  padding: 10px 20%;
-  width: 100%;
-  height: 64px;
-
-  background-color: white;
 `;
 
 const LogoBox = styled.div`
