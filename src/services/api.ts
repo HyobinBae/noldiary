@@ -7,7 +7,8 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://10.58.52.122:3000",
+  // baseUrl: "http://10.58.52.122:3000",
+  baseUrl: "data/",
 });
 
 const token = localStorage.getItem("token");
@@ -49,16 +50,16 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getDiaryList: builder.query<DiaryProps, DiaryProps>({
+    getDiaryList: builder.query<Array<DiaryProps>, void>({
       query: () => ({
-        url: `/diary`,
+        url: `/diary.json`,
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
         method: "get",
       }),
-      transformResponse: (response: DiaryProps) => {
+      transformResponse: (response: DiaryProps[]) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {

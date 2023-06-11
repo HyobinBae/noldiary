@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-const src = "/images/breads.jpeg";
-const ImageBox = () => {
+
+const ImageBox = ({ image }) => {
   return (
     <Container>
       <TitleBox>
         <Title>Ticket</Title>
       </TitleBox>
       <ContentBox>
-        <Image src={src} alt="breads" />
+        <Image src={image} alt="breads" />
       </ContentBox>
     </Container>
   );

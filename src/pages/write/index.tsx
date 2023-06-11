@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import WriteHeader from "./components/WriteHeader";
 import WriteMain from "./components/WriteMain";
-
 import SaveModal from "./components/SaveModal";
-import BorderButton from "./components/Atoms/BorderButton";
 import ColorButton from "./components/Atoms/ColorButton";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { setIsModalOpen } from "./services/write.slice";

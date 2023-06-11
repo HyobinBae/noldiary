@@ -1,28 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DiaryProps } from "../../../types";
+import { getDiaryList } from "../../../services/api";
+import { RootState } from "../../../services/store";
 
 interface DiaryState {
-  diary: DiaryProps;
+  getDiaryList: DiaryProps[];
   setNavTitle: string;
 }
 
 const initialState: DiaryState = {
-  diary: {
-    userInfo: {
-      profileImage: "",
-      nickName: "",
-      comment: "",
+  getDiaryList: [
+    {
+      _id: "",
+      author: "",
+      title: "",
+      departure: "",
+      destination: "",
+      departureDate: new Date(),
+      arrivalDate: new Date(),
+      thumnailImage: "",
+      contents: "",
+      bookmark: false,
+      isPublic: false,
+      createdAt: "",
+      updatedAt: "",
     },
-    title: "",
-    departure: "",
-    destination: "",
-    departureDate: "",
-    arrivalDate: "",
-    thumnailImage: "",
-    contents: "",
-    bookmark: false,
-    public: false,
-  },
+  ],
   setNavTitle: "내 일기",
 };
 
@@ -31,10 +34,17 @@ export const DiarySlice = createSlice({
   initialState,
   reducers: {
     setNavTitle: (state, action) => {
-      state.diary = action.payload;
+      state.setNavTitle = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(getDiaryList.matchFulfilled, (state, { payload }) => {
+      state.getDiaryList = payload;
+    });
   },
 });
 
 export const { setNavTitle } = DiarySlice.actions;
+export const selectDiaryList = (state: RootState) => state.diary.getDiaryList;
+
 export default DiarySlice.reducer;

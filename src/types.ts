@@ -14,22 +14,21 @@ export interface ImageUrl {
 }
 
 export interface DiaryProps {
-  userInfo: {
-    profileImage: string;
-    nickName: string;
-    comment: string;
-  };
-
+  _id: string;
+  author: string;
   title: string;
   departure: string;
   destination: string;
-  departureDate: string;
-  arrivalDate: string;
+  departureDate: Date;
+  arrivalDate: Date;
   thumnailImage?: string;
   contents: string;
   bookmark?: boolean;
-  public?: boolean;
+  isPublic?: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
+
 export interface PutPresignedUrlProps {
   url: string;
 }

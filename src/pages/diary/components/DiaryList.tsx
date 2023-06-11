@@ -6,32 +6,48 @@ import ImageBox from "./DiaryList/ImageBox";
 import { useGetDiaryListQuery } from "../../../services/api";
 
 const DiaryList = () => {
-  const getDiaryList = useGetDiaryListQuery();
+  const { data: diaryList, refetch } = useGetDiaryListQuery();
+
   useEffect(() => {
-    getDiaryList;
-  });
+    refetch();
+  }, [refetch]);
+
+  console.log(diaryList);
 
   return (
     <>
-      <Container>
-        <InfoContainer>
-          <TicketTitle />
-          <TicketBody />
-        </InfoContainer>
-        <ImageContainer>
-          <ImageBox />
-        </ImageContainer>
-      </Container>
+      {diaryList?.map((data) => {
+        return (
+          <Container>
+            <InfoContainer>
+              <TicketTitle title={data.title} />
+              <TicketBody
+                departure={data.departure}
+                destination={data.destination}
+                departureDate={data.departureDate}
+                arrivalDate={data.arrivalDate}
+                contents={data.contents}
+              />
+            </InfoContainer>
+            <ImageContainer>
+              <ImageBox image={data.thumnailImage} />
+            </ImageContainer>
+          </Container>
+        );
+      })}
     </>
   );
 };
 
 export default DiaryList;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 40px;
 `;
+
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;

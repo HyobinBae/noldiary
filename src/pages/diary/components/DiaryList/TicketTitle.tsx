@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { FaTrain } from "react-icons/fa";
 
-const TicketTitle = () => {
+const TicketTitle = ({ title }) => {
   return (
     <TitleBox>
       <FaTrain size={30} color="white" />
-      <Title>경주여행</Title>
+      <Title>{title}</Title>
     </TitleBox>
   );
 };

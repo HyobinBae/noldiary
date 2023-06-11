@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GetPresignedUrl, ImageUrl, WriteProps } from "../../../types";
-import { RootState } from "../../../services/store";
 import { getPresignedUrl } from "../../../services/api";
+import { RootState } from "../../../services/store";
 
 interface WriteState {
   diary: WriteProps;
