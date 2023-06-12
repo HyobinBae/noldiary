@@ -20,11 +20,13 @@ const SaveModal = () => {
   const isModalOpen = useAppSelector((state) => state.write.isModalOpen);
 
   const isPublicHandler = (e) => {
-    dispatch(setIsPublic(e.target.value));
+    const booleanValue = JSON.parse(e.target.value);
+    dispatch(setIsPublic(booleanValue));
   };
-  const bookmarkHandler = (e) => {
+
+  const bookmarkHandler = () => {
     diary.bookmark === false
-      ? dispatch(setBookmark(e.target.value))
+      ? dispatch(setBookmark(true))
       : dispatch(setBookmark(false));
   };
 
@@ -36,7 +38,6 @@ const SaveModal = () => {
   const exitHandler = () => {
     dispatch(setIsModalOpen(false));
     console.log(isModalOpen);
-    console.log("selkfjasoeifj");
   };
 
   return (
@@ -76,7 +77,6 @@ const SaveModal = () => {
                 value="true"
                 onClick={bookmarkHandler}
               />
-              {/* <Label>비공개</Label> */}
             </Content>
           </SettingBox>
         </SettingContainer>

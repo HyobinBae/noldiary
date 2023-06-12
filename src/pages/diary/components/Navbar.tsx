@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { setNavTitle } from "../services/diary.slice";
+import { useNavigate } from "react-router-dom";
 
 export interface ButtonProps {
-  id: number;
   navTitle: string;
-  sort: string;
+  endpoint: string;
 }
 
 export interface Styles {
@@ -25,12 +25,13 @@ const Navbar = () => {
     bar: { background: "#2192FF" },
   };
 
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const selectedTitle = useAppSelector((state) => state.diary.setNavTitle);
 
-  const getNavTitle = (navTitle: string) => {
-    dispatch(setNavTitle(navTitle));
-    console.log(selectedTitle);
+  const navHandler = (title: ButtonProps) => {
+    dispatch(setNavTitle(title.navTitle));
+    navigate(`/${title.endpoint}`);
   };
 
   return (
@@ -41,7 +42,7 @@ const Navbar = () => {
             <ButtonBox
               key={title.id}
               onClick={() => {
-                getNavTitle(title.navTitle);
+                navHandler(title);
               }}
             >
               {selectedTitle === title.navTitle ? (
@@ -114,7 +115,7 @@ const SelectedBar = styled.div`
 `;
 
 const NAVIGATION_TITLE = [
-  { id: 1, navTitle: "여기 어때" },
-  { id: 2, navTitle: "내 일기" },
-  { id: 3, navTitle: "내 발자취" },
+  { id: 1, navTitle: "여기 어때", endpoint: "curations" },
+  { id: 2, navTitle: "내 일기", endpoint: "diary" },
+  { id: 3, navTitle: "내 발자취", endpoint: "footprints" },
 ];

@@ -2,8 +2,9 @@ export interface WriteProps {
   title: string;
   departure: string;
   destination: string;
-  departureDate: Date;
-  arrivalDate: Date;
+  departureDate: string;
+  arrivalDate: string;
+  thumnailImage?: string;
   contents: string;
   bookmark?: boolean;
   isPublic?: boolean;
@@ -19,8 +20,8 @@ export interface DiaryProps {
   title: string;
   departure: string;
   destination: string;
-  departureDate: Date;
-  arrivalDate: Date;
+  departureDate: string;
+  arrivalDate: string;
   thumnailImage?: string;
   contents: string;
   bookmark?: boolean;

@@ -1,13 +1,14 @@
 import React, { useRef, useMemo, useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { Quill } from "react-quill";
+import ImageResize from "quill-image-resize-module-react";
 import { useGetPresignedUrlMutation } from "../../../services/api";
 import "react-quill/dist/quill.snow.css";
-
+import "quill/dist/quill.core.css";
+import "quill/dist/quill.snow.css";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { setWriteContents } from "../services/write.slice";
-import ImageResize from "quill-image-resize";
 
 const Editors = () => {
   const quillRef = useRef<ReactQuill>(null);
@@ -18,7 +19,6 @@ const Editors = () => {
 
   const dispatch = useAppDispatch();
   const writeContents = useAppSelector((state) => state.write.diary.contents);
-  console.log("presignedUrl======", presignedUrl);
 
   const contentsHandler = (value: string) => {
     dispatch(setWriteContents(value));
@@ -69,8 +69,6 @@ const Editors = () => {
     }
   }, [imageUrl]);
 
-  Quill.register("modules/ImageResize", ImageResize);
-
   const formats = [
     "header",
     "font",
@@ -95,6 +93,8 @@ const Editors = () => {
   const redoChange = (quill: any) => {
     quill.history.redo();
   };
+
+  Quill.register("modules/ImageResize", ImageResize);
 
   const modules = useMemo(
     () => ({
@@ -123,6 +123,28 @@ const Editors = () => {
     }),
     []
   );
+
+  useEffect(() => {
+    const quillEditor = quillRef.current?.editor;
+    const quillContent = quillEditor?.getModule("toolbar")?.container;
+
+    if (quillContent) {
+      quillContent.addEventListener("click", handleQuillContentClick);
+    }
+
+    return () => {
+      if (quillContent) {
+        quillContent.removeEventListener("click", handleQuillContentClick);
+      }
+    };
+  }, []);
+
+  const handleQuillContentClick = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    if (target.tagName === "img") {
+      console.log("Clicked element:", target);
+    }
+  };
 
   return (
     <>

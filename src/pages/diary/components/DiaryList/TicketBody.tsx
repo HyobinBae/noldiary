@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { HiOutlineShare } from "react-icons/hi";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 
 const TicketBody = ({
   departure,
@@ -7,8 +9,8 @@ const TicketBody = ({
   departureDate,
   arrivalDate,
   contents,
+  bookmark,
 }) => {
-  console.log(destination);
   return (
     <InfoContainer>
       <Container>
@@ -32,8 +34,18 @@ const TicketBody = ({
       <Container>
         <Box>
           <InfoTitle>Description</InfoTitle>
-          <Content>{contents}</Content>
+          <Content>
+            <Content dangerouslySetInnerHTML={{ __html: contents }} />
+          </Content>
         </Box>
+        <IconBox>
+          <HiOutlineShare size={25} />
+          {bookmark === false ? (
+            <FaRegBookmark size={25} />
+          ) : (
+            <FaBookmark size={25} />
+          )}
+        </IconBox>
       </Container>
     </InfoContainer>
   );
@@ -56,7 +68,7 @@ const InfoContainer = styled.div`
   border-top: none;
   border-radius: 0 0 15px 15px;
 
-  padding: 20px 40px;
+  padding: 20px 20px;
 `;
 
 const Container = styled.div`
@@ -64,6 +76,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+
   width: calc(100% / 2);
   height: 100%;
 `;
@@ -75,7 +88,7 @@ const Box = styled.div`
   align-items: flex-start;
 
   margin-bottom: 14px;
-  height: 100%;
+  width: 100%;
 `;
 
 const InfoTitle = styled.div`
@@ -84,7 +97,7 @@ const InfoTitle = styled.div`
   align-items: center;
 
   width: 150px;
-  height: 16px;
+  margin-bottom: 5px;
 
   color: #8f8f8f;
   font-size: 12px;
@@ -95,9 +108,13 @@ const InfoContent = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  width: 150px;
-  height: 30px;
+  width: 100%;
+
   font-size: 18px;
+
+  .p {
+    width: 100px;
+  }
 `;
 
 const Content = styled.div`
@@ -105,8 +122,25 @@ const Content = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: 150px;
-  height: 100%;
-
   font-size: 18px;
+  line-height: 1.5;
+
+  width: 100%;
+  height: 160px;
+  margin-bottom: 10px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  gap: 10px;
 `;

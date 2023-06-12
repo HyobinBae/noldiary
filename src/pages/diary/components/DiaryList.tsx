@@ -27,6 +27,7 @@ const DiaryList = () => {
                 departureDate={data.departureDate}
                 arrivalDate={data.arrivalDate}
                 contents={data.contents}
+                bookmark={data.bookmark}
               />
             </InfoContainer>
             <ImageContainer>
