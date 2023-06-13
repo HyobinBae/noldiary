@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ProfileIcon from "./ProfileIcon";
 
 import { useNavigate } from "react-router-dom";
-import ColorButton from "../../write/components/Atoms/ColorButton";
+import ColorButton from "../../../components/ColorButton";
 
 const Header = () => {
   const navigate = useNavigate();

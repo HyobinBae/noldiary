@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WriteHeader from "./components/WriteHeader";
 import WriteMain from "./components/WriteMain";
 import SaveModal from "./components/SaveModal";
-import ColorButton from "./components/Atoms/ColorButton";
+import ColorButton from "../../components/ColorButton";
 import { useAppDispatch, useAppSelector } from "../../services/store";
 import { setIsModalOpen } from "./services/write.slice";
 

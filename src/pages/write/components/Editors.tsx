@@ -141,14 +141,14 @@ const Editors = () => {
 
   const handleQuillContentClick = (event: MouseEvent) => {
     const target = event.target as HTMLElement;
-    if (target.tagName === "img") {
-      console.log("Clicked element:", target);
+    if (target.tagName === "IMG") {
+      const imageUrl = target.getAttribute("src");
+      console.log("Clicked image source:", imageUrl);
     }
   };
 
   return (
     <>
-      {/* <ToolBar quillRef={quillRef} /> */}
       <QuillEditor
         ref={quillRef}
         placeholder="당신의 여정을 입력해보세요"

@@ -1,16 +1,12 @@
 import React from "react";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
 import UserInfoSection from "./components/InfoContainer";
 import DiaryList from "./components/DiaryList";
-import styled from "styled-components";
 import SearchBar from "./components/SearchBar";
+import styled from "styled-components";
 
 const Diary = () => {
   return (
     <Container>
-      <Header />
-      <Navbar />
       <UserInfoSection />
       <SearchBar />
       <DiaryList />
@@ -21,7 +17,7 @@ const Diary = () => {
 export default Diary;
 
 const Container = styled.div`
-  padding: 10px 10%;
+  padding: 0 10%;
   width: 100%;
 
   background-color: white;

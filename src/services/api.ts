@@ -7,7 +7,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.123.118:3000",
+  baseUrl: "http://192.168.123.106:3000",
   // baseUrl: "data/",
 });
 
@@ -53,6 +53,7 @@ export const apiSlice = createApi({
     getDiaryList: builder.query<Array<DiaryProps>, void>({
       query: () => ({
         url: `/diary`,
+        // url: `/diary.json`,
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,

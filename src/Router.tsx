@@ -1,17 +1,20 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Curations from "./pages/curations";
-import Signin from "./pages/signin";
-import Footprints from "./pages/footprints";
-import Write from "./pages/write";
+
+import MainHeader from "./components/MainHeader";
 import Diary from "./pages/diary";
+import Write from "./pages/write";
+import Signin from "./pages/signin";
 import KakaoLogin from "./pages/signin/components/KakaoLogin";
 import NaverLogin from "./pages/signin/components/NaverLogin";
+import Curations from "./pages/curations";
+import Footprints from "./pages/footprints";
 
 const Router = () => {
   return (
     <>
       <BrowserRouter>
+        <MainHeader />
         <Routes>
           <Route path="/" element={<Curations />} />
           <Route path="/signin" element={<Signin />} />

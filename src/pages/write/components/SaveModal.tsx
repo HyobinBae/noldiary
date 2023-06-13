@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { usePostDiaryMutation } from "../../../services/api";
 import { useNavigate } from "react-router-dom";
-import ColorButton from "./Atoms/ColorButton";
-import BorderButton from "./Atoms/BorderButton";
+import ColorButton from "../../../components/ColorButton";
+import BorderButton from "../../../components/BorderButton";
 import {
   setBookmark,
   setIsModalOpen,
