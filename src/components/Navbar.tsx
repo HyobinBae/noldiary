@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
-import { setNavTitle } from "../services/diary.slice";
+import { useAppDispatch, useAppSelector } from "../services/store";
+import { setNavTitle } from "../pages/diary/services/diary.slice";
 import { useNavigate } from "react-router-dom";
 
 export interface ButtonProps {

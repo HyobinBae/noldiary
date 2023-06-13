@@ -21,7 +21,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 const Box = styled.div`
@@ -29,7 +30,7 @@ const Box = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  width: 70%;
+  width: 71%;
   height: 55px;
   border: 2px solid #2192ff;
   border-radius: 10px;

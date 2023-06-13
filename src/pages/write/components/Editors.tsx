@@ -107,7 +107,11 @@ const Editors = () => {
           [{ align: [] }, { color: [] }, { background: [] }],
           ["image"],
         ],
-        handlers: { image: imageHandler, undo: undoChange, redo: redoChange },
+        handlers: {
+          image: imageHandler,
+          undo: undoChange,
+          redo: redoChange,
+        },
       },
       clipboard: {
         matchVisual: false,
@@ -123,29 +127,6 @@ const Editors = () => {
     }),
     []
   );
-
-  useEffect(() => {
-    const quillEditor = quillRef.current?.editor;
-    const quillContent = quillEditor?.getModule("toolbar")?.container;
-
-    if (quillContent) {
-      quillContent.addEventListener("click", handleQuillContentClick);
-    }
-
-    return () => {
-      if (quillContent) {
-        quillContent.removeEventListener("click", handleQuillContentClick);
-      }
-    };
-  }, []);
-
-  const handleQuillContentClick = (event: MouseEvent) => {
-    const target = event.target as HTMLElement;
-    if (target.tagName === "IMG") {
-      const imageUrl = target.getAttribute("src");
-      console.log("Clicked image source:", imageUrl);
-    }
-  };
 
   return (
     <>

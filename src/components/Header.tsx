@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import ProfileIcon from "./ProfileIcon";
+import ProfileIcon from "../pages/diary/components/ProfileIcon";
 
 import { useNavigate } from "react-router-dom";
-import ColorButton from "../../../components/ColorButton";
+import ColorButton from "./ColorButton";
 
 const Header = () => {
   const navigate = useNavigate();

@@ -4,6 +4,7 @@ import {
   GetPresignedUrl,
   PutPresignedUrlProps,
   DiaryProps,
+  UserInfo,
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
@@ -67,6 +68,22 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
+    getUserInfo: builder.query<UserInfo, void>({
+      query: () => ({
+        url: `/user`,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        method: "get",
+      }),
+      transformResponse: (response: UserInfo) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
   }),
 });
 
@@ -74,8 +91,9 @@ export const {
   usePostDiaryMutation,
   useGetPresignedUrlMutation,
   useGetDiaryListQuery,
+  useGetUserInfoQuery,
 } = apiSlice;
 
 export const {
-  endpoints: { getPresignedUrl, getDiaryList },
+  endpoints: { getPresignedUrl, getDiaryList, getUserInfo },
 } = apiSlice;

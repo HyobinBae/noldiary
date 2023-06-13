@@ -38,3 +38,12 @@ export interface GetPresignedUrl {
   url: string;
   fileName: string;
 }
+
+export interface UserInfo {
+  profileImage: string;
+  backgroundImage: string;
+  nickname: string;
+  message?: string;
+  totalMyDiary: number;
+  totalSharedDiary: number;
+}

@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../pages/diary/components/Header";
-import Navbar from "../pages/diary/components/Navbar";
+import Header from "./Header";
+import Navbar from "./Navbar";
 import styled from "styled-components";
 
 const MainHeader = () => {
@@ -15,7 +15,7 @@ const MainHeader = () => {
 export default MainHeader;
 
 const Container = styled.div`
-  padding: 10px 10% 0px;
+  padding: 10px 20px 0;
   width: 100%;
 
   background-color: white;

@@ -58,7 +58,7 @@ const InfoContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: 600px;
+  width: 100%;
   height: 280px;
 
   background-color: #ffffff;

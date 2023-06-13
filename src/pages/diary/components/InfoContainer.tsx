@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import ProfileIcon from "./ProfileIcon";
+import { useGetUserInfoQuery } from "../../../services/api";
 
 const UserInfoSection = () => {
+  const { data: userInfo, refetch } = useGetUserInfoQuery();
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
+  console.log(userInfo);
+
   return (
     <Container>
       <Wrapper>
@@ -34,10 +42,12 @@ const Container = styled.div`
 
   width: 100%;
   height: 360px;
+  padding: 10px 20px 0;
+
   background-image: url("images/dessert.jpeg");
   background-size: cover;
 
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 
 const Wrapper = styled.div`

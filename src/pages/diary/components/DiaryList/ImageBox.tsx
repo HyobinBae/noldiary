@@ -16,14 +16,16 @@ const ImageBox = ({ image }) => {
 
 export default ImageBox;
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100%;
+`;
 
 const TitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 280px;
+  width: 100%;
   height: 50px;
   background-color: #2192ff;
 
@@ -40,7 +42,7 @@ const ContentBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 280px;
+  width: 100%;
   height: 280px;
   background-color: #ffffff;
 
