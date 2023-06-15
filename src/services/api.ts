@@ -5,11 +5,13 @@ import {
   PutPresignedUrlProps,
   DiaryProps,
   UserInfo,
+  DiaryDetail,
 } from "../types";
+import { StringLiteral } from "typescript";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.123.106:3000",
-  // baseUrl: "data/",
+  baseUrl: "http://10.58.52.82:3000",
+  // baseUrl: "/data",
 });
 
 const token = localStorage.getItem("token");
@@ -20,6 +22,7 @@ export const apiSlice = createApi({
     postDiary: builder.mutation<WriteProps, WriteProps>({
       query: (diary) => ({
         url: `/diary`,
+        // url: `/DIARY_LIST.json`,
         method: "post",
         headers: {
           Accept: "application/json",
@@ -54,7 +57,7 @@ export const apiSlice = createApi({
     getDiaryList: builder.query<Array<DiaryProps>, void>({
       query: () => ({
         url: `/diary`,
-        // url: `/diary.json`,
+        // url: `/DIARY_LIST.json`,
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -70,7 +73,8 @@ export const apiSlice = createApi({
     }),
     getUserInfo: builder.query<UserInfo, void>({
       query: () => ({
-        url: `/user`,
+        url: `/users`,
+        // url: `USER_INFO.json`,
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -78,6 +82,23 @@ export const apiSlice = createApi({
         method: "get",
       }),
       transformResponse: (response: UserInfo) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    getDiaryDetail: builder.query<DiaryDetail, string>({
+      query: (id) => ({
+        url: `/diary/${id}`,
+        // url: `/DIARY_DETAIL.json`,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        method: "get",
+      }),
+      transformResponse: (response: DiaryDetail) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -92,8 +113,9 @@ export const {
   useGetPresignedUrlMutation,
   useGetDiaryListQuery,
   useGetUserInfoQuery,
+  useGetDiaryDetailQuery,
 } = apiSlice;
 
 export const {
-  endpoints: { getPresignedUrl, getDiaryList, getUserInfo },
+  endpoints: { getPresignedUrl, getDiaryList, getUserInfo, getDiaryDetail },
 } = apiSlice;

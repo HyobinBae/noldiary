@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DiaryProps } from "../../../types";
-import { getDiaryList, getUserInfo } from "../../../services/api";
+import { DiaryDetail, DiaryProps } from "../../../types";
+import {
+  getDiaryDetail,
+  getDiaryList,
+  getUserInfo,
+} from "../../../services/api";
 import { UserInfo } from "../../../types";
 
 interface DiaryState {
   getUserInfo: UserInfo;
   getDiaryList: DiaryProps[];
+  getDiaryDetail: DiaryDetail;
   setNavTitle: string;
 }
 
@@ -35,6 +40,20 @@ const initialState: DiaryState = {
       updatedAt: "",
     },
   ],
+  getDiaryDetail: {
+    _id: "",
+    author: "",
+    title: "",
+    departure: "",
+    destination: "",
+    departureDate: "",
+    arrivalDate: "",
+    thumnailImage: "",
+    contents: "",
+    bookmark: false,
+    isPublic: false,
+    createdAt: "",
+  },
   setNavTitle: "내 일기",
 };
 
@@ -52,6 +71,9 @@ export const DiarySlice = createSlice({
     });
     builder.addMatcher(getUserInfo.matchFulfilled, (state, { payload }) => {
       state.getUserInfo = payload;
+    });
+    builder.addMatcher(getDiaryDetail.matchFulfilled, (state, { payload }) => {
+      state.getDiaryDetail = payload;
     });
   },
 });

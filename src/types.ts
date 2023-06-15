@@ -47,3 +47,18 @@ export interface UserInfo {
   totalMyDiary: number;
   totalSharedDiary: number;
 }
+
+export interface DiaryDetail {
+  _id: string;
+  author: string;
+  title: string;
+  departure: string;
+  destination: string;
+  departureDate: string;
+  arrivalDate: string;
+  thumnailImage: string;
+  contents: string;
+  bookmark: boolean;
+  isPublic: boolean;
+  createdAt: string;
+}

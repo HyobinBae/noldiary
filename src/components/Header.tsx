@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ProfileIcon from "../pages/diary/components/ProfileIcon";
+import ProfileIcon from "./ProfileIcon";
 
 import { useNavigate } from "react-router-dom";
 import ColorButton from "./ColorButton";

@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import TicketTitle from "./DiaryList/TicketTitle";
-import TicketBody from "./DiaryList/TicketBody";
-import ImageBox from "./DiaryList/ImageBox";
-import { useGetDiaryListQuery } from "../../../services/api";
+import TicketTitle from "./TicketTitle";
+import TicketBody from "./TicketBody";
+import ImageBox from "./ImageBox";
+import { useGetDiaryListQuery } from "../../../../services/api";
+import { Link } from "react-router-dom";
 
 const DiaryList = () => {
   const { data: diaryList, refetch } = useGetDiaryListQuery();
@@ -16,7 +17,7 @@ const DiaryList = () => {
     <ListContainer>
       {diaryList?.map((data) => {
         return (
-          <Container>
+          <Container key={data._id} to={`/diary/${data._id}`}>
             <InfoContainer>
               <TicketTitle title={data.title} />
               <TicketBody
@@ -47,13 +48,15 @@ const ListContainer = styled.div`
   align-items: center;
 `;
 
-const Container = styled.div`
+const Container = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 80%;
   margin-bottom: 40px;
+
+  cursor: pointer;
 `;
 
 const InfoContainer = styled.div`

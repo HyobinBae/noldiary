@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import ProfileIcon from "./ProfileIcon";
+import ProfileIcon from "../../../components/ProfileIcon";
 import { useGetUserInfoQuery } from "../../../services/api";
 
 const UserInfoSection = () => {
@@ -14,18 +14,25 @@ const UserInfoSection = () => {
   return (
     <Container>
       <Wrapper>
-        <ProfileIcon size={120} color={"grey"} />
-        <NickName>Labinnnnn</NickName>
-        <Message>태국에서 뭐사오지?</Message>
+        {userInfo?.profileImage ? (
+          <ProfileWrapper>
+            <ProfileImage src={userInfo.profileImage} />
+          </ProfileWrapper>
+        ) : (
+          <ProfileIcon size={130} color={"grey"} />
+        )}
+
+        <NickName>{userInfo?.nickname}</NickName>
+        <Message>{userInfo?.message}</Message>
       </Wrapper>
       <SummaryWrapper>
         <Wrapper>
-          <NumberBox>14</NumberBox>
+          <NumberBox>{userInfo?.totalMyDiary}</NumberBox>
           <TextBox>내 일기</TextBox>
         </Wrapper>
         <DivideLine />
         <Wrapper>
-          <NumberBox>2</NumberBox>
+          <NumberBox>{userInfo?.totalSharedDiary}</NumberBox>
           <TextBox>공유 일기</TextBox>
         </Wrapper>
       </SummaryWrapper>
@@ -45,6 +52,7 @@ const Container = styled.div`
   padding: 10px 20px 0;
 
   background-image: url("images/dessert.jpeg");
+  background-color: #a6a6a6;
   background-size: cover;
 
   margin-bottom: 40px;
@@ -56,6 +64,22 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 20px 0;
+`;
+
+const ProfileWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 110px;
+  height: 110px;
+
+  border-radius: 50%;
+  overflow: hidden;
+`;
+const ProfileImage = styled.img`
+  width: 100%;
+  object-fit: cover;
 `;
 
 const NickName = styled.div`
