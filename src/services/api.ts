@@ -7,10 +7,9 @@ import {
   UserInfo,
   DiaryDetail,
 } from "../types";
-import { StringLiteral } from "typescript";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://10.58.52.82:3000",
+  baseUrl: "http://10.58.52.244:3000",
   // baseUrl: "/data",
 });
 

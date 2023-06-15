@@ -5,21 +5,25 @@ import Signin from "./pages/signin";
 import KakaoLogin from "./pages/signin/components/KakaoLogin";
 import NaverLogin from "./pages/signin/components/NaverLogin";
 import Write from "./pages/write";
+
+import RouteWithNavbar from "./RouteWithNavbar";
 import RouteWithHeader from "./RouteWithHeader";
+import DiaryDetail from "./pages/diary/components/DiaryDetail/DiaryDetail";
 
 const Router = () => {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/oauth/kakao" element={<KakaoLogin />} />
-          <Route path="/oauth/naver" element={<NaverLogin />} />
-          <Route path="/write" element={<Write />} />
-          <Route path="/*" element={<RouteWithHeader />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/oauth/kakao" element={<KakaoLogin />} />
+        <Route path="/oauth/naver" element={<NaverLogin />} />
+        <Route path="/write" element={<Write />} />
+        <Route element={<RouteWithHeader />}>
+          <Route path="/diary/:id" element={<DiaryDetail />} />
+        </Route>
+        <Route path="/*" element={<RouteWithNavbar />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

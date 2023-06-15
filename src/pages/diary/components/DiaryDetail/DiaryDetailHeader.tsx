@@ -1,29 +1,29 @@
 import React from "react";
-import DivideLine from "../../../../components/DivideLine";
 import styled from "styled-components";
 
 const DiaryDetailHeader = ({ props }) => {
   return (
     <HeaderContainer>
       <TitleBox>{props?.title}</TitleBox>
-      <DivideLine />
       <Container>
-        <DetailContainer>
-          <Title>From</Title>
-          <Detail>{props?.departure}</Detail>
-        </DetailContainer>
-        <DetailContainer>
-          <Title>To</Title>
-          <Detail>{props?.destination}</Detail>
-        </DetailContainer>
-        <DetailContainer>
-          <Title>Date</Title>
+        <Wrapper>
           <DetailContainer>
-            <DateDetail>{props?.departureDate}</DateDetail>
-            <TinyDetail>~</TinyDetail>
-            <DateDetail>{props?.arrivalDate}</DateDetail>
+            <Detail>{props?.departure}</Detail>
           </DetailContainer>
-        </DetailContainer>
+          <TinyDetail>-</TinyDetail>
+          <DetailContainer>
+            <Detail>{props?.destination}</Detail>
+          </DetailContainer>
+        </Wrapper>
+        <Wrapper>
+          <DetailContainer>
+            <DetailContainer>
+              <DateDetail>{props?.departureDate}</DateDetail>
+              <TinyDetail>~</TinyDetail>
+              <DateDetail>{props?.arrivalDate}</DateDetail>
+            </DetailContainer>
+          </DetailContainer>
+        </Wrapper>
       </Container>
     </HeaderContainer>
   );
@@ -36,14 +36,23 @@ const HeaderContainer = styled.header`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-`;
-const TitleBox = styled.div`
+
   width: 100%;
+`;
+
+const TitleBox = styled.div`
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 50%;
   height: 55px;
 
+  margin-bottom: 20px;
   border: none;
   outline: none;
-  font-size: 30px;
+  font-size: 40px;
 
   ::placeholder {
     display: flex;
@@ -58,7 +67,20 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: flex-start;
   margin: 5px 0px;
+
+  width: 50%;
+  color: #828282;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: 10px;
+
+  width: 30%;
 `;
 
 const DetailContainer = styled.div`
@@ -68,15 +90,6 @@ const DetailContainer = styled.div`
   align-items: center;
 `;
 
-const Title = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 3px 5px;
-
-  width: 10%;
-  height: 40px;
-`;
-
 const Detail = styled.div`
   display: flex;
   align-items: center;
@@ -84,8 +97,7 @@ const Detail = styled.div`
   border: none;
   outline: none;
 
-  width: 50%;
-  height: 40px;
+  height: 20px;
 
   font-size: 14px;
 `;
@@ -97,8 +109,7 @@ const DateDetail = styled.div`
   border: none;
   outline: none;
 
-  width: 15vw;
-  height: 40px;
+  height: 20px;
 
   font-size: 14px;
 `;
@@ -109,8 +120,8 @@ const TinyDetail = styled.div`
   align-items: center;
   margin: 3px 5px;
 
-  width: 40px;
-  height: 40px;
+  width: 15px;
+  height: 20px;
 
   border: none;
 `;

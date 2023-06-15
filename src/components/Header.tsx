@@ -18,8 +18,8 @@ const Header = () => {
       </LogoBox>
       <ButtonBox>
         <ColorButton
-          width={"90px"}
-          height={"40px"}
+          width={"84px"}
+          height={"36px"}
           text={"글쓰기"}
           onClick={buttonHandler}
         ></ColorButton>
@@ -36,6 +36,11 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
+  padding: 10px 20px 0;
+  width: 100%;
+
+  background-color: white;
 `;
 
 const LogoBox = styled.div`

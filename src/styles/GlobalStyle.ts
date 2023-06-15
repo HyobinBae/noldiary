@@ -6,7 +6,11 @@ export const GlobalStyle = createGlobalStyle`
 
   *{
   box-sizing: border-box;
-  font-family: 'Nanum Gothic', sans-serif;
+
+  }
+
+  body{
+    font-family: 'Nanum Gothic', 'Open Sans', sans-serif;
   }
 
   a{

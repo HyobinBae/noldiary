@@ -85,7 +85,7 @@ const ButtonBox = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: calc(50% / 3);
+  width: calc(40% / 3);
 
   background: #ffffff;
   border-style: none;
@@ -96,11 +96,10 @@ const ButtonBox = styled.button`
 `;
 
 const ButtonText = styled.div`
-  width: 80px;
-  padding: 15px 0;
+  padding: 10px 0;
 
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
 
   color: #8f8f8f;
 `;
