@@ -71,7 +71,7 @@ const Container = styled.div`
   margin: 5px 0px;
 
   width: 50%;
-  color: #828282;
+  color: #bbbbbb;
 `;
 
 const Wrapper = styled.div`

@@ -52,7 +52,7 @@ const Container = styled.div`
   padding: 10px 20px 0;
 
   background-image: url("images/dessert.jpeg");
-  background-color: #a6a6a6;
+  background-color: #bbbbbb;
   background-size: cover;
 
   margin-bottom: 40px;

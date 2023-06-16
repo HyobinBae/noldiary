@@ -45,14 +45,6 @@ const Write = () => {
 
 export default Write;
 
-const Header = styled.header`
-  display: flex;
-  justify-content: flex-end;
-
-  width: 100%;
-  margin: 20px 200px 30px 30px;
-`;
-
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -60,6 +52,14 @@ const Container = styled.div`
   align-items: center;
 
   margin: 0px 30px;
+`;
+
+const Header = styled.header`
+  display: flex;
+  justify-content: flex-end;
+
+  width: 70%;
+  margin: 20px 200px 30px 30px;
 `;
 
 const Box = styled.div`
