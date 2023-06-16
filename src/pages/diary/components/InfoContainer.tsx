@@ -8,8 +8,7 @@ const UserInfoSection = () => {
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
-  console.log(userInfo);
+  }, [userInfo]);
 
   return (
     <Container>

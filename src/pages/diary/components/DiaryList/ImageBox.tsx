@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const ImageBox = ({ image }) => {
+  console.log(image);
   return (
     <Container>
       <TitleBox>
         <Title>Ticket</Title>
       </TitleBox>
       <ContentBox>
-        <Image src={image} alt="breads" />
+        <Image src={image} alt="thumnailImage" />
       </ContentBox>
     </Container>
   );

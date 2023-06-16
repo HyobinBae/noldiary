@@ -17,7 +17,7 @@ const initialState: WriteState = {
     destination: "",
     departureDate: "",
     arrivalDate: "",
-    thumnailImage: "",
+    thumbnailImage: "",
     contents: "",
     bookmark: false,
     isPublic: false,
@@ -73,7 +73,7 @@ export const WriteSlice = createSlice({
       state.isModalOpen = action.payload;
     },
     setThumnailImage: (state, action) => {
-      state.diary.thumnailImage = action.payload;
+      state.diary.thumbnailImage = action.payload;
     },
   },
   extraReducers: (builder) => {

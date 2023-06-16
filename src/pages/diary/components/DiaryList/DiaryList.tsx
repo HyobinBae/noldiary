@@ -11,7 +11,7 @@ const DiaryList = () => {
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, [diaryList]);
 
   return (
     <ListContainer>
@@ -30,7 +30,7 @@ const DiaryList = () => {
               />
             </InfoContainer>
             <ImageContainer>
-              <ImageBox image={data.thumnailImage} />
+              <ImageBox image={data.thumbnailImage} />
             </ImageContainer>
           </Container>
         );

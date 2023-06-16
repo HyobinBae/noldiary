@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../services/store";
-import { usePostDiaryMutation } from "../../../services/api";
+import {
+  usePostDiaryMutation,
+  useGetPresignedUrlMutation,
+} from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import ColorButton from "../../../components/ColorButton";
 import BorderButton from "../../../components/BorderButton";
@@ -15,32 +18,53 @@ import DivideLine from "../../../components/DivideLine";
 import { BsImage } from "react-icons/bs";
 
 const SaveModal = () => {
+  const [imageFile, setImageFile] = useState(null);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [postDiary] = usePostDiaryMutation();
+  const [getPresignedUrl, { data: presignedUrl }] =
+    useGetPresignedUrlMutation();
 
   const diary = useAppSelector((state) => state.write.diary);
   const thumnailImage = useAppSelector(
-    (state) => state.write.diary.thumnailImage
+    (state) => state.write.diary.thumbnailImage
   );
 
   const thumnailImageHandler = (e) => {
-    const imgSrc = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(imgSrc);
+    const [imgSrc]: any = e.target.files;
+    const fileName = {
+      url: "",
+      fileName: imgSrc.name,
+    };
 
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-        dispatch(setThumnailImage(reader.result));
-        resolve();
-      };
-    });
+    setImageFile(imgSrc);
+    getPresignedUrl(fileName);
   };
+
+  useEffect(() => {
+    if (presignedUrl) {
+      const uploadImage = async () => {
+        console.log(imageFile);
+        await fetch(presignedUrl.url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "image/*",
+          },
+          body: imageFile,
+        }).then((res) => {
+          dispatch(setThumnailImage(res.url.split("?", 1)[0]));
+        });
+      };
+
+      uploadImage();
+    }
+  }, [presignedUrl]);
 
   const isPublicHandler = (e) => {
     const booleanValue = JSON.parse(e.target.value);
     dispatch(setIsPublic(booleanValue));
-    console.log(diary);
+    console.log("diary=========", diary);
   };
 
   const bookmarkHandler = () => {
@@ -58,6 +82,7 @@ const SaveModal = () => {
     dispatch(setIsModalOpen(false));
   };
 
+  console.log("thum=========", thumnailImage, "-=", typeof thumnailImage);
   return (
     <>
       <BackGround></BackGround>
@@ -68,10 +93,10 @@ const SaveModal = () => {
               <Title>썸네일 이미지</Title>
               <DivideLine />
               <ImageWrapper>
-                {!thumnailImage ? (
-                  <BsImage color="white" size={170} />
-                ) : (
+                {thumnailImage ? (
                   <ThumnailImage src={thumnailImage} />
+                ) : (
+                  <BsImage color="white" size={170} />
                 )}
               </ImageWrapper>
               <ImageUploader

@@ -4,10 +4,10 @@ export interface WriteProps {
   destination: string;
   departureDate: string;
   arrivalDate: string;
-  thumnailImage?: string;
+  thumbnailImage: string;
   contents: string;
-  bookmark?: boolean;
-  isPublic?: boolean;
+  bookmark: boolean;
+  isPublic: boolean;
 }
 
 export interface ImageUrl {
@@ -22,10 +22,10 @@ export interface DiaryProps {
   destination: string;
   departureDate: string;
   arrivalDate: string;
-  thumnailImage?: string;
+  thumbnailImage: string;
   contents: string;
-  bookmark?: boolean;
-  isPublic?: boolean;
+  bookmark: boolean;
+  isPublic: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -56,7 +56,7 @@ export interface DiaryDetail {
   destination: string;
   departureDate: string;
   arrivalDate: string;
-  thumnailImage: string;
+  thumbnailImage: string;
   contents: string;
   bookmark: boolean;
   isPublic: boolean;
