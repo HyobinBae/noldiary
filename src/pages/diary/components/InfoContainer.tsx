@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import ProfileIcon from "../../../components/ProfileIcon";
 import { useGetUserInfoQuery } from "../../../services/api";
+import { RiSettings4Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const UserInfoSection = () => {
   const { data: userInfo, refetch } = useGetUserInfoQuery();
@@ -12,6 +14,11 @@ const UserInfoSection = () => {
 
   return (
     <Container>
+      <IconWrapper>
+        <Box to="/setting">
+          <RiSettings4Fill size={24} color={"white"} />
+        </Box>
+      </IconWrapper>
       <Wrapper>
         {userInfo?.profileImage ? (
           <ProfileWrapper>
@@ -47,8 +54,7 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 360px;
-  padding: 10px 20px 0;
+  padding: 20px;
 
   background-image: url("images/dessert.jpeg");
   background-color: #bbbbbb;
@@ -57,12 +63,28 @@ const Container = styled.div`
   margin-bottom: 40px;
 `;
 
+const IconWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  width: 100%;
+`;
+
+const Box = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 20px 0;
+  margin: 20 20px 0;
 `;
 
 const ProfileWrapper = styled.div`
@@ -108,7 +130,7 @@ const SummaryWrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  margin-top: 25px;
+  margin: 25px 0 25px 0;
 
   color: white;
 `;
@@ -130,6 +152,7 @@ const TextBox = styled.div`
   align-items: center;
 
   font-size: 12px;
+  width: 80px;
 `;
 
 const DivideLine = styled.div`

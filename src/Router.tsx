@@ -9,6 +9,7 @@ import Write from "./pages/write";
 import RouteWithNavbar from "./RouteWithNavbar";
 import RouteWithHeader from "./RouteWithHeader";
 import DiaryDetail from "./pages/diary/components/DiaryDetail/DiaryDetail";
+import Setting from "./pages/diary/components/Setting";
 
 const Router = () => {
   return (
@@ -20,6 +21,7 @@ const Router = () => {
         <Route path="/write" element={<Write />} />
         <Route element={<RouteWithHeader />}>
           <Route path="/diary/:id" element={<DiaryDetail />} />
+          <Route path="/setting" element={<Setting />} />
         </Route>
         <Route path="/*" element={<RouteWithNavbar />} />
       </Routes>
