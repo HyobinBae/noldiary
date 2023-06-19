@@ -25,7 +25,7 @@ const UserInfoSection = () => {
             <ProfileImage src={userInfo.profileImage} />
           </ProfileWrapper>
         ) : (
-          <ProfileIcon size={130} color={"grey"} />
+          <ProfileIcon size={130} color={"ababab"} />
         )}
 
         <NickName>{userInfo?.nickname}</NickName>

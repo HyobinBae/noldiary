@@ -31,4 +31,8 @@ const Button = styled.div<{ width: string; height: string }>`
   color: white;
 
   cursor: pointer;
+
+  &:hover {
+    background-color: #50aaff;
+  }
 `;

@@ -23,7 +23,7 @@ const Header = () => {
           text={"글쓰기"}
           onClick={buttonHandler}
         ></ColorButton>
-        <ProfileIcon size={55} color={"grey"} />
+        <ProfileIcon size={55} color={"#ababab"} />
       </ButtonBox>
     </Container>
   );

@@ -45,7 +45,6 @@ const SaveModal = () => {
   useEffect(() => {
     if (presignedUrl) {
       const uploadImage = async () => {
-        console.log(imageFile);
         await fetch(presignedUrl.url, {
           method: "PUT",
           headers: {

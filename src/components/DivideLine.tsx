@@ -9,7 +9,7 @@ export default DivideLine;
 const Line = styled.div`
   width: 100%;
   height: 1px;
-  background-color: #bbbbbb;
+  background-color: #d2d2d2;
 
   margin: 10px 0px;
 `;
