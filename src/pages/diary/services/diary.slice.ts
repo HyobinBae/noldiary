@@ -1,21 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DiaryDetail, DiaryProps } from "../../../types";
 import {
   getDiaryDetail,
   getDiaryList,
   getUserInfo,
 } from "../../../services/api";
-import { UserInfo } from "../../../types";
+import { UserInfo, DiaryDetail, DiaryProps, UserSetting } from "../../../types";
 
 interface DiaryState {
   getUserInfo: UserInfo;
   getDiaryList: DiaryProps[];
   getDiaryDetail: DiaryDetail;
   setNavTitle: string;
+  userSetting: UserSetting;
 }
 
 const initialState: DiaryState = {
   getUserInfo: {
+    name: "",
     profileImage: "",
     backgroundImage: "",
     nickname: "",
@@ -55,6 +56,12 @@ const initialState: DiaryState = {
     createdAt: "",
   },
   setNavTitle: "내 일기",
+  userSetting: {
+    profileImage: "",
+    backgroundImage: "",
+    nickname: "",
+    message: "",
+  },
 };
 
 export const DiarySlice = createSlice({
@@ -63,6 +70,18 @@ export const DiarySlice = createSlice({
   reducers: {
     setNavTitle: (state, action) => {
       state.setNavTitle = action.payload;
+    },
+    setProfileImage: (state, action) => {
+      state.userSetting.profileImage = action.payload;
+    },
+    setBgImage: (state, action) => {
+      state.userSetting.backgroundImage = action.payload;
+    },
+    setNickname: (state, action) => {
+      state.userSetting.nickname = action.payload;
+    },
+    setMessage: (state, action) => {
+      state.userSetting.message = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -78,6 +97,12 @@ export const DiarySlice = createSlice({
   },
 });
 
-export const { setNavTitle } = DiarySlice.actions;
+export const {
+  setNavTitle,
+  setProfileImage,
+  setBgImage,
+  setNickname,
+  setMessage,
+} = DiarySlice.actions;
 
 export default DiarySlice.reducer;

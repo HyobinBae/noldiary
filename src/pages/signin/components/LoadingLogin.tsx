@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const LoadingKakaoLogin = ({ src }: { src: string }) => {
+const LoadingLogin = ({ src }: { src: string }) => {
   return (
     <>
       <Loading>
@@ -13,7 +13,7 @@ const LoadingKakaoLogin = ({ src }: { src: string }) => {
   );
 };
 
-export default LoadingKakaoLogin;
+export default LoadingLogin;
 
 const Loading = styled.div`
   height: 100vh;

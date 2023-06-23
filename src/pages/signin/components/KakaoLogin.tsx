@@ -39,14 +39,13 @@ const KakaoLogin = () => {
 
       if (!accessToken) {
         alert("카카오 로그인 실패");
-        return navigate("/signin");
+        navigate("/signin");
+      } else {
+        localStorage.setItem("token", accessToken);
+        navigate("/");
       }
-
-      localStorage.setItem("token", accessToken);
-
-      navigate("/");
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 

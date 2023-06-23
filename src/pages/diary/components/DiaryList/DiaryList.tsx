@@ -10,7 +10,12 @@ const DiaryList = () => {
   const { data: diaryList, refetch } = useGetDiaryListQuery();
 
   useEffect(() => {
-    refetch();
+    if (!localStorage.getItem("token")) {
+      window.location.reload();
+      console.log("bbbbbbb");
+    } else {
+      refetch();
+    }
   }, [diaryList]);
 
   return (

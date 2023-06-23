@@ -40,12 +40,20 @@ export interface GetPresignedUrl {
 }
 
 export interface UserInfo {
+  name: string;
   profileImage: string;
   backgroundImage: string;
   nickname: string;
   message?: string;
   totalMyDiary: number;
   totalSharedDiary: number;
+}
+
+export interface UserSetting {
+  profileImage?: string;
+  backgroundImage?: string;
+  nickname?: string;
+  message?: string;
 }
 
 export interface DiaryDetail {

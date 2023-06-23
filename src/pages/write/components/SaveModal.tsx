@@ -63,7 +63,6 @@ const SaveModal = () => {
   const isPublicHandler = (e) => {
     const booleanValue = JSON.parse(e.target.value);
     dispatch(setIsPublic(booleanValue));
-    console.log("diary=========", diary);
   };
 
   const bookmarkHandler = () => {
@@ -81,7 +80,6 @@ const SaveModal = () => {
     dispatch(setIsModalOpen(false));
   };
 
-  console.log("thum=========", thumnailImage, "-=", typeof thumnailImage);
   return (
     <>
       <BackGround></BackGround>

@@ -12,7 +12,7 @@ const DiaryDetail = () => {
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, [diaryDetail]);
 
   const contents = diaryDetail?.contents;
 

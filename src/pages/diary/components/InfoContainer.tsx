@@ -14,6 +14,7 @@ const UserInfoSection = () => {
 
   return (
     <Container>
+      <BackgroundImage src={userInfo?.backgroundImage}></BackgroundImage>
       <IconWrapper>
         <Box to="/setting">
           <RiSettings4Fill size={24} color={"white"} />
@@ -54,13 +55,28 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
+  height: 330px;
   padding: 20px;
 
-  background-image: url("images/dessert.jpeg");
   background-color: #bbbbbb;
-  background-size: cover;
 
   margin-bottom: 40px;
+  position: relative;
+`;
+
+const BackgroundImage = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 330px;
+
+  background-color: red;
+  border: none;
+
+  position: absolute;
+  z-index: -100;
 `;
 
 const IconWrapper = styled.div`

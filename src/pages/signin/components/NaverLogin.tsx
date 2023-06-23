@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { API } from "../../../config";
-import LoadingKakaoLogin from "./LoadingLogin";
+import LoadingLogin from "./LoadingLogin";
 
 export const NAVER_CLIENT_ID = process.env.REACT_APP_NAVER_CLIENT_ID;
 export const NAVER_CALLBACK_URL = process.env.REACT_APP_REDIRECT_URL_NAVER;
@@ -30,7 +30,7 @@ const NaverLogin = () => {
 
       if (!accessToken) {
         alert("네이버 로그인 실패");
-        return navigate("/signin");
+        navigate("/signin");
       } else {
         localStorage.setItem("token", accessToken);
         navigate("/");
@@ -45,7 +45,7 @@ const NaverLogin = () => {
   }, []);
 
   return (
-    <LoadingKakaoLogin src="https://media3.giphy.com/media/kEKcOWl8RMLde/giphy.gif" />
+    <LoadingLogin src="https://media3.giphy.com/media/kEKcOWl8RMLde/giphy.gif" />
   );
 };
 

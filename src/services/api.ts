@@ -1,15 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { RootState } from "./store";
 import {
   WriteProps,
   GetPresignedUrl,
   PutPresignedUrlProps,
   DiaryProps,
   UserInfo,
+  UserSetting,
   DiaryDetail,
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.123.111:3000",
+  baseUrl: "http://172.16.101.144:3000",
   // baseUrl: "/data",
 });
 
@@ -30,6 +32,25 @@ export const apiSlice = createApi({
         body: diary,
       }),
       transformResponse: (response: WriteProps) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    patchUserInfo: builder.mutation<UserSetting, UserSetting>({
+      query: (userSetting) => ({
+        url: `/users`,
+        // url: `/DIARY_LIST.json`,
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+
+        body: userSetting,
+      }),
+      transformResponse: (response: UserSetting) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -73,12 +94,21 @@ export const apiSlice = createApi({
     getUserInfo: builder.query<UserInfo, void>({
       query: () => ({
         url: `/users`,
-        // url: `USER_INFO.json`,
+        method: "get",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        method: "get",
+        // prepareHeaders: (headers: Headers, { getState }) => {
+        //   const token = getState() as RootState;
+
+        //   // If we have a token set in state, let's assume that we should be passing it.
+        //   if (token) {
+        //     headers.set("authorization", `Bearer ${token}`);
+        //   }
+
+        //   return headers;
+        // },
       }),
       transformResponse: (response: UserInfo) => {
         return response;
@@ -109,6 +139,7 @@ export const apiSlice = createApi({
 
 export const {
   usePostDiaryMutation,
+  usePatchUserInfoMutation,
   useGetPresignedUrlMutation,
   useGetDiaryListQuery,
   useGetUserInfoQuery,
