@@ -1,45 +1,43 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import ProfileIcon from "../../../components/ProfileIcon";
-import { useGetUserInfoQuery } from "../../../services/api";
+
 import { RiSettings4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../services/store";
 
 const UserInfoSection = () => {
-  const { data: userInfo, refetch } = useGetUserInfoQuery();
-
-  useEffect(() => {
-    refetch();
-  }, [userInfo]);
+  const userInfoForUse = useAppSelector((state) => state.diary.getUserInfo);
+  console.log(userInfoForUse);
 
   return (
     <Container>
-      <BackgroundImage src={userInfo?.backgroundImage}></BackgroundImage>
+      <BackgroundImage src={userInfoForUse?.backgroundImage} />
       <IconWrapper>
         <Box to="/setting">
           <RiSettings4Fill size={24} color={"white"} />
         </Box>
       </IconWrapper>
       <Wrapper>
-        {userInfo?.profileImage ? (
+        {userInfoForUse?.profileImage ? (
           <ProfileWrapper>
-            <ProfileImage src={userInfo.profileImage} />
+            <ProfileImage src={userInfoForUse.profileImage} />
           </ProfileWrapper>
         ) : (
           <ProfileIcon size={130} color={"ababab"} />
         )}
 
-        <NickName>{userInfo?.nickname}</NickName>
-        <Message>{userInfo?.message}</Message>
+        <NickName>{userInfoForUse?.nickname}</NickName>
+        <Message>{userInfoForUse?.message}</Message>
       </Wrapper>
       <SummaryWrapper>
         <Wrapper>
-          <NumberBox>{userInfo?.totalMyDiary}</NumberBox>
+          <NumberBox>{userInfoForUse?.totalMyDiary}</NumberBox>
           <TextBox>내 일기</TextBox>
         </Wrapper>
         <DivideLine />
         <Wrapper>
-          <NumberBox>{userInfo?.totalSharedDiary}</NumberBox>
+          <NumberBox>{userInfoForUse?.totalSharedDiary}</NumberBox>
           <TextBox>공유 일기</TextBox>
         </Wrapper>
       </SummaryWrapper>
@@ -55,7 +53,7 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 330px;
+  height: 360px;
   padding: 20px;
 
   background-color: #bbbbbb;
@@ -70,13 +68,13 @@ const BackgroundImage = styled.img`
   align-items: center;
 
   width: 100%;
-  height: 330px;
+  height: 360px;
+  object-fit: cover;
 
-  background-color: red;
   border: none;
 
   position: absolute;
-  z-index: -100;
+  z-index: 1;
 `;
 
 const IconWrapper = styled.div`
@@ -85,6 +83,7 @@ const IconWrapper = styled.div`
   align-items: center;
 
   width: 100%;
+  z-index: 3;
 `;
 
 const Box = styled(Link)`
@@ -101,6 +100,8 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin: 20 20px 0;
+
+  z-index: 3;
 `;
 
 const ProfileWrapper = styled.div`
@@ -116,6 +117,7 @@ const ProfileWrapper = styled.div`
 `;
 const ProfileImage = styled.img`
   width: 100%;
+  height: 100%;
   object-fit: cover;
 `;
 
@@ -149,6 +151,8 @@ const SummaryWrapper = styled.div`
   margin: 25px 0 25px 0;
 
   color: white;
+
+  z-index: 3;
 `;
 
 const NumberBox = styled.div`

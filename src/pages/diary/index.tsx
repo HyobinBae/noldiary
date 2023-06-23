@@ -4,7 +4,7 @@ import DiaryList from "./components/DiaryList/DiaryList";
 import SearchBar from "./components/SearchBar";
 import styled from "styled-components";
 
-const Diary = () => {
+const Diary = (userInfo) => {
   return (
     <Container>
       <UserInfoSection />

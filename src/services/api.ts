@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { RootState } from "./store";
 import {
   WriteProps,
   GetPresignedUrl,
@@ -11,7 +10,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://172.16.101.144:3000",
+  baseUrl: "http://172.16.100.227:3000",
   // baseUrl: "/data",
 });
 
@@ -24,7 +23,7 @@ export const apiSlice = createApi({
       query: (diary) => ({
         url: `/diary`,
         // url: `/DIARY_LIST.json`,
-        method: "post",
+        method: "POST",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -42,7 +41,7 @@ export const apiSlice = createApi({
       query: (userSetting) => ({
         url: `/users`,
         // url: `/DIARY_LIST.json`,
-        method: "post",
+        method: "PATCH",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -60,11 +59,11 @@ export const apiSlice = createApi({
     getPresignedUrl: builder.mutation<GetPresignedUrl, PutPresignedUrlProps>({
       query: (fileName) => ({
         url: `/diary/presigned`,
+        method: "POST",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        method: "post",
         body: fileName,
       }),
       transformResponse: (response: GetPresignedUrl) => {
@@ -78,11 +77,11 @@ export const apiSlice = createApi({
       query: () => ({
         url: `/diary`,
         // url: `/DIARY_LIST.json`,
+        method: "GET",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        method: "get",
       }),
       transformResponse: (response: DiaryProps[]) => {
         return response;
@@ -94,7 +93,7 @@ export const apiSlice = createApi({
     getUserInfo: builder.query<UserInfo, void>({
       query: () => ({
         url: `/users`,
-        method: "get",
+        method: "GET",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -121,11 +120,11 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/diary/${id}`,
         // url: `/DIARY_DETAIL.json`,
+        method: "GET",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        method: "get",
       }),
       transformResponse: (response: DiaryDetail) => {
         return response;

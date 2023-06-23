@@ -83,6 +83,9 @@ export const DiarySlice = createSlice({
     setMessage: (state, action) => {
       state.userSetting.message = action.payload;
     },
+    setUserInfo: (state, action) => {
+      state.getUserInfo = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(getDiaryList.matchFulfilled, (state, { payload }) => {
@@ -103,6 +106,7 @@ export const {
   setBgImage,
   setNickname,
   setMessage,
+  setUserInfo,
 } = DiarySlice.actions;
 
 export default DiarySlice.reducer;

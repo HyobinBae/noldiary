@@ -67,7 +67,6 @@ const Setting = () => {
 
     try {
       const response = await getPresignedUrl(fileName).unwrap();
-      console.log(response);
       setProfilePresignedUrl(response.url);
     } catch (error) {
       console.log(error);
@@ -82,10 +81,9 @@ const Setting = () => {
     };
 
     setBackgroundImageSrc(imgSrc);
-    // getPresignedUrl(fileName);
+
     try {
       const response = await getPresignedUrl(fileName).unwrap();
-      console.log(response);
       setBackgroundPresignedUrl(response.url);
     } catch (error) {
       console.log(error);
@@ -111,17 +109,11 @@ const Setting = () => {
   const saveButtonHandler = () => {
     patchUserInfo(userSetting);
   };
-  console.log(
-    userSetting,
-    typeof userSetting.backgroundImage,
-    typeof userSetting.profileImage,
-    typeof userSetting.message,
-    typeof userSetting.nickname
-  );
 
-  const nickname = userInfo?.nickname || userInfo?.name;
   const profilePreview = profileImage || userInfo?.profileImage;
   const backgroundPreview = userInfo?.backgroundImage || bgImage;
+  const nickname = userInfo?.nickname ? userInfo?.nickname : userInfo?.name;
+  const message = userInfo?.message ? userInfo?.message : null;
 
   useEffect(() => {
     if (presignedUrl) {
@@ -224,7 +216,7 @@ const Setting = () => {
             {isEditMessage ? (
               <Input type="text" onChange={messageInputHandler} />
             ) : (
-              <Content>{editedMessage}</Content>
+              <Content>{editedMessage ? editedMessage : message}</Content>
             )}
             {isEditMessage ? (
               <EditConfirmButton onClick={messageEditHandler}>
@@ -431,6 +423,8 @@ const ProfileImageUploader = styled.input`
 
 const ThumnailImage = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const BgImageWrapper = styled.div`
