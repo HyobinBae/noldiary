@@ -10,7 +10,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://172.16.100.227:3000",
+  baseUrl: "http://10.58.52.214:3000",
   // baseUrl: "/data",
 });
 

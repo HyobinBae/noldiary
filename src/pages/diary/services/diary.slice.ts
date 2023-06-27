@@ -12,6 +12,8 @@ interface DiaryState {
   getDiaryDetail: DiaryDetail;
   setNavTitle: string;
   userSetting: UserSetting;
+  setFilterName: string;
+  setSearchQuery: string;
 }
 
 const initialState: DiaryState = {
@@ -62,6 +64,8 @@ const initialState: DiaryState = {
     nickname: "",
     message: "",
   },
+  setFilterName: "최신순",
+  setSearchQuery: "latest",
 };
 
 export const DiarySlice = createSlice({
@@ -86,6 +90,12 @@ export const DiarySlice = createSlice({
     setUserInfo: (state, action) => {
       state.getUserInfo = action.payload;
     },
+    setFilterName: (state, action) => {
+      state.setFilterName = action.payload;
+    },
+    setSearchQuery: (state, action) => {
+      state.setSearchQuery = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(getDiaryList.matchFulfilled, (state, { payload }) => {
@@ -107,6 +117,8 @@ export const {
   setNickname,
   setMessage,
   setUserInfo,
+  setFilterName,
+  setSearchQuery,
 } = DiarySlice.actions;
 
 export default DiarySlice.reducer;

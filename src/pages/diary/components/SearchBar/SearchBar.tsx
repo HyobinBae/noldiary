@@ -1,13 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
+import FilterModal from "./FilterModal";
 
 const SearchBar = () => {
+  const searchHandler = () => {};
+
+  const getKeyword = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <Container>
       <Box>
-        <Input type="search" />
-        <IconBox>
+        <FilterModal />
+        <Input type="search" onChange={getKeyword} />
+        <IconBox onClick={searchHandler}>
           <BiSearch size={30} />
         </IconBox>
       </Box>
@@ -41,7 +49,7 @@ const Input = styled.input`
   align-items: center;
 
   border: none;
-  width: 90%;
+  width: 80%;
   height: 100%;
   margin-left: 20px;
 
