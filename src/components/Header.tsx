@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../services/store";
+import { useAppDispatch } from "../services/store";
+import { useGetUserInfoQuery } from "../services/api";
+import { setUserInfo } from "../pages/diary/services/diary.slice";
 import ProfileIcon from "./ProfileIcon";
 import ColorButton from "./ColorButton";
 
 const Header = () => {
-  const userInfoForUse = useAppSelector((state) => state.diary.getUserInfo);
+  const dispatch = useAppDispatch();
+  const { data: userInfo } = useGetUserInfoQuery();
+
+  useEffect(() => {
+    dispatch(setUserInfo(userInfo));
+  }, [userInfo]);
 
   const navigate = useNavigate();
   const buttonHandler = () => {
@@ -34,8 +41,8 @@ const Header = () => {
           onClick={buttonHandler}
         ></ColorButton>
         <ProfileWrapper onClick={profileIconHandler}>
-          {userInfoForUse.profileImage ? (
-            <ProfileImage src={userInfoForUse?.profileImage} />
+          {userInfo?.profileImage ? (
+            <ProfileImage src={userInfo?.profileImage} />
           ) : (
             <ProfileIcon size={55} color={"#ababab"} />
           )}

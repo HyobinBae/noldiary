@@ -1,29 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import ProfileIcon from "../../../components/ProfileIcon";
-
-import { useGetUserInfoQuery } from "./../../../services/api";
-import { useAppDispatch } from "./../../../services/store";
-import { setUserInfo } from "./../../../pages/diary/services/diary.slice";
-
+import { useAppSelector } from "../../../services/store";
 import { RiSettings4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 
 const UserInfoSection = () => {
-  const dispatch = useAppDispatch();
-  const { data: userInfo, refetch } = useGetUserInfoQuery();
-  dispatch(setUserInfo(userInfo));
-
-  useEffect(() => {
-    refetch();
-  }, [userInfo]);
+  const userInfo = useAppSelector((state) => state.diary.getUserInfo);
 
   return (
     <Container>
       {userInfo?.backgroundImage ? (
-        <BackgroundImage src={userInfo?.backgroundImage} />
-      ) : null}
-
+        <BackgroundWrapper>
+          <BackgroundImage src={userInfo?.backgroundImage} />
+        </BackgroundWrapper>
+      ) : (
+        <BackgroundWrapper />
+      )}
       <IconWrapper>
         <Box to="/setting">
           <RiSettings4Fill size={24} color={"white"} />
@@ -37,18 +30,36 @@ const UserInfoSection = () => {
         ) : (
           <ProfileIcon size={130} color={"ababab"} />
         )}
-
-        <NickName>{userInfo?.nickname}</NickName>
-        <Message>{userInfo?.message}</Message>
+        {userInfo ? (
+          <>
+            <NickName>{userInfo?.nickname}</NickName>
+            <Message>{userInfo?.message}</Message>
+          </>
+        ) : (
+          <>
+            <NickName>닉네임</NickName>
+            <Message>메세지</Message>
+          </>
+        )}
       </Wrapper>
       <SummaryWrapper>
         <Wrapper>
-          <NumberBox>{userInfo?.totalMyDiary}</NumberBox>
+          {userInfo ? (
+            <NumberBox>{userInfo?.totalMyDiary}</NumberBox>
+          ) : (
+            <NumberBox>0</NumberBox>
+          )}
+
           <TextBox>내 일기</TextBox>
         </Wrapper>
         <DivideLine />
         <Wrapper>
-          <NumberBox>{userInfo?.totalSharedDiary}</NumberBox>
+          {userInfo ? (
+            <NumberBox>{userInfo?.totalSharedDiary}</NumberBox>
+          ) : (
+            <NumberBox>0</NumberBox>
+          )}
+
           <TextBox>공유 일기</TextBox>
         </Wrapper>
       </SummaryWrapper>
@@ -57,6 +68,7 @@ const UserInfoSection = () => {
 };
 
 export default UserInfoSection;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,13 +76,25 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 320px;
-  padding: 20px;
+  height: 340px;
+  margin-bottom: 40px;
 
   background-color: #bbbbbb;
-
-  margin-bottom: 40px;
   position: relative;
+`;
+
+const BackgroundWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+
+  position: absolute;
+  z-index: 1;
 `;
 
 const BackgroundImage = styled.img`
@@ -79,13 +103,10 @@ const BackgroundImage = styled.img`
   align-items: center;
 
   width: 100%;
-  height: 320px;
+  height: 100%;
   object-fit: cover;
 
   border: none;
-
-  position: absolute;
-  z-index: 1;
 `;
 
 const IconWrapper = styled.div`
@@ -94,13 +115,18 @@ const IconWrapper = styled.div`
   align-items: center;
 
   width: 100%;
+
   z-index: 3;
+  position: absolute;
+  top: 10px;
+  left: -10px;
 `;
 
 const Box = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 30px;
   height: 30px;
 `;
@@ -110,7 +136,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20 20px 0;
+  margin: 10px 0;
 
   z-index: 3;
 `;
@@ -158,8 +184,6 @@ const SummaryWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin: 25px 0 25px 0;
 
   color: white;
 

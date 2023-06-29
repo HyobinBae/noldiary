@@ -1,5 +1,5 @@
 import React from "react";
-import UserInfoSection from "./components/InfoContainer";
+import UserInfoSection from "./components/UserInfoSection";
 import DiaryList from "./components/DiaryList/DiaryList";
 import SearchBar from "./components/SearchBar/SearchBar";
 import styled from "styled-components";

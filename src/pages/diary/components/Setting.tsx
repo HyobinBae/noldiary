@@ -18,14 +18,10 @@ import {
 } from "../services/diary.slice";
 
 const Setting = () => {
-  const { data: userInfo, refetch } = useGetUserInfoQuery();
   const [getPresignedUrl, { data: presignedUrl }] =
     useGetPresignedUrlMutation();
   const [patchUserInfo] = usePatchUserInfoMutation();
-
-  useEffect(() => {
-    refetch();
-  }, [userInfo]);
+  const userInfo = useAppSelector((state) => state.diary.getUserInfo);
 
   const [isEditNickname, setIsEditNickname] = useState(false);
   const [isEditMessage, setIsEditMessage] = useState(false);
@@ -63,7 +59,6 @@ const Setting = () => {
     };
 
     setProfileImageSrc(imgSrc);
-    // getPresignedUrl(fileName);
 
     try {
       const response = await getPresignedUrl(fileName).unwrap();
