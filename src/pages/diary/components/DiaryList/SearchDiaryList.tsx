@@ -1,25 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import TicketTitle from "./TicketTitle";
 import TicketBody from "./TicketBody";
 import ImageBox from "./ImageBox";
-import { useGetDiaryListQuery } from "../../../../services/api";
+import { useGetSearchDiaryQuery } from "../../../../services/api";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../../../services/store";
 
-const DiaryList = () => {
-  const { data: diaryList, refetch } = useGetDiaryListQuery();
+const SearchDiaryList = () => {
+  const queryName = useAppSelector((state) => state.diary.setSearchQuery);
+  const keyword = useAppSelector((state) => state.diary.setKeyword);
 
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      window.location.reload();
-    } else {
-      refetch();
-    }
-  }, [diaryList]);
+  const { data: diarySearchList } = useGetSearchDiaryQuery({
+    queryName,
+    keyword,
+  });
 
   return (
     <ListContainer>
-      {diaryList?.map((data) => {
+      <div>안녕하세요</div>
+      {diarySearchList?.map((data) => {
         return (
           <Container key={data._id} to={`/diary/${data._id}`}>
             <InfoContainer>
@@ -43,7 +43,7 @@ const DiaryList = () => {
   );
 };
 
-export default DiaryList;
+export default SearchDiaryList;
 
 const ListContainer = styled.div`
   display: flex;

@@ -1,43 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import ProfileIcon from "../../../components/ProfileIcon";
 
+import { useGetUserInfoQuery } from "./../../../services/api";
+import { useAppDispatch } from "./../../../services/store";
+import { setUserInfo } from "./../../../pages/diary/services/diary.slice";
+
 import { RiSettings4Fill } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../../services/store";
 
 const UserInfoSection = () => {
-  const userInfoForUse = useAppSelector((state) => state.diary.getUserInfo);
-  console.log(userInfoForUse);
+  const dispatch = useAppDispatch();
+  const { data: userInfo, refetch } = useGetUserInfoQuery();
+  dispatch(setUserInfo(userInfo));
+
+  useEffect(() => {
+    refetch();
+  }, [userInfo]);
 
   return (
     <Container>
-      <BackgroundImage src={userInfoForUse?.backgroundImage} />
+      {userInfo?.backgroundImage ? (
+        <BackgroundImage src={userInfo?.backgroundImage} />
+      ) : null}
+
       <IconWrapper>
         <Box to="/setting">
           <RiSettings4Fill size={24} color={"white"} />
         </Box>
       </IconWrapper>
       <Wrapper>
-        {userInfoForUse?.profileImage ? (
+        {userInfo?.profileImage ? (
           <ProfileWrapper>
-            <ProfileImage src={userInfoForUse.profileImage} />
+            <ProfileImage src={userInfo.profileImage} />
           </ProfileWrapper>
         ) : (
           <ProfileIcon size={130} color={"ababab"} />
         )}
 
-        <NickName>{userInfoForUse?.nickname}</NickName>
-        <Message>{userInfoForUse?.message}</Message>
+        <NickName>{userInfo?.nickname}</NickName>
+        <Message>{userInfo?.message}</Message>
       </Wrapper>
       <SummaryWrapper>
         <Wrapper>
-          <NumberBox>{userInfoForUse?.totalMyDiary}</NumberBox>
+          <NumberBox>{userInfo?.totalMyDiary}</NumberBox>
           <TextBox>내 일기</TextBox>
         </Wrapper>
         <DivideLine />
         <Wrapper>
-          <NumberBox>{userInfoForUse?.totalSharedDiary}</NumberBox>
+          <NumberBox>{userInfo?.totalSharedDiary}</NumberBox>
           <TextBox>공유 일기</TextBox>
         </Wrapper>
       </SummaryWrapper>
@@ -53,7 +64,7 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 360px;
+  height: 320px;
   padding: 20px;
 
   background-color: #bbbbbb;
@@ -68,7 +79,7 @@ const BackgroundImage = styled.img`
   align-items: center;
 
   width: 100%;
-  height: 360px;
+  height: 320px;
   object-fit: cover;
 
   border: none;

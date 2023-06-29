@@ -10,7 +10,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://10.58.52.214:3000",
+  baseUrl: "http://10.58.52.175:3000",
   // baseUrl: "/data",
 });
 
@@ -98,16 +98,6 @@ export const apiSlice = createApi({
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        // prepareHeaders: (headers: Headers, { getState }) => {
-        //   const token = getState() as RootState;
-
-        //   // If we have a token set in state, let's assume that we should be passing it.
-        //   if (token) {
-        //     headers.set("authorization", `Bearer ${token}`);
-        //   }
-
-        //   return headers;
-        // },
       }),
       transformResponse: (response: UserInfo) => {
         return response;
@@ -133,6 +123,25 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
+    getSearchDiary: builder.query<
+      Array<DiaryProps>,
+      { queryName: string; keyword: string }
+    >({
+      query: ({ queryName, keyword }) => ({
+        url: `/diary/filter?filter=${queryName}&keyword=${keyword}`,
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      transformResponse: (response: DiaryProps[]) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
   }),
 });
 
@@ -143,8 +152,15 @@ export const {
   useGetDiaryListQuery,
   useGetUserInfoQuery,
   useGetDiaryDetailQuery,
+  useGetSearchDiaryQuery,
 } = apiSlice;
 
 export const {
-  endpoints: { getPresignedUrl, getDiaryList, getUserInfo, getDiaryDetail },
+  endpoints: {
+    getPresignedUrl,
+    getDiaryList,
+    getUserInfo,
+    getDiaryDetail,
+    getSearchDiary,
+  },
 } = apiSlice;

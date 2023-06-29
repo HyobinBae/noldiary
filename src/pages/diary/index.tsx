@@ -1,15 +1,19 @@
 import React from "react";
 import UserInfoSection from "./components/InfoContainer";
 import DiaryList from "./components/DiaryList/DiaryList";
-import SearchBar from "./components//SearchBar/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import styled from "styled-components";
+import SearchDiaryList from "./components/DiaryList/SearchDiaryList";
+import { useAppSelector } from "../../services/store";
 
-const Diary = (userInfo) => {
+const Diary = () => {
+  const keyword = useAppSelector((state) => state.diary.setKeyword);
+
   return (
     <Container>
       <UserInfoSection />
       <SearchBar />
-      <DiaryList />
+      {!keyword ? <DiaryList /> : <SearchDiaryList />}
     </Container>
   );
 };

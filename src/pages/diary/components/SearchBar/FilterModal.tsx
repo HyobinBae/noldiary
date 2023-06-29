@@ -10,7 +10,6 @@ const FilterModal = () => {
   const dispatch = useAppDispatch();
   const filterName = useAppSelector((state) => state.diary.setFilterName);
 
-  console.log(filterName);
   const modalClickHandler = () => {
     !isModalOpen ? setIsModalOpen(true) : setIsModalOpen(false);
   };

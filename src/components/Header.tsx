@@ -7,7 +7,6 @@ import ColorButton from "./ColorButton";
 
 const Header = () => {
   const userInfoForUse = useAppSelector((state) => state.diary.getUserInfo);
-  console.log(userInfoForUse);
 
   const navigate = useNavigate();
   const buttonHandler = () => {
@@ -35,7 +34,7 @@ const Header = () => {
           onClick={buttonHandler}
         ></ColorButton>
         <ProfileWrapper onClick={profileIconHandler}>
-          {userInfoForUse ? (
+          {userInfoForUse.profileImage ? (
             <ProfileImage src={userInfoForUse?.profileImage} />
           ) : (
             <ProfileIcon size={55} color={"#ababab"} />

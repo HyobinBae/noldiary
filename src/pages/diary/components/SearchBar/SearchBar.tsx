@@ -2,19 +2,40 @@ import React from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
 import FilterModal from "./FilterModal";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { setKeyword } from "../../services/diary.slice";
+import { getSearchDiary } from "../../../../services/api";
 
 const SearchBar = () => {
-  const searchHandler = () => {};
+  const dispatch = useAppDispatch();
+  const queryName = useAppSelector((state) => state.diary.setSearchQuery);
+  const keyword = useAppSelector((state) => state.diary.setKeyword);
+
+  const searchHandler = () => {
+    dispatch(getSearchDiary.initiate({ queryName, keyword }));
+    console.log("data");
+  };
+
+  const keyPressHandler = (e) => {
+    if (e.key === "Enter") {
+      dispatch(getSearchDiary.initiate({ queryName, keyword }));
+    }
+  };
 
   const getKeyword = (e) => {
-    console.log(e.target.value);
+    console.log(keyword);
+    dispatch(setKeyword(e.target.value));
   };
 
   return (
     <Container>
       <Box>
         <FilterModal />
-        <Input type="search" onChange={getKeyword} />
+        <Input
+          type="search"
+          onChange={getKeyword}
+          onKeyDown={keyPressHandler}
+        />
         <IconBox onClick={searchHandler}>
           <BiSearch size={30} />
         </IconBox>
@@ -67,4 +88,6 @@ const IconBox = styled.div`
 
   padding: 20px;
   color: #2192ff;
+
+  cursor: pointer;
 `;

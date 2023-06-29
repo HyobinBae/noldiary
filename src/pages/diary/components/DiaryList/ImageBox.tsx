@@ -44,6 +44,7 @@ const ContentBox = styled.div`
 
   width: 100%;
   height: 280px;
+
   background-color: #ffffff;
 
   border: 3px solid #2192ff;
@@ -54,7 +55,9 @@ const ContentBox = styled.div`
 `;
 
 const Image = styled.img`
+  width: 100%;
   height: 95%;
+  object-fit: cover;
   overflow: hidden;
 
   padding: 20px 25px;

@@ -80,7 +80,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-right: 10px;
 
-  width: 30%;
+  width: 300px;
 `;
 
 const DetailContainer = styled.div`
