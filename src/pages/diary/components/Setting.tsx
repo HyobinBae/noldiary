@@ -152,7 +152,7 @@ const Setting = () => {
         <ImageWrapper>
           <ProfileImageWrapper>
             {profilePreview ? (
-              <ThumnailImage src={profilePreview} />
+              <ThumbnailImage src={profilePreview} />
             ) : (
               <ProfileIcon color="#ababab" size={160} />
             )}
@@ -169,7 +169,7 @@ const Setting = () => {
         <ImageWrapper>
           <BgImageWrapper>
             {backgroundPreview ? (
-              <ThumnailImage src={backgroundPreview} />
+              <ThumbnailImage src={backgroundPreview} />
             ) : (
               <BsImage color="white" size={160} />
             )}
@@ -416,7 +416,7 @@ const ProfileImageUploader = styled.input`
   display: none;
 `;
 
-const ThumnailImage = styled.img`
+const ThumbnailImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;

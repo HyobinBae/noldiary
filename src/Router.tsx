@@ -10,6 +10,7 @@ import RouteWithNavbar from "./RouteWithNavbar";
 import RouteWithHeader from "./RouteWithHeader";
 import DiaryDetail from "./pages/diary/components/DiaryDetail/DiaryDetail";
 import Setting from "./pages/diary/components/Setting";
+import Edit from "./pages/write/components/Edit/Edit";
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path="/oauth/kakao" element={<KakaoLogin />} />
         <Route path="/oauth/naver" element={<NaverLogin />} />
         <Route path="/write" element={<Write />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route element={<RouteWithHeader />}>
           <Route path="/diary/:id" element={<DiaryDetail />} />
           <Route path="/setting" element={<Setting />} />

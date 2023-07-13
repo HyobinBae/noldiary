@@ -72,7 +72,7 @@ export const WriteSlice = createSlice({
     setIsModalOpen: (state, action) => {
       state.isModalOpen = action.payload;
     },
-    setThumnailImage: (state, action) => {
+    setThumbnailImage: (state, action) => {
       state.diary.thumbnailImage = action.payload;
     },
   },
@@ -100,6 +100,6 @@ export const {
   setBookmark,
   setIsPublic,
   setIsModalOpen,
-  setThumnailImage,
+  setThumbnailImage,
 } = WriteSlice.actions;
 export default WriteSlice.reducer;

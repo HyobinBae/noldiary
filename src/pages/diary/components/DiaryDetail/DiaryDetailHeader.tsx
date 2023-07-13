@@ -1,30 +1,47 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { useAppDispatch } from "../../../../services/store";
+import { setThumbnailImage } from "../../../write/services/write.slice";
 
 const DiaryDetailHeader = ({ props }) => {
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const editButtonHandler = () => {
+    dispatch(setThumbnailImage(props.thumbnailImage));
+    navigate(`/edit/${id}`);
+  };
+
   return (
     <HeaderContainer>
       <TitleBox>{props?.title}</TitleBox>
-      <Container>
-        <Wrapper>
-          <DetailContainer>
-            <Detail>{props?.departure}</Detail>
-          </DetailContainer>
-          <TinyDetail>-</TinyDetail>
-          <DetailContainer>
-            <Detail>{props?.destination}</Detail>
-          </DetailContainer>
-        </Wrapper>
-        <Wrapper>
-          <DetailContainer>
+      <InfoContainer>
+        <Container>
+          <Wrapper>
             <DetailContainer>
-              <DateDetail>{props?.departureDate}</DateDetail>
-              <TinyDetail>~</TinyDetail>
-              <DateDetail>{props?.arrivalDate}</DateDetail>
+              <Detail>{props?.departure}</Detail>
             </DetailContainer>
-          </DetailContainer>
-        </Wrapper>
-      </Container>
+            <TinyDetail>-</TinyDetail>
+            <DetailContainer>
+              <Detail>{props?.destination}</Detail>
+            </DetailContainer>
+          </Wrapper>
+          <Wrapper>
+            <DetailContainer>
+              <DetailContainer>
+                <DateDetail>{props?.departureDate}</DateDetail>
+                <TinyDetail>~</TinyDetail>
+                <DateDetail>{props?.arrivalDate}</DateDetail>
+              </DetailContainer>
+            </DetailContainer>
+          </Wrapper>
+        </Container>
+        <Container>
+          <EditButton onClick={editButtonHandler}>수정하기</EditButton>
+        </Container>
+      </InfoContainer>
     </HeaderContainer>
   );
 };
@@ -63,15 +80,21 @@ const TitleBox = styled.div`
   }
 `;
 
+const InfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0px;
+
+  width: 50%;
+  color: #bbbbbb;
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 5px 0px;
-
-  width: 50%;
-  color: #bbbbbb;
 `;
 
 const Wrapper = styled.div`
@@ -79,8 +102,6 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   margin-right: 10px;
-
-  width: 300px;
 `;
 
 const DetailContainer = styled.div`
@@ -124,4 +145,15 @@ const TinyDetail = styled.div`
   height: 20px;
 
   border: none;
+`;
+
+const EditButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 3px 5px;
+
+  cursor: pointer;
+  color: #2192ff;
+  font-size: 14px;
 `;

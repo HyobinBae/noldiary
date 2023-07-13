@@ -2,13 +2,13 @@ import React, { useRef, useMemo, useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import { Quill } from "react-quill";
 import ImageResize from "quill-image-resize-module-react";
-import { useGetPresignedUrlMutation } from "../../../services/api";
+import { useGetPresignedUrlMutation } from "../../../../services/api";
 import "react-quill/dist/quill.snow.css";
 import "quill/dist/quill.core.css";
 import "quill/dist/quill.snow.css";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
-import { setWriteContents } from "../services/write.slice";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { setWriteContents } from "../../services/write.slice";
 
 const Editors = () => {
   const quillRef = useRef<ReactQuill>(null);

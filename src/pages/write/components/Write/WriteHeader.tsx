@@ -1,9 +1,9 @@
 import React from "react";
-import DivideLine from "../../../components/DivideLine";
+import DivideLine from "../../../../components/DivideLine";
 import WriteDetail from "./WriteDetail";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
-import { setTitle } from "../services/write.slice";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { setTitle } from "../../services/write.slice";
 
 const WriteHeader = () => {
   const dispatch = useAppDispatch();

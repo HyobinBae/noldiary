@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import WriteHeader from "./components/Write/WriteHeader";
-import WriteMain from "./components/Write/WriteMain";
-import SaveModal from "./components/Write/SaveModal";
-import ColorButton from "../../components/ColorButton";
-import { useAppDispatch, useAppSelector } from "../../services/store";
-import { setIsModalOpen } from "./services/write.slice";
+import EditHeader from "./EditHeader";
+import EditMain from "./EditMain";
+import ColorButton from "../../../../components/ColorButton";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { setIsModalOpen } from "../../services/write.slice";
+import EditSaveModal from "./EditSaveModal";
 
-const Write = () => {
+const Edit = () => {
   const dispatch = useAppDispatch();
 
   const publishHandler = () => {
@@ -18,7 +18,7 @@ const Write = () => {
 
   return (
     <>
-      {isModalOpen === true ? <SaveModal /> : null}
+      {isModalOpen === true ? <EditSaveModal /> : null}
       <Container>
         <Header>
           {/* <BorderButton
@@ -35,15 +35,15 @@ const Write = () => {
           />
         </Header>
         <Box>
-          <WriteHeader />
-          <WriteMain />
+          <EditHeader />
+          <EditMain />
         </Box>
       </Container>
     </>
   );
 };
 
-export default Write;
+export default Edit;
 
 const Container = styled.div`
   display: flex;

@@ -1,37 +1,39 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import {
-  usePostDiaryMutation,
+  useEditDiaryMutation,
   useGetPresignedUrlMutation,
-} from "../../../services/api";
-import { useNavigate } from "react-router-dom";
-import ColorButton from "../../../components/ColorButton";
-import BorderButton from "../../../components/BorderButton";
+} from "../../../../services/api";
+import { useNavigate, useParams } from "react-router-dom";
+import ColorButton from "../../../../components/ColorButton";
+import BorderButton from "../../../../components/BorderButton";
 import {
   setBookmark,
   setIsModalOpen,
   setIsPublic,
-  setThumnailImage,
-} from "../services/write.slice";
-import DivideLine from "../../../components/DivideLine";
+  setThumbnailImage,
+} from "../../services/write.slice";
+import DivideLine from "../../../../components/DivideLine";
 import { BsImage } from "react-icons/bs";
 
-const SaveModal = () => {
+const EditSaveModal = () => {
+  const { id } = useParams();
   const [imageFile, setImageFile] = useState(null);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [postDiary] = usePostDiaryMutation();
+  const [editDiary] = useEditDiaryMutation();
   const [getPresignedUrl, { data: presignedUrl }] =
     useGetPresignedUrlMutation();
 
   const diary = useAppSelector((state) => state.write.diary);
-  const thumnailImage = useAppSelector(
+
+  const thumbnailImage = useAppSelector(
     (state) => state.write.diary.thumbnailImage
   );
 
-  const thumnailImageHandler = (e) => {
+  const thumbnailImageHandler = (e) => {
     const [imgSrc]: any = e.target.files;
     const fileName = {
       url: "",
@@ -40,6 +42,7 @@ const SaveModal = () => {
 
     setImageFile(imgSrc);
     getPresignedUrl(fileName);
+    console.log(diary);
   };
 
   useEffect(() => {
@@ -52,7 +55,7 @@ const SaveModal = () => {
           },
           body: imageFile,
         }).then((res) => {
-          dispatch(setThumnailImage(res.url.split("?", 1)[0]));
+          dispatch(setThumbnailImage(res.url.split("?", 1)[0]));
         });
       };
 
@@ -72,8 +75,9 @@ const SaveModal = () => {
   };
 
   const publishHandler = () => {
-    postDiary(diary);
+    editDiary({ diary, id });
     navigate("/diary");
+    dispatch(setIsModalOpen(false));
   };
 
   const exitHandler = () => {
@@ -90,8 +94,8 @@ const SaveModal = () => {
               <Title>썸네일 이미지</Title>
               <DivideLine />
               <ImageWrapper>
-                {thumnailImage ? (
-                  <ThumnailImage src={thumnailImage} />
+                {thumbnailImage ? (
+                  <ThumbnailImage src={thumbnailImage} />
                 ) : (
                   <BsImage color="white" size={170} />
                 )}
@@ -99,7 +103,7 @@ const SaveModal = () => {
               <ImageUploader
                 type="file"
                 accept="image/*"
-                onChange={thumnailImageHandler}
+                onChange={thumbnailImageHandler}
               />
             </SettingBox>
           </Wrapper>
@@ -167,7 +171,7 @@ const SaveModal = () => {
   );
 };
 
-export default SaveModal;
+export default EditSaveModal;
 
 const BackGround = styled.div`
   position: fixed;
@@ -242,8 +246,9 @@ const ImageUploader = styled.input`
   width: 200px;
 `;
 
-const ThumnailImage = styled.img`
+const ThumbnailImage = styled.img`
   width: 100%;
+  object-fit: cover;
 `;
 
 const Title = styled.div`

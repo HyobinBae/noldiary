@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import TicketTitle from "./TicketTitle";
 import TicketBody from "./TicketBody";
@@ -7,11 +7,8 @@ import { useGetDiaryListQuery } from "../../../../services/api";
 import { Link } from "react-router-dom";
 
 const DiaryList = () => {
-  const { data: diaryList, refetch } = useGetDiaryListQuery();
-
-  useEffect(() => {
-    refetch();
-  }, [diaryList]);
+  const { data: diaryList } = useGetDiaryListQuery();
+  console.log(diaryList);
 
   return (
     <ListContainer>

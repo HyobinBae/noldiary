@@ -87,6 +87,7 @@ const ProfileWrapper = styled.div`
 
   width: 43px;
   height: 43px;
+  margin-left: 20px;
   border-radius: 50%;
   overflow: hidden;
 

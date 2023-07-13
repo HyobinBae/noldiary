@@ -1,4 +1,4 @@
-export const BASE_URL = "http://192.168.123.101:3000";
+export const BASE_URL = "http://192.168.123.118:3000";
 export const API = {
   kakaoAuth: "https://kauth.kakao.com/oauth/token",
   naverAuth: "https://nid.naver.com/oauth2.0/token",

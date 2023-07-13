@@ -8,7 +8,7 @@ const ImageBox = ({ image }) => {
         <Title>Ticket</Title>
       </TitleBox>
       <ContentBox>
-        <Image src={image} alt="thumnailImage" />
+        <Image src={image} alt="thumbnailImage" />
       </ContentBox>
     </Container>
   );

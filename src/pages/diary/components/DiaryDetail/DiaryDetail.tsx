@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import DiaryDetailHeader from "./DiaryDetailHeader";
 import { useGetDiaryDetailQuery } from "../../../../services/api";
@@ -8,11 +8,7 @@ import DivideLine from "../../../../components/DivideLine";
 const DiaryDetail = () => {
   const { id } = useParams();
 
-  const { data: diaryDetail, refetch } = useGetDiaryDetailQuery(id ?? "");
-
-  useEffect(() => {
-    refetch();
-  }, [diaryDetail]);
+  const { data: diaryDetail } = useGetDiaryDetailQuery(id ?? "");
 
   const contents = diaryDetail?.contents;
 
@@ -63,5 +59,6 @@ const Content = styled.div`
   align-items: flex-start;
 
   width: 70%;
+
   line-height: 2;
 `;

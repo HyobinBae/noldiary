@@ -10,7 +10,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.123.101:3000",
+  baseUrl: "http://192.168.123.118:3000",
   // baseUrl: "/data",
 });
 
@@ -142,6 +142,26 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
+    editDiary: builder.mutation<
+      WriteProps,
+      { diary: WriteProps; id: string | undefined }
+    >({
+      query: ({ diary, id }) => ({
+        url: `/diary/${id}`,
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: diary,
+      }),
+      transformResponse: (response: WriteProps) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
   }),
 });
 
@@ -153,6 +173,7 @@ export const {
   useGetUserInfoQuery,
   useGetDiaryDetailQuery,
   useGetSearchDiaryQuery,
+  useEditDiaryMutation,
 } = apiSlice;
 
 export const {

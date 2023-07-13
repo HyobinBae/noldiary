@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import {
   setDeparture,
   setDestination,
   setDepartureDate,
   setArrivalDate,
-} from "../services/write.slice";
+} from "../../services/write.slice";
 
 const WriteDetail = () => {
   const dispatch = useAppDispatch();
