@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import Carousel from "./components/Carousel";
 
 const Curations = () => {
-  return <Title>추천</Title>;
+  return (
+    <Title>
+      <Carousel />
+    </Title>
+  );
 };
 
 const Title = styled.div``;

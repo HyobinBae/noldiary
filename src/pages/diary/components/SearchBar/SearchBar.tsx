@@ -11,20 +11,20 @@ const SearchBar = () => {
   const queryName = useAppSelector((state) => state.diary.setSearchQuery);
   const keyword = useAppSelector((state) => state.diary.setKeyword);
 
-  const searchHandler = () => {
-    dispatch(getSearchDiary.initiate({ queryName, keyword }));
-    console.log("data");
-  };
-
   const keyPressHandler = (e) => {
-    if (e.key === "Enter") {
+    console.log(e.keyCode);
+    if (e.keyCode === 13) {
       dispatch(getSearchDiary.initiate({ queryName, keyword }));
     }
   };
 
   const getKeyword = (e) => {
-    console.log(keyword);
     dispatch(setKeyword(e.target.value));
+  };
+
+  const searchHandler = () => {
+    console.log("eeee");
+    dispatch(getSearchDiary.initiate({ queryName, keyword }));
   };
 
   return (
