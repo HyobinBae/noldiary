@@ -18,7 +18,6 @@ const SearchDiaryList = () => {
 
   return (
     <ListContainer>
-      <div>안녕하세요</div>
       {diarySearchList?.map((data) => {
         return (
           <Container key={data._id} to={`/diary/${data._id}`}>
