@@ -70,3 +70,17 @@ export interface DiaryDetail {
   isPublic: boolean;
   createdAt: string;
 }
+
+export interface CourseList {
+  item: [
+    {
+      firstImage: string;
+      title: string;
+    }
+  ];
+  numOfRows: string;
+  pageNo: number;
+  totalCount: number;
+}
+
+export interface CourseDetail {}

@@ -7,6 +7,7 @@ import {
   UserInfo,
   UserSetting,
   DiaryDetail,
+  CourseList,
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
@@ -162,6 +163,36 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
+    getCourseList: builder.query<CourseList, string>({
+      query: (courseCode) => ({
+        url: `/curations/course/${courseCode}`,
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+      }),
+      transformResponse: (response: CourseList) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    getCourseDetail: builder.query<CourseList, string>({
+      query: (courseCode) => ({
+        url: `/curations/course/${courseCode}`,
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+      }),
+      transformResponse: (response: CourseList) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
   }),
 });
 
@@ -174,6 +205,7 @@ export const {
   useGetDiaryDetailQuery,
   useGetSearchDiaryQuery,
   useEditDiaryMutation,
+  useGetCourseListQuery,
 } = apiSlice;
 
 export const {
@@ -183,5 +215,6 @@ export const {
     getUserInfo,
     getDiaryDetail,
     getSearchDiary,
+    getCourseList,
   },
 } = apiSlice;

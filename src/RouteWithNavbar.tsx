@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import MainHeader from "./components/MainHeader";
 import Diary from "./pages/diary";
-import Curations from "./pages/curations";
+import Curations from "./pages/curation";
 import Footprints from "./pages/footprints";
 
 const RouteWithNavbar = () => {

@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import Carousel from "./components/Carousel";
+import CurationList from "./components/CurationList";
 
 const Curations = () => {
   return (
-    <Title>
+    <Container>
       <Carousel />
-    </Title>
+
+      <CurationList />
+    </Container>
   );
 };
 
-const Title = styled.div``;
+const Container = styled.div``;
 
 export default Curations;
