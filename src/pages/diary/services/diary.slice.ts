@@ -59,7 +59,7 @@ const initialState: DiaryState = {
     isPublic: false,
     createdAt: "",
   },
-  setNavTitle: "내 일기",
+  setNavTitle: "여기 어때",
   userSetting: {
     profileImage: "",
     backgroundImage: "",

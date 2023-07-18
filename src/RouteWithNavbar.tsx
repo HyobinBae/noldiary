@@ -11,8 +11,7 @@ const RouteWithNavbar = () => {
     <>
       <MainHeader />
       <Routes>
-        <Route path="/" element={<Diary />} />
-        <Route path="/curations" element={<Curations />} />
+        <Route path="/" element={<Curations />} />
         <Route path="/diary" element={<Diary />} />
         <Route path="/footprints" element={<Footprints />} />
       </Routes>

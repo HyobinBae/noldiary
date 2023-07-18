@@ -114,7 +114,7 @@ const SelectedBar = styled.div`
 `;
 
 const NAVIGATION_TITLE = [
-  { id: 1, navTitle: "여기 어때", endpoint: "curations" },
+  { id: 1, navTitle: "여기 어때", endpoint: "" },
   { id: 2, navTitle: "내 일기", endpoint: "diary" },
   { id: 3, navTitle: "내 발자취", endpoint: "footprints" },
 ];
