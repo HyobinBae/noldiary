@@ -1,42 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
-import FilterModal from "./FilterModal";
-import { useAppDispatch, useAppSelector } from "../../../../services/store";
-import { setKeyword } from "../../services/diary.slice";
-import { getSearchDiary } from "../../../../services/api";
 
-const SearchBar = () => {
+import { useAppDispatch, useAppSelector } from "../../../services/store";
+import { setKeyword } from "../services/curation.slice";
+// import { getSearchDiary } from "../../../../services/api";
+
+const CurationSearchBar = () => {
   const dispatch = useAppDispatch();
   const queryName = useAppSelector((state) => state.diary.setSearchQuery);
   const keyword = useAppSelector((state) => state.diary.setKeyword);
 
-  const keyPressHandler = (e) => {
-    console.log(e.keyCode);
-    if (e.keyCode === 13) {
-      dispatch(getSearchDiary.initiate({ queryName, keyword }));
-    }
-  };
+  // const keyPressHandler = (e) => {
+  //   console.log(e.keyCode);
+  //   if (e.keyCode === 13) {
+  //     dispatch(getSearchDiary.initiate({ queryName, keyword }));
+  //   }
+  // };
 
   const getKeyword = (e) => {
     dispatch(setKeyword(e.target.value));
   };
 
-  const searchHandler = () => {
-    console.log("eeee");
-    dispatch(getSearchDiary.initiate({ queryName, keyword }));
-  };
+  // const searchHandler = () => {
+  //   dispatch(getSearchDiary.initiate({ queryName, keyword }));
+  // };
 
   return (
     <Container>
       <Box>
-        <FilterModal />
         <Input
           type="search"
           onChange={getKeyword}
-          onKeyDown={keyPressHandler}
+          // onKeyDown={keyPressHandler}
         />
-        <IconBox onClick={searchHandler}>
+        <IconBox>
           <BiSearch size={30} />
         </IconBox>
       </Box>
@@ -44,7 +42,7 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default CurationSearchBar;
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -56,7 +54,7 @@ const Container = styled.div`
 
 const Box = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 
   width: 71%;

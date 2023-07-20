@@ -5,13 +5,13 @@ import Signin from "./pages/signin";
 import KakaoLogin from "./pages/signin/components/KakaoLogin";
 import NaverLogin from "./pages/signin/components/NaverLogin";
 import Write from "./pages/write";
-
 import RouteWithNavbar from "./RouteWithNavbar";
 import RouteWithHeader from "./RouteWithHeader";
 import DiaryDetail from "./pages/diary/components/DiaryDetail/DiaryDetail";
 import Setting from "./pages/diary/components/Setting";
 import Edit from "./pages/write/components/Edit/Edit";
-import CourseList from "./pages/curation/components/CourseList";
+import CourseList from "./pages/curation/components/TourCourse/CourseList";
+import CourseDetail from "./pages/curation/components/TourCourse/CourseDetail";
 
 const Router = () => {
   return (
@@ -25,7 +25,11 @@ const Router = () => {
         <Route element={<RouteWithHeader />}>
           <Route path="/diary/:id" element={<DiaryDetail />} />
           <Route path="/setting" element={<Setting />} />
-          <Route path="/curation/course/:id" element={<CourseList />} />
+          <Route path="/curation/tourcourse/:id" element={<CourseList />} />
+          <Route
+            path="/curation/tourcourse/:id/:id"
+            element={<CourseDetail />}
+          />
         </Route>
         <Route path="/*" element={<RouteWithNavbar />} />
       </Routes>

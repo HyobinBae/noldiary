@@ -1,5 +1,4 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,9 +6,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const clickHandler = (code) => {
+    console.log(code);
+    navigate(`curation/tourcourse/${code}`);
+  };
 
   return (
     <Container>
@@ -24,22 +28,25 @@ const Carousel = () => {
           disableOnInteraction: false,
         }}
         centeredSlides={true}
+        touchStartPreventDefault={false}
+        simulateTouch={false}
         modules={[Autoplay, Pagination, Navigation]}
       >
         {CAROUSEL_LIST.map((data) => {
           return (
-            <SwiperSlide>
-              <Wrapper key={data.categoryCode}>
-                <ImageWrapper>
-                  <CoverSheet />
-                  <BackgroundImage src={data.imageURL} />
-                  <TextWrapper>
-                    <TextBox>{data.category}</TextBox>
-                    <TitleBox>{data.title}</TitleBox>
-                  </TextWrapper>
-                </ImageWrapper>
-              </Wrapper>
-            </SwiperSlide>
+            <Wrapper
+              key={data.categoryCode}
+              onClick={() => clickHandler(data.categoryCode)}
+            >
+              <ImageWrapper>
+                <CoverSheet />
+                <BackgroundImage src={data.imageURL} />
+                <TextWrapper>
+                  <TextBox>{data.category}</TextBox>
+                  <TitleBox>{data.title}</TitleBox>
+                </TextWrapper>
+              </ImageWrapper>
+            </Wrapper>
           );
         })}
       </CarouselWrapper>
@@ -64,6 +71,7 @@ const Container = styled.div`
 
   width: 100%;
   height: 340px;
+  margin-bottom: 40px;
   background-color: #bbbbbb;
 
   position: relative;
@@ -77,9 +85,10 @@ const CarouselWrapper = styled(Swiper)`
   z-index: 1;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled(SwiperSlide)`
   width: 100%;
   height: 100%;
+  cursor: pointer;
 `;
 
 const ImageWrapper = styled.div`
@@ -161,7 +170,11 @@ const IconWrapper = styled.div`
   padding: 0px 25px;
 
   position: absolute;
-  z-index: 3;
+
+  z-index: 2;
+  background: none;
+
+  pointer-events: none;
 `;
 
 const IconBox = styled.div`
@@ -172,6 +185,14 @@ const IconBox = styled.div`
   width: 26px;
   height: 26px;
   cursor: pointer;
+
+  z-index: 3;
+
+  pointer-events: auto;
+
+  & > * {
+    pointer-events: none;
+  }
 `;
 
 const CAROUSEL_LIST = [

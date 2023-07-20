@@ -78,8 +78,6 @@ export interface CourseList {
       title: string;
     }
   ];
-  numOfRows: string;
-  pageNo: number;
   totalCount: number;
 }
 

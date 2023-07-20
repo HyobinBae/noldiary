@@ -20,6 +20,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { apiSlice } from "./api";
 import write from "../pages/write/services/write.slice";
 import diary from "../pages/diary/services/diary.slice";
+import curation from "../pages/curation/services/curation.slice";
 
 //local storage에 저장되어 새로고침해도 사라지지 않는 state!
 const persistConfig = {
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   write,
   diary,
+  curation,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

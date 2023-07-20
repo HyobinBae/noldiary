@@ -163,10 +163,13 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getCourseList: builder.query<CourseList, string>({
-      query: (courseCode) => ({
-        url: `/curations/course/${courseCode}`,
-        method: "POST",
+    getCourseList: builder.query<
+      CourseList,
+      { categoryCode: string; pageNo: number }
+    >({
+      query: ({ categoryCode, pageNo }) => ({
+        url: `tour/main/${categoryCode}/${pageNo}`,
+        method: "GET",
         headers: {
           Accept: "application/json",
         },
@@ -179,9 +182,24 @@ export const apiSlice = createApi({
       },
     }),
     getCourseDetail: builder.query<CourseList, string>({
-      query: (courseCode) => ({
-        url: `/curations/course/${courseCode}`,
-        method: "POST",
+      query: (contentID) => ({
+        url: `/curations/course/${contentID}`,
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+        },
+      }),
+      transformResponse: (response: CourseList) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    getSearchTour: builder.query<CourseList, string>({
+      query: (keyword) => ({
+        url: `/tour/search?keyword=${keyword}`,
+        method: "GET",
         headers: {
           Accept: "application/json",
         },

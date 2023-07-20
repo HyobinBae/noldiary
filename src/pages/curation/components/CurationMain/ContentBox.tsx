@@ -25,8 +25,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 350px;
-  height: 350px;
+  width: 340px;
+  height: 320px;
   border-radius: 8px;
 
   margin: 15px;
