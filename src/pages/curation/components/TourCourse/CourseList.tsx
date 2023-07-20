@@ -5,7 +5,8 @@ import { useGetCourseListQuery } from "../../../../services/api";
 import TourCourseNavbar from "./TourCourseNavbar";
 
 const CourseList = () => {
-  const { data: courseList } = useGetCourseListQuery();
+  const pageNo = pageNumber;
+  const { data: courseList } = useGetCourseListQuery({ categoryCode, pageNo });
   console.log(courseList);
 
   return (

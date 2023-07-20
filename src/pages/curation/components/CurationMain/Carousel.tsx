@@ -10,9 +10,8 @@ import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const navigate = useNavigate();
-  const clickHandler = (code) => {
-    console.log(code);
-    navigate(`curation/tourcourse/${code}`);
+  const clickHandler = (title) => {
+    navigate(`curation/tourcourse/${title}`);
   };
 
   return (
@@ -36,7 +35,7 @@ const Carousel = () => {
           return (
             <Wrapper
               key={data.categoryCode}
-              onClick={() => clickHandler(data.categoryCode)}
+              onClick={() => clickHandler(data.title)}
             >
               <ImageWrapper>
                 <CoverSheet />
