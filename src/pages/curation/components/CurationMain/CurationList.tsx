@@ -9,7 +9,7 @@ const CurationList = () => {
       <CurationCategory />
       <ContentWrapper>
         {CONTENT_LIST.map((data) => {
-          return <ContentBox key={data.title} {...data} />;
+          return <ContentBox key={data.contentid} {...data} />;
         })}
       </ContentWrapper>
     </Container>
@@ -41,28 +41,33 @@ const ContentWrapper = styled.div`
 
 const CONTENT_LIST = [
   {
-    title: "가계해변",
-    thumbnailImage:
+    contentid: 1,
+    firstimage:
       "http://tong.visitkorea.or.kr/cms/resource/17/1608017_image2_1.jpg",
+    title: "가계해변",
   },
   {
-    title: "가덕해양파크휴게소",
-    thumbnailImage:
+    contentid: 2,
+    firstimage:
       "http://tong.visitkorea.or.kr/cms/resource/60/2793060_image2_1.jpg",
+    title: "가덕해양파크휴게소",
   },
   {
+    contentid: 3,
+    firstimage:
+      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
     title: "고하도 전망대",
-    thumbnailImage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
   },
   {
+    contentid: 4,
+    firstimage:
+      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
     title: "고인돌",
-    thumbnailImage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
   },
   {
-    title: "스타벅슨",
-    thumbnailImage:
+    contentid: 5,
+    firstimage:
       "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
+    title: "스타벅스",
   },
 ];

@@ -57,7 +57,7 @@ const Box = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  width: 71%;
+  width: 70%;
   height: 55px;
   border: 2px solid #2192ff;
   border-radius: 10px;
@@ -68,7 +68,7 @@ const Input = styled.input`
   align-items: center;
 
   border: none;
-  width: 80%;
+  width: 96%;
   height: 100%;
   margin-left: 20px;
 

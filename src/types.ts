@@ -72,9 +72,10 @@ export interface DiaryDetail {
 }
 
 export interface CourseList {
-  item: [
+  content: [
     {
-      firstImage: string;
+      contentid: number;
+      firstimage: string;
       title: string;
     }
   ];

@@ -7,11 +7,17 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
+import { setCourseCode, setCourseTitle } from "../../services/curation.slice";
+import { useAppDispatch } from "../../../../services/store";
 
 const Carousel = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const clickHandler = (title) => {
-    navigate(`curation/tourcourse/${title}`);
+
+  const clickHandler = (data) => {
+    dispatch(setCourseCode(data.categoryCode));
+    dispatch(setCourseTitle(data.category));
+    navigate(`curation/tourcourse/${data.category}`);
   };
 
   return (
@@ -33,10 +39,7 @@ const Carousel = () => {
       >
         {CAROUSEL_LIST.map((data) => {
           return (
-            <Wrapper
-              key={data.categoryCode}
-              onClick={() => clickHandler(data.title)}
-            >
+            <Wrapper key={data.categoryCode} onClick={() => clickHandler(data)}>
               <ImageWrapper>
                 <CoverSheet />
                 <BackgroundImage src={data.imageURL} />

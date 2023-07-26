@@ -11,7 +11,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.123.118:3000",
+  baseUrl: "http://10.58.52.128:3000",
   // baseUrl: "/data",
 });
 
@@ -169,6 +169,7 @@ export const apiSlice = createApi({
     >({
       query: ({ categoryCode, pageNo }) => ({
         url: `tour/main/${categoryCode}/${pageNo}`,
+        // url: "/COURSE_LIST.json",
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -181,9 +182,12 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getCourseDetail: builder.query<CourseList, string>({
-      query: (contentID) => ({
-        url: `/curations/course/${contentID}`,
+    getCourseDetail: builder.query<
+      CourseList,
+      { contenttypeid: number; contentID: number }
+    >({
+      query: ({ contenttypeid, contentID }) => ({
+        url: `/tour/main/detail/${contenttypeid}/${contentID}`,
         method: "GET",
         headers: {
           Accept: "application/json",

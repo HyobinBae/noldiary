@@ -1,7 +1,11 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { useNavigate } from "react-router-dom";
-import { setCourseTitle } from "../../services/curation.slice";
+import {
+  setCourseCode,
+  setCourseTitle,
+  setPageNo,
+} from "../../services/curation.slice";
 import styled from "styled-components";
 
 export interface NavProps {
@@ -31,6 +35,8 @@ const TourCourseNavbar = () => {
 
   const navHandler = (title: NavProps) => {
     dispatch(setCourseTitle(title.navTitle));
+    dispatch(setCourseCode(title.categoryCode));
+    dispatch(setPageNo(1));
     navigate(`/curation/tourcourse/${title.navTitle}`);
   };
 
@@ -64,6 +70,7 @@ const TourCourseNavbar = () => {
           );
         })}
       </Container>
+      <Line />
     </>
   );
 };
@@ -73,10 +80,11 @@ export default TourCourseNavbar;
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 
   cursor: pointer;
+  width: 100%;
 `;
 
 const ButtonBox = styled.button`
@@ -85,7 +93,7 @@ const ButtonBox = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: calc(80% / 6);
+  width: calc(70vw / 6);
 
   background: #ffffff;
   border-style: none;
@@ -98,7 +106,7 @@ const ButtonBox = styled.button`
 const ButtonText = styled.div`
   padding: 10px 0;
 
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 
   color: #8f8f8f;
@@ -111,6 +119,12 @@ const SelectedBar = styled.div`
   background: #ffffff;
 
   flex: none;
+`;
+
+const Line = styled.div`
+  width: 70vw;
+  border: 0.5px solid #c7c7c7;
+  margin-bottom: 20px;
 `;
 
 const NAVIGATION_LIST = [
