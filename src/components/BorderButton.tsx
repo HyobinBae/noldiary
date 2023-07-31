@@ -22,7 +22,7 @@ const Button = styled.div<{ width: string; height: string }>`
   justify-content: center;
   align-items: center;
 
-  border: 1px solid #2192ff;
+  border: 1px solid ${(props) => props.theme.colors.mainBlue};
   border-radius: 60px;
 
   width: ${({ width }) => width};
@@ -30,7 +30,7 @@ const Button = styled.div<{ width: string; height: string }>`
 
   margin-right: 10px;
   background-color: white;
-  color: #2192ff;
+  color: ${(props) => props.theme.colors.mainBlue};
 
   cursor: pointer;
 `;

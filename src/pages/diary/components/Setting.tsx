@@ -340,7 +340,7 @@ const EditButton = styled.button`
   height: 38px;
   border: none;
   background-color: white;
-  color: #2192ff;
+  color: ${(props) => props.theme.colors.mainBlue};
   font-size: 14px;
 
   &:hover {

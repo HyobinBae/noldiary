@@ -8,10 +8,11 @@ import {
   UserSetting,
   DiaryDetail,
   CourseList,
+  CourseDetail,
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://10.58.52.128:3000",
+  baseUrl: "https://4dce-123-108-170-164.ngrok-free.app",
   // baseUrl: "/data",
 });
 
@@ -173,6 +174,8 @@ export const apiSlice = createApi({
         method: "GET",
         headers: {
           Accept: "application/json",
+          //ngrok cors해결
+          "ngrok-skip-browser-warning": "222",
         },
       }),
       transformResponse: (response: CourseList) => {
@@ -183,17 +186,19 @@ export const apiSlice = createApi({
       },
     }),
     getCourseDetail: builder.query<
-      CourseList,
-      { contenttypeid: number; contentID: number }
+      CourseDetail,
+      { contentTypeID: number; contentID: number }
     >({
-      query: ({ contenttypeid, contentID }) => ({
-        url: `/tour/main/detail/${contenttypeid}/${contentID}`,
+      query: ({ contentTypeID, contentID }) => ({
+        url: `/tour/main/detail/${contentTypeID}/${contentID}`,
         method: "GET",
         headers: {
           Accept: "application/json",
+          //ngrok cors해결
+          "ngrok-skip-browser-warning": "1",
         },
       }),
-      transformResponse: (response: CourseList) => {
+      transformResponse: (response: CourseDetail) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -206,6 +211,8 @@ export const apiSlice = createApi({
         method: "GET",
         headers: {
           Accept: "application/json",
+          //ngrok cors해결
+          "ngrok-skip-browser-warning": "1",
         },
       }),
       transformResponse: (response: CourseList) => {
@@ -228,6 +235,7 @@ export const {
   useGetSearchDiaryQuery,
   useEditDiaryMutation,
   useGetCourseListQuery,
+  useGetCourseDetailQuery,
 } = apiSlice;
 
 export const {
@@ -238,5 +246,6 @@ export const {
     getDiaryDetail,
     getSearchDiary,
     getCourseList,
+    getCourseDetail,
   },
 } = apiSlice;

@@ -82,4 +82,29 @@ export interface CourseList {
   totalCount: number;
 }
 
-export interface CourseDetail {}
+export interface CourseDetail {
+  common: {
+    contentid: number;
+    contenttypeid: number;
+    firstimage: string;
+    addr1?: string;
+    mapx: number;
+    mapy: number;
+    overview: string;
+    title: string;
+  };
+  introduction: {
+    distance: string;
+    schedule?: string;
+    taketime?: string;
+    theme?: string;
+  };
+  course: [
+    {
+      subnum: number;
+      subname: string;
+      subdetailoverview: string;
+      subdetailimg: string;
+    }
+  ];
+}

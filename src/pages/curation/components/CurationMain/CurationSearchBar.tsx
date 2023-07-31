@@ -57,9 +57,9 @@ const Box = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  width: 70%;
+  width: 71%;
   height: 55px;
-  border: 2px solid #2192ff;
+  border: 2px solid ${(props) => props.theme.colors.mainBlue};
   border-radius: 10px;
 `;
 const Input = styled.input`
@@ -68,7 +68,7 @@ const Input = styled.input`
   align-items: center;
 
   border: none;
-  width: 96%;
+  width: 80%;
   height: 100%;
   margin-left: 20px;
 
@@ -85,7 +85,7 @@ const IconBox = styled.div`
   align-items: center;
 
   padding: 20px;
-  color: #2192ff;
+  color: ${(props) => props.theme.colors.mainBlue};
 
   cursor: pointer;
 `;

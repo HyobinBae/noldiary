@@ -2,6 +2,7 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { useNavigate } from "react-router-dom";
 import {
+  setContentTypeID,
   setCourseCode,
   setCourseTitle,
   setPageNo,
@@ -35,6 +36,7 @@ const TourCourseNavbar = () => {
 
   const navHandler = (title: NavProps) => {
     dispatch(setCourseTitle(title.navTitle));
+    dispatch(setContentTypeID(25));
     dispatch(setCourseCode(title.categoryCode));
     dispatch(setPageNo(1));
     navigate(`/curation/tourcourse/${title.navTitle}`);

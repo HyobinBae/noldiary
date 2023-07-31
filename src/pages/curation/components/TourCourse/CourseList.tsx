@@ -4,11 +4,13 @@ import ContentBox from "../CurationMain/ContentBox";
 import { useGetCourseListQuery } from "../../../../services/api";
 import TourCourseNavbar from "./TourCourseNavbar";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
-import { setTotalCount } from "../../services/curation.slice";
+import { setContentID, setTotalCount } from "../../services/curation.slice";
 import PagenationButtons from "./PagenationButtons";
+import { useNavigate } from "react-router-dom";
 
 const CourseList = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const categoryCode = useAppSelector((state) => state.curation.courseCode);
   const pageNo = useAppSelector((state) => state.curation.pageNo);
@@ -18,7 +20,12 @@ const CourseList = () => {
   const courseList = courseArray?.content;
 
   dispatch(setTotalCount(courseArray?.totalCount));
-  console.log(categoryCode);
+
+  const contentHandler = (data) => {
+    console.log(data);
+    dispatch(setContentID(data));
+    navigate(`/curation/coursedetail/${data}`);
+  };
 
   return (
     <Container>
@@ -26,7 +33,15 @@ const CourseList = () => {
       <TotalCount>{totalCount}개의 코스가 있습니다</TotalCount>
       <ContentWrapper>
         {courseList?.map((data) => {
-          return <ContentBox key={data.contentid} {...data} />;
+          return (
+            <ContentBox
+              key={data.contentid}
+              onClick={() => {
+                contentHandler(data.contentid);
+              }}
+              {...data}
+            />
+          );
         })}
       </ContentWrapper>
       <PagenationButtons />

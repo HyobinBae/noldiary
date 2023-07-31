@@ -2,14 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import ContentBox from "./ContentBox";
 import CurationCategory from "./CutationCategory";
+import { useNavigate } from "react-router-dom";
 
 const CurationList = () => {
+  const navigate = useNavigate();
+
+  const contentHandler = (data) => {
+    navigate(`/curation/detail/${data}`);
+  };
+
   return (
     <Container>
       <CurationCategory />
       <ContentWrapper>
         {CONTENT_LIST.map((data) => {
-          return <ContentBox key={data.contentid} {...data} />;
+          return (
+            <ContentBox
+              key={data.contentid}
+              onClick={() => {
+                contentHandler(data.contentid);
+              }}
+              {...data}
+            />
+          );
         })}
       </ContentWrapper>
     </Container>

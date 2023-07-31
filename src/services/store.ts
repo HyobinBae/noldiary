@@ -26,6 +26,7 @@ import curation from "../pages/curation/services/curation.slice";
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["write", "diary", "curation"],
 };
 
 const rootReducer = combineReducers({

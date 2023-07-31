@@ -5,11 +5,12 @@ interface ContentProps {
   contentid: number;
   firstimage: string;
   title: string;
+  onClick: React.MouseEventHandler<HTMLElement>;
 }
 
 const ContentBox = (props: ContentProps) => {
   return (
-    <Container key={props.contentid}>
+    <Container key={props.contentid} onClick={props.onClick}>
       <Wrapper>
         {props.firstimage ? (
           <ImageBox src={props.firstimage} />
@@ -36,6 +37,8 @@ const Container = styled.div`
   border: 0.5px solid #efefef;
 
   margin: 0 2vw 2vw 0;
+
+  cursor: pointer;
 `;
 const Wrapper = styled.div`
   display: flex;

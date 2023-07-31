@@ -1,0 +1,153 @@
+{
+  "common": [
+    {
+      "title": "가회민화박물관",
+      "firstimage": "http://tong.visitkorea.or.kr/cms/resource/75/2550575_image2_1.jpg",
+      "overview": "우리 겨레는 반만년이라는 유구한 세월 동안 외래문화를 수용하면서도 전통문화의 주체성과 독자성을 잘 지켜왔다. 그러나 오늘날 산업이 발달하고 생활양식이 급변하면서 우리의 전통문화는 점차 퇴색되어만 가고 있다. 이러한 시점에서 우리 민족의 전통유산인 민화를 체계적으로 연구하고 전시하여 훌륭한 문화유산을 느끼는 일은 매우 중요하다. 가회민화박물관은 우리의 소중한 문화유산을 일깨우기 위해 선조들의 삶과 지혜가 담겨 있는 민화와 부적을 좀 더 깊이 있게 연구하여 그 소중함을 일깨우고자 하는 데 설립 목적을 두고 있다.<br /><br />2002년에 문을 연 가회민화박물관에서 전시하고 있는 민화는 우리의 삶과 닮아 있는 그림이며, 무병장수(無病長壽), 부귀다남(富貴多男), 부귀공명(富貴功名) 등 인간의 소박한 바람이 담겨 있다. 한편 벽사적인 의미를 담고 있는 민화를 통해 사람들은 그려진 소재의 주술적인 힘이 여러 가지 재앙으로부터 보호해주고 소원도 이루어준다고 믿었다.<br>",
+      "contentid": "130446",
+      "mapx": "126.9852144301",
+      "mapy": "37.5814804075"
+    }
+  ],
+  "introduction": [
+    {
+      "infoTitle": "contentid",
+      "infoText": "130446"
+    },
+    {
+      "infoTitle": "contenttypeid",
+      "infoText": "14"
+    },
+    {
+      "infoTitle": "scale",
+      "infoText": ""
+    },
+    {
+      "infoTitle": "usefee",
+      "infoText": "5,000원"
+    },
+    {
+      "infoTitle": "discountinfo",
+      "infoText": ""
+    },
+    {
+      "infoTitle": "spendtime",
+      "infoText": ""
+    },
+    {
+      "infoTitle": "parkingfee",
+      "infoText": ""
+    },
+    {
+      "infoTitle": "infocenterculture",
+      "infoText": "02-741-0466"
+    },
+    {
+      "infoTitle": "accomcountculture",
+      "infoText": "체험 가능 인원 20~25명"
+    },
+    {
+      "infoTitle": "usetimeculture",
+      "infoText": "3월~11월 10:00~18:00<br />\n12월~2월 10:00~17:00<br />\n※ 관람 시 종료 40분 전까지 입장<br />\n※ 체험 시 종료 1시간 전까지 입장"
+    },
+    {
+      "infoTitle": "restdateculture",
+      "infoText": "매주 월요일"
+    },
+    {
+      "infoTitle": "parkingculture",
+      "infoText": "없음"
+    },
+    {
+      "infoTitle": "chkbabycarriageculture",
+      "infoText": "불가"
+    },
+    {
+      "infoTitle": "chkpetculture",
+      "infoText": "불가"
+    },
+    {
+      "infoTitle": "chkcreditcardculture",
+      "infoText": "없음"
+    }
+  ],
+  "routine": [
+    {
+      "serialnum": "0",
+      "infoname": "소장품현황",
+      "infotext": "700여 점의 민화와 800점의 부적<br />\n150점의 전적류, 100여 점의 무신도<br />\n기타 민속자료 150여 점 등 총 2,000여 점의 유물 소장"
+    },
+    {
+      "serialnum": "1",
+      "infoname": "체험프로그램",
+      "infotext": "단청문양카드 그리기, 부엉이 열쇠고리 그리기, 잔받침 그리기, 문자도 그리기, 자작나무엽서 그리기, 약리도 그리기, 까치호랑이·모란도 그리기, 부채 그리기 등\n- 체험비 2,000원~18,000원"
+    },
+    {
+      "serialnum": "2",
+      "infoname": "예약안내",
+      "infotext": "단체 관람 및 체험 교육의 경우 사전 예약 <br />\n<a href=\"http://www.gahoemuseum.org/\" target=\"_blank\" title=\"새창 : 가회민화박물관 홈페이지로 이동\">http://www.gahoemuseum.org</a>"
+    }
+  ],
+  "image": [
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/82/1570482_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/84/1570484_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/86/1570486_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/87/1570487_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/88/1570488_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/89/1570489_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/79/2550579_image2_1.jpg",
+      "imgname": "한국박물관협회_가회민화박물관 8"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/81/2550581_image2_1.jpg",
+      "imgname": "한국박물관협회_가회민화박물관 4"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/83/2550583_image2_1.jpg",
+      "imgname": "한국박물관협회_가회민화박물관 3"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/83/1570483_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/85/1570485_image2_1.jpg",
+      "imgname": "가회박물관"
+    },
+    {
+      "contentid": "130446",
+      "originimgurl": "http://tong.visitkorea.or.kr/cms/resource/76/2550576_image2_1.jpg",
+      "imgname": "한국박물관협회_가회민화박물관 5"
+    }
+  ]
+}
