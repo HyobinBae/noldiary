@@ -9,7 +9,8 @@ import DetailNavbar from "./DetailNavbar";
 const CourseDetail = () => {
   const { id } = useParams();
   const contentID = Number(id);
-  const scrollRef = useRef([]);
+  const numSections = 4;
+  const scrollRef = useRef(new Array(numSections).fill(null));
 
   const contentTypeID = useAppSelector((state) => state.curation.contentTypeID);
 
@@ -28,16 +29,16 @@ const CourseDetail = () => {
         <Title>{contentDetail?.common.title}</Title>
         <IconBar />
         <DetailNavbar scrollRef={scrollRef} />
-        <ImageWrapper ref={scrollRef.current[0]}>
+        <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
           <ImageBox src={contentDetail?.common.firstimage} />
         </ImageWrapper>
         <IntroductionWrapper>
-          <SectionWrapper ref={scrollRef.current[1]}>
+          <SectionWrapper ref={(ref) => (scrollRef.current[1] = ref)}>
             <SubTitle>코스 소개</SubTitle>
             <DivideLine />
             <CourseOverview content={contentDetail?.common.overview} />
           </SectionWrapper>
-          <SectionWrapper ref={scrollRef.current[2]}>
+          <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
             <SubTitle>코스 요약</SubTitle>
             <DivideLine />
             <InfoWrapper>
@@ -53,7 +54,7 @@ const CourseDetail = () => {
               </InfoWrapper>
             ) : null}
           </SectionWrapper>
-          <SectionWrapper ref={scrollRef.current[3]}>
+          <SectionWrapper ref={(ref) => (scrollRef.current[3] = ref)}>
             <SubTitle>코스 상세</SubTitle>
             <DivideLine />
             <SubInfo>

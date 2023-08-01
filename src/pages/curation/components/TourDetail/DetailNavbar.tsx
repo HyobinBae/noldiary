@@ -1,26 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../../services/store";
-import { setDetailNavIndex } from "../../services/curation.slice";
 
 const DetailNavbar = ({ scrollRef }) => {
-  const dispatch = useAppDispatch();
-  const navIndex = useAppSelector((state) => state.curation.detailNavIndex);
+  const [selectedNav, setSelectedNav] = useState("이미지보기");
+  const [activeSection, setActiveSection] = useState(0);
 
-  console.log(navIndex);
-  const navHandler = (index) => {
-    dispatch(setDetailNavIndex(index));
-    scrollRef.current[index]?.scrollIntoView({ behavior: "smooth" });
+  const navHandler = (data) => {
+    setSelectedNav(data.title);
+    scrollRef.current[data.idx]?.scrollIntoView({ behavior: "smooth" });
   };
-  console.log(scrollRef.current);
+
+  const InitialButtonStyle = {
+    button: { color: "#8F8F8F" },
+    bar: { background: "#ffffff" },
+  };
+
+  const SelectedButtonStyle = {
+    button: { color: "#2192FF", fontWeight: 700 },
+    bar: { background: "#2192FF" },
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollRef.current.forEach((ref, idx) => {
+        if (ref.offsetTop - 180 < window.scrollY) {
+          setActiveSection(idx);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollRef]);
 
   return (
     <NavWrapper>
       {DETAIL_NAVTITLE.map((data) => {
         return (
-          <NavText key={data.idx} onClick={() => navHandler(data.idx)}>
-            {data.navTitle}
-          </NavText>
+          <ButtonBox>
+            {selectedNav === data.title || activeSection === data.idx ? (
+              <>
+                <NavText
+                  key={data.idx}
+                  onClick={() => navHandler(data)}
+                  style={SelectedButtonStyle.button}
+                >
+                  {data.title}
+                </NavText>
+                <Bar style={SelectedButtonStyle.bar} />
+              </>
+            ) : (
+              <NavText
+                key={data.idx}
+                onClick={() => navHandler(data)}
+                style={InitialButtonStyle.button}
+              >
+                {data.title}
+              </NavText>
+            )}
+          </ButtonBox>
         );
       })}
     </NavWrapper>
@@ -39,6 +80,26 @@ const NavWrapper = styled.div`
   border-top: 1px solid #d2d2d2;
   border-bottom: 1px solid #d2d2d2;
   margin-bottom: 20px;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #ffffff;
+  opacity: 0.9;
+`;
+
+const ButtonBox = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: calc(70vw / 4);
+
+  background: #ffffff;
+  border-style: none;
+
+  cursor: pointer;
 `;
 
 const NavText = styled.div`
@@ -46,17 +107,29 @@ const NavText = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: calc(70vw / 4);
-
+  padding: 11px 0 10px 0;
   font-size: 18px;
-  font-weight: 600;
 
   cursor: pointer;
 `;
 
+const Bar = styled.div`
+  width: 60%;
+  height: 4px;
+  border-radius: 2px;
+
+  background: #ffffff;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  padding-bottom: 0;
+`;
+
 const DETAIL_NAVTITLE = [
-  { idx: 0, navTitle: "코스 소개" },
-  { idx: 1, navTitle: "코스 요약" },
-  { idx: 2, navTitle: "코스 상세" },
-  { idx: 3, navTitle: "이미지 보기" },
+  { idx: 0, title: "이미지 보기" },
+  { idx: 1, title: "코스 소개" },
+  { idx: 2, title: "코스 요약" },
+  { idx: 3, title: "코스 상세" },
 ];

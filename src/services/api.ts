@@ -12,7 +12,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://4dce-123-108-170-164.ngrok-free.app",
+  baseUrl: "https://a8b2-123-108-170-164.ngrok-free.app",
   // baseUrl: "/data",
 });
 
@@ -216,6 +216,26 @@ export const apiSlice = createApi({
         },
       }),
       transformResponse: (response: CourseList) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    patchHeart: builder.mutation<
+      WriteProps,
+      { diary: WriteProps; id: string | undefined }
+    >({
+      query: ({ diary, id }) => ({
+        url: `/diary/${id}`,
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: diary,
+      }),
+      transformResponse: (response: WriteProps) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
