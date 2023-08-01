@@ -24,7 +24,7 @@ const Container = styled.div`
 
   width: 100%;
   height: 40px;
-  margin: 0 15px 10px 15px;
+  margin-bottom: 20px;
 `;
 
 const TextWrapper = styled.div`

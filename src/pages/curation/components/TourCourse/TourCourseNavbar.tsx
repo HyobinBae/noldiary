@@ -26,7 +26,7 @@ const TourCourseNavbar = () => {
   };
 
   const SelectedButtonStyle = {
-    button: { color: "#2192FF" },
+    button: { color: "#2192FF", fontWeight: 700 },
     bar: { background: "#2192FF" },
   };
 
@@ -109,14 +109,14 @@ const ButtonText = styled.div`
   padding: 10px 0;
 
   font-size: 18px;
-  font-weight: 600;
 
   color: #8f8f8f;
 `;
 
 const SelectedBar = styled.div`
-  width: 100%;
+  width: 60%;
   height: 4px;
+  border-radius: 2px;
 
   background: #ffffff;
 

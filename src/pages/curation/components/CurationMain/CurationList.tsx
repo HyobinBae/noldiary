@@ -38,9 +38,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 1140px;
 
-  margin: 40px 190px 10px 190px;
+  width: 100%;
+  height: 100%;
+
+  padding: 0 14%;
 `;
 
 const ContentWrapper = styled.div`
@@ -51,7 +53,7 @@ const ContentWrapper = styled.div`
   flex-wrap: wrap;
 
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const CONTENT_LIST = [

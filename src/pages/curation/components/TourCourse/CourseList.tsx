@@ -62,6 +62,7 @@ const Container = styled.div`
 
   padding: 0 14%;
 `;
+
 const TotalCount = styled.div`
   margin-bottom: 20px;
 `;

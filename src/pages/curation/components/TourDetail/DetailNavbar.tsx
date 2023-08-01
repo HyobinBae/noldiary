@@ -15,7 +15,10 @@ const DetailNavbar = ({ scrollRef }) => {
   };
 
   const SelectedButtonStyle = {
-    button: { color: "#2192FF", fontWeight: 700 },
+    button: {
+      color: "#2192FF",
+      fontWeight: 700,
+    },
     bar: { background: "#2192FF" },
   };
 
@@ -107,6 +110,7 @@ const NavText = styled.div`
   align-items: center;
 
   padding: 11px 0 10px 0;
+
   font-size: 18px;
 
   cursor: pointer;
