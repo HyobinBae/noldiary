@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const DetailNavbar = ({ scrollRef }) => {
   const [selectedNav, setSelectedNav] = useState("이미지보기");
-  const [activeSection, setActiveSection] = useState(0);
 
   const navHandler = (data) => {
     setSelectedNav(data.title);
@@ -24,7 +23,7 @@ const DetailNavbar = ({ scrollRef }) => {
     const handleScroll = () => {
       scrollRef.current.forEach((ref, idx) => {
         if (ref.offsetTop - 180 < window.scrollY) {
-          setActiveSection(idx);
+          setSelectedNav(DETAIL_NAVTITLE[idx].title);
         }
       });
     };
@@ -41,7 +40,7 @@ const DetailNavbar = ({ scrollRef }) => {
       {DETAIL_NAVTITLE.map((data) => {
         return (
           <ButtonBox>
-            {selectedNav === data.title || activeSection === data.idx ? (
+            {selectedNav === data.title ? (
               <>
                 <NavText
                   key={data.idx}
