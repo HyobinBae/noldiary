@@ -8,6 +8,10 @@ import {
   setPageNo,
 } from "../../services/curation.slice";
 import styled from "styled-components";
+import {
+  InitialButtonStyle,
+  SelectedButtonStyle,
+} from "../../../../components/Navbar";
 
 export interface NavProps {
   navTitle: string;
@@ -20,16 +24,6 @@ export interface Styles {
 }
 
 const TourCourseNavbar = () => {
-  const InitialButtonStyle = {
-    button: { color: "#8F8F8F" },
-    bar: { background: "#ffffff" },
-  };
-
-  const SelectedButtonStyle = {
-    button: { color: "#2192FF", fontWeight: 700 },
-    bar: { background: "#2192FF" },
-  };
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const selectedTitle = useAppSelector((state) => state.curation.courseTitle);

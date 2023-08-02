@@ -12,7 +12,6 @@ const DiarySearchBar = () => {
   const keyword = useAppSelector((state) => state.diary.setKeyword);
 
   const keyPressHandler = (e) => {
-    console.log(e.keyCode);
     if (e.keyCode === 13) {
       dispatch(getSearchDiary.initiate({ queryName, keyword }));
     }

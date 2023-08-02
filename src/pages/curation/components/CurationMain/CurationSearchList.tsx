@@ -1,21 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 import ContentBox from "./ContentBox";
-import CurationCategory from "./CutationCategory";
-import { useNavigate } from "react-router-dom";
 
-const CurationList = () => {
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../../../services/store";
+import { selectSearchCurationList } from "../../services/curation.slice";
+
+const CurationSearchList = () => {
   const navigate = useNavigate();
 
   const contentHandler = (data) => {
     navigate(`/curation/detail/${data}`);
   };
 
+  const searchCurationList = useAppSelector(selectSearchCurationList);
+
   return (
     <Container>
-      <CurationCategory />
       <ContentWrapper>
-        {CONTENT_LIST.map((data) => {
+        {searchCurationList.content.map((data) => {
           return (
             <ContentBox
               key={data.contentid}
@@ -31,7 +34,7 @@ const CurationList = () => {
   );
 };
 
-export default CurationList;
+export default CurationSearchList;
 
 const Container = styled.div`
   display: flex;

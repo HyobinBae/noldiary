@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import {
+  InitialButtonStyle,
+  SelectedButtonStyle,
+} from "../../../../components/Navbar";
 
 const DetailNavbar = ({ scrollRef }) => {
   const [selectedNav, setSelectedNav] = useState("이미지보기");
@@ -7,19 +11,6 @@ const DetailNavbar = ({ scrollRef }) => {
   const navHandler = (data) => {
     setSelectedNav(data.title);
     scrollRef.current[data.idx]?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const InitialButtonStyle = {
-    button: { color: "#8F8F8F" },
-    bar: { background: "#ffffff" },
-  };
-
-  const SelectedButtonStyle = {
-    button: {
-      color: "#2192FF",
-      fontWeight: 700,
-    },
-    bar: { background: "#2192FF" },
   };
 
   useEffect(() => {

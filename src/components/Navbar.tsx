@@ -14,17 +14,20 @@ export interface Styles {
   bar: { background: string };
 }
 
+export const InitialButtonStyle = {
+  button: { color: "#8F8F8F" },
+  bar: { background: "#ffffff" },
+};
+
+export const SelectedButtonStyle = {
+  button: {
+    color: "#2192FF",
+    fontWeight: 700,
+  },
+  bar: { background: "#2192FF" },
+};
+
 const Navbar = () => {
-  const InitialButtonStyle = {
-    button: { color: "#8F8F8F" },
-    bar: { background: "#ffffff" },
-  };
-
-  const SelectedButtonStyle = {
-    button: { color: "#2192FF" },
-    bar: { background: "#2192FF" },
-  };
-
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const selectedTitle = useAppSelector((state) => state.diary.setNavTitle);
@@ -105,7 +108,7 @@ const ButtonText = styled.div`
 `;
 
 const SelectedBar = styled.div`
-  width: 100%;
+  width: 60%;
   height: 4px;
 
   background: #ffffff;
@@ -114,7 +117,7 @@ const SelectedBar = styled.div`
 `;
 
 const NAVIGATION_TITLE = [
-  { id: 1, navTitle: "여기 어때", endpoint: "" },
-  { id: 2, navTitle: "내 일기", endpoint: "diary" },
-  { id: 3, navTitle: "내 발자취", endpoint: "footprints" },
+  { id: 1, navTitle: "떠나요", endpoint: "" },
+  { id: 2, navTitle: "놀기장", endpoint: "diary" },
+  { id: 3, navTitle: "좋아요", endpoint: "footprints" },
 ];

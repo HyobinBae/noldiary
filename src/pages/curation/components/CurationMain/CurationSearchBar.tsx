@@ -1,30 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 import { BiSearch } from "react-icons/bi";
-
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
-import { setKeyword } from "../../services/curation.slice";
-// import { getSearchDiary } from "../../../../services/api";
+import {
+  clearSearchCurationList,
+  setKeyword,
+} from "../../services/curation.slice";
+import { getSearchCuration } from "../../../../services/api";
 
 const CurationSearchBar = () => {
   const dispatch = useAppDispatch();
-  const queryName = useAppSelector((state) => state.diary.setSearchQuery);
-  const keyword = useAppSelector((state) => state.diary.setKeyword);
 
-  // const keyPressHandler = (e) => {
-  //   console.log(e.keyCode);
-  //   if (e.keyCode === 13) {
-  //     dispatch(getSearchDiary.initiate({ queryName, keyword }));
-  //   }
-  // };
+  const keyword = useAppSelector((state) => state.curation.keyword);
 
   const getKeyword = (e) => {
     dispatch(setKeyword(e.target.value));
   };
 
-  // const searchHandler = () => {
-  //   dispatch(getSearchDiary.initiate({ queryName, keyword }));
-  // };
+  const keyPressHandler = (e) => {
+    if (e.key === "Enter" && keyword === "") {
+      dispatch(clearSearchCurationList());
+    } else if (e.key === "Enter" && keyword !== "") {
+      e.preventDefault();
+      dispatch(getSearchCuration.initiate(keyword));
+    }
+  };
+
+  const searchHandler = (e) => {
+    if (keyword === "") {
+      dispatch(clearSearchCurationList());
+    } else {
+      e.preventDefault();
+      dispatch(getSearchCuration.initiate(keyword));
+    }
+  };
 
   return (
     <Container>
@@ -32,9 +41,9 @@ const CurationSearchBar = () => {
         <Input
           type="search"
           onChange={getKeyword}
-          // onKeyDown={keyPressHandler}
+          onKeyDown={keyPressHandler}
         />
-        <IconBox>
+        <IconBox onClick={searchHandler}>
           <BiSearch size={30} />
         </IconBox>
       </Box>
@@ -68,7 +77,7 @@ const Input = styled.input`
   align-items: center;
 
   border: none;
-  width: 80%;
+  width: 100%;
   height: 100%;
   margin-left: 20px;
 

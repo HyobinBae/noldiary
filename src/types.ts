@@ -108,3 +108,12 @@ export interface CourseDetail {
     }
   ];
 }
+
+export interface Like {
+  contentid: number;
+  contenttypeid: number;
+  firstimage: string;
+  addr1?: string;
+  mapx: number;
+  mapy: number;
+}

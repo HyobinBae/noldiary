@@ -1,27 +1,41 @@
+import { RootState } from "../../../services/store";
 import { createSlice } from "@reduxjs/toolkit";
+import { getSearchCuration } from "../../../services/api";
+import { CourseList } from "../../../types";
 
 interface CurationState {
   courseCode: string;
   contentTypeID: number;
   contentID: number;
-  setKeyword: string;
+  keyword: string;
   courseTitle: string;
   pageNo: number;
   totalCount: number;
-  heart: boolean;
+  isLike: boolean;
   detailNavIndex: number;
+  searchCuration: CourseList;
 }
 
 const initialState: CurationState = {
   courseCode: "",
   contentTypeID: 0,
   contentID: 0,
-  setKeyword: "",
+  keyword: "",
   courseTitle: "가족코스",
   pageNo: 1,
   totalCount: 0,
-  heart: false,
+  isLike: false,
   detailNavIndex: 0,
+  searchCuration: {
+    content: [
+      {
+        contentid: 0,
+        firstimage: "",
+        title: "",
+      },
+    ],
+    totalCount: 0,
+  },
 };
 
 export const CurationSlice = createSlice({
@@ -38,7 +52,7 @@ export const CurationSlice = createSlice({
       state.contentTypeID = action.payload;
     },
     setKeyword: (state, action) => {
-      state.setKeyword = action.payload;
+      state.keyword = action.payload;
     },
     setCourseTitle: (state, action) => {
       state.courseTitle = action.payload;
@@ -49,14 +63,37 @@ export const CurationSlice = createSlice({
     setTotalCount: (state, action) => {
       state.totalCount = action.payload;
     },
-    setHeart: (state, action) => {
-      state.heart = action.payload;
+    setLike: (state, action) => {
+      state.isLike = action.payload;
     },
     setDetailNavIndex: (state, action) => {
       state.detailNavIndex = action.payload;
     },
+    clearSearchCurationList: (state) => {
+      state.searchCuration = {
+        content: [
+          {
+            contentid: 0,
+            firstimage: "",
+            title: "",
+          },
+        ],
+        totalCount: 0,
+      };
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      getSearchCuration.matchFulfilled,
+      (state, { payload }) => {
+        state.searchCuration = payload;
+      }
+    );
   },
 });
+
+export const selectSearchCurationList = (state: RootState) =>
+  state.curation.searchCuration;
 
 export const {
   setCourseCode,
@@ -66,7 +103,8 @@ export const {
   setCourseTitle,
   setPageNo,
   setTotalCount,
-  setHeart,
+  setLike,
   setDetailNavIndex,
+  clearSearchCurationList,
 } = CurationSlice.actions;
 export default CurationSlice.reducer;

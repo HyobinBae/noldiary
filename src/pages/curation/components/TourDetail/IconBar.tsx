@@ -3,20 +3,20 @@ import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { HiOutlineShare } from "react-icons/hi";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { setHeart } from "../../services/curation.slice";
+import { setLike } from "../../services/curation.slice";
 
 const IconBar = () => {
   const dispatch = useAppDispatch();
-  const isHeart = useAppSelector((state) => state.curation.heart);
+  const isLike = useAppSelector((state) => state.curation.isLike);
 
-  const heartHandler = () => {
-    isHeart === true ? dispatch(setHeart(false)) : dispatch(setHeart(true));
+  const likeHandler = () => {
+    isLike === true ? dispatch(setLike(false)) : dispatch(setLike(true));
   };
 
   return (
     <IconWrapper>
-      <IconBox onClick={heartHandler}>
-        {isHeart === false ? (
+      <IconBox onClick={likeHandler}>
+        {isLike === false ? (
           <FaRegHeart size={20} />
         ) : (
           <FaHeart size={20} color="#ff4040" />

@@ -12,7 +12,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://a8b2-123-108-170-164.ngrok-free.app",
+  baseUrl: "https://cade-123-108-170-164.ngrok-free.app",
   // baseUrl: "/data",
 });
 
@@ -205,7 +205,7 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getSearchTour: builder.query<CourseList, string>({
+    getSearchCuration: builder.query<CourseList, string>({
       query: (keyword) => ({
         url: `/tour/search?keyword=${keyword}`,
         method: "GET",
@@ -222,20 +222,21 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    patchHeart: builder.mutation<
-      WriteProps,
-      { diary: WriteProps; id: string | undefined }
+    postLike: builder.mutation<
+      string,
+      { contentTypeID: number; contentID: number }
     >({
-      query: ({ diary, id }) => ({
-        url: `/diary/${id}`,
+      query: ({ contentTypeID, contentID }) => ({
+        url: `/user/hearts`,
         method: "PATCH",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: diary,
+        body: contentTypeID,
+        contentID,
       }),
-      transformResponse: (response: WriteProps) => {
+      transformResponse: (response: string) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -256,6 +257,8 @@ export const {
   useEditDiaryMutation,
   useGetCourseListQuery,
   useGetCourseDetailQuery,
+  useGetSearchCurationQuery,
+  usePostLikeMutation,
 } = apiSlice;
 
 export const {
@@ -267,5 +270,6 @@ export const {
     getSearchDiary,
     getCourseList,
     getCourseDetail,
+    getSearchCuration,
   },
 } = apiSlice;
