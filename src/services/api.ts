@@ -7,12 +7,12 @@ import {
   UserInfo,
   UserSetting,
   DiaryDetail,
-  CourseList,
-  CourseDetail,
+  ContentsList,
+  ContentDetail,
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://cade-123-108-170-164.ngrok-free.app",
+  baseUrl: "https://7f20-123-108-170-164.ngrok-free.app",
   // baseUrl: "/data",
 });
 
@@ -164,8 +164,8 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getCourseList: builder.query<
-      CourseList,
+    getContentsList: builder.query<
+      ContentsList,
       { categoryCode: string; pageNo: number }
     >({
       query: ({ categoryCode, pageNo }) => ({
@@ -178,15 +178,15 @@ export const apiSlice = createApi({
           "ngrok-skip-browser-warning": "222",
         },
       }),
-      transformResponse: (response: CourseList) => {
+      transformResponse: (response: ContentsList) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
         return error.status;
       },
     }),
-    getCourseDetail: builder.query<
-      CourseDetail,
+    getContentDetail: builder.query<
+      ContentDetail,
       { contentTypeID: number; contentID: number }
     >({
       query: ({ contentTypeID, contentID }) => ({
@@ -198,16 +198,19 @@ export const apiSlice = createApi({
           "ngrok-skip-browser-warning": "1",
         },
       }),
-      transformResponse: (response: CourseDetail) => {
+      transformResponse: (response: ContentDetail) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
         return error.status;
       },
     }),
-    getSearchCuration: builder.query<CourseList, string>({
-      query: (keyword) => ({
-        url: `/tour/search?keyword=${keyword}`,
+    getContentsListByCategory: builder.query<
+      ContentsList,
+      { category: string; pageNo: number }
+    >({
+      query: ({ category, pageNo }) => ({
+        url: `tour/category/${category}/${pageNo}`,
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -215,7 +218,27 @@ export const apiSlice = createApi({
           "ngrok-skip-browser-warning": "1",
         },
       }),
-      transformResponse: (response: CourseList) => {
+      transformResponse: (response: ContentsList) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    getSearchCuration: builder.query<
+      ContentsList,
+      { pageNo: number; keyword: string }
+    >({
+      query: ({ pageNo, keyword }) => ({
+        url: `/tour/${pageNo}/search?keyword=${keyword}`,
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          //ngrok cors해결
+          "ngrok-skip-browser-warning": "1",
+        },
+      }),
+      transformResponse: (response: ContentsList) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -227,7 +250,7 @@ export const apiSlice = createApi({
       { contentTypeID: number; contentID: number }
     >({
       query: ({ contentTypeID, contentID }) => ({
-        url: `/user/hearts`,
+        url: `/tour/favorite`,
         method: "PATCH",
         headers: {
           Accept: "application/json",
@@ -255,10 +278,11 @@ export const {
   useGetDiaryDetailQuery,
   useGetSearchDiaryQuery,
   useEditDiaryMutation,
-  useGetCourseListQuery,
-  useGetCourseDetailQuery,
+  useGetContentsListQuery,
+  useGetContentDetailQuery,
   useGetSearchCurationQuery,
   usePostLikeMutation,
+  useGetContentsListByCategoryQuery,
 } = apiSlice;
 
 export const {
@@ -268,8 +292,8 @@ export const {
     getUserInfo,
     getDiaryDetail,
     getSearchDiary,
-    getCourseList,
-    getCourseDetail,
+    getContentsList,
+    getContentDetail,
     getSearchCuration,
   },
 } = apiSlice;

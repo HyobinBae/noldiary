@@ -1,12 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import { useAppDispatch } from "../../../../services/store";
+import { setCategory } from "../../services/curation.slice";
 
 const CurationCategory = () => {
+  const dispatch = useAppDispatch();
+
+  const categoryHandler = (data) => {
+    dispatch(setCategory(data.cat));
+  };
+
   return (
     <Container>
       {TOUR_CATEGORY.map((data) => {
         return (
-          <TextWrapper>
+          <TextWrapper
+            onClick={() => {
+              categoryHandler(data);
+            }}
+          >
             <Text>{data.title}</Text>
           </TextWrapper>
         );
@@ -52,11 +64,11 @@ const Text = styled.div`
 `;
 
 const TOUR_CATEGORY = [
-  { title: "#이색체험", code: 12, cat: "A02030400" },
-  { title: "#전국미술관투어", code: 14, cat: "A02060500" },
-  { title: "#지역별축제", code: 15, cat: "A02070100" },
-  { title: "#더운여름수상레포츠", code: 28, cat: "A0303" },
-  { title: "#고풍한옥숙소", code: 32, cat: "B02011600" },
-  { title: "#공예/공방", code: 38, cat: "A04010700" },
-  { title: "#카페투어", code: 39, cat: "A05020900" },
+  { title: "#이색체험", contenttypeid: 12, cat: "A02030400" },
+  { title: "#전국미술관투어", contenttypeid: 14, cat: "A02060500" },
+  { title: "#지역별축제", contenttypeid: 15, cat: "A02070100" },
+  { title: "#더운여름수상레포츠", contenttypeid: 28, cat: "A0303" },
+  { title: "#고풍한옥숙소", contenttypeid: 32, cat: "B02011600" },
+  { title: "#공예/공방", contenttypeid: 38, cat: "A04010700" },
+  { title: "#카페투어", contenttypeid: 39, cat: "A05020900" },
 ];

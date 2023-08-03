@@ -11,8 +11,7 @@ import DiaryDetail from "./pages/diary/components/DiaryDetail/DiaryDetail";
 import Setting from "./pages/diary/components/Setting";
 import Edit from "./pages/write/components/Edit/Edit";
 import CourseList from "./pages/curation/components/TourCourse/CourseList";
-import CourseDetail from "./pages/curation/components/TourDetail/CourseDetail";
-import TourDetail from "./pages/curation/components/TourDetail/TourDetail";
+import ContentDetail from "./pages/curation/components/ContentDetail/ContentDetail";
 
 const Router = () => {
   return (
@@ -27,8 +26,7 @@ const Router = () => {
           <Route path="/diary/:id" element={<DiaryDetail />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/curation/tourcourse/:id" element={<CourseList />} />
-          <Route path="/curation/coursedetail/:id" element={<CourseDetail />} />
-          <Route path="/curation/tourdetail/:id" element={<TourDetail />} />
+          <Route path="/curation/detail/:id" element={<ContentDetail />} />
         </Route>
         <Route path="/*" element={<RouteWithNavbar />} />
       </Routes>

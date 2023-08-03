@@ -30,7 +30,7 @@ const TourCourseNavbar = () => {
 
   const navHandler = (title: NavProps) => {
     dispatch(setCourseTitle(title.navTitle));
-    dispatch(setContentTypeID(25));
+    // dispatch(setContentTypeID(1));
     dispatch(setCourseCode(title.categoryCode));
     dispatch(setPageNo(1));
     navigate(`/curation/tourcourse/${title.navTitle}`);

@@ -3,12 +3,22 @@ import styled from "styled-components";
 import ContentBox from "./ContentBox";
 import CurationCategory from "./CutationCategory";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { setContentTypeID } from "../../services/curation.slice";
+import { useGetContentsListByCategoryQuery } from "../../../../services/api";
 
 const CurationList = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const { data: CurationList } = useGetContentsListByCategoryQuery({
+    category,
+    pageNo,
+  });
 
   const contentHandler = (data) => {
-    navigate(`/curation/detail/${data}`);
+    navigate(`/curation/detail/${data.contentid}`);
+    dispatch(setContentTypeID(data.contenttypeid));
   };
 
   return (
@@ -16,11 +26,12 @@ const CurationList = () => {
       <CurationCategory />
       <ContentWrapper>
         {CONTENT_LIST.map((data) => {
+          console.log(data);
           return (
             <ContentBox
               key={data.contentid}
               onClick={() => {
-                contentHandler(data.contentid);
+                contentHandler(data);
               }}
               {...data}
             />

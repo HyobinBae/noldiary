@@ -3,14 +3,19 @@ import styled from "styled-components";
 import ContentBox from "./ContentBox";
 
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../../services/store";
-import { selectSearchCurationList } from "../../services/curation.slice";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import {
+  selectSearchCurationList,
+  setContentTypeID,
+} from "../../services/curation.slice";
 
 const CurationSearchList = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const contentHandler = (data) => {
-    navigate(`/curation/detail/${data}`);
+    navigate(`/curation/detail/${data.contentid}`);
+    dispatch(setContentTypeID(data.contenttypeid));
   };
 
   const searchCurationList = useAppSelector(selectSearchCurationList);
@@ -19,11 +24,12 @@ const CurationSearchList = () => {
     <Container>
       <ContentWrapper>
         {searchCurationList.content.map((data) => {
+          console.log(data);
           return (
             <ContentBox
               key={data.contentid}
               onClick={() => {
-                contentHandler(data.contentid);
+                contentHandler(data);
               }}
               {...data}
             />

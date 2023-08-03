@@ -71,9 +71,10 @@ export interface DiaryDetail {
   createdAt: string;
 }
 
-export interface CourseList {
+export interface ContentsList {
   content: [
     {
+      contenttypeid: number;
       contentid: number;
       firstimage: string;
       title: string;
@@ -82,7 +83,7 @@ export interface CourseList {
   totalCount: number;
 }
 
-export interface CourseDetail {
+export interface ContentDetail {
   common: {
     contentid: number;
     contenttypeid: number;
@@ -94,12 +95,68 @@ export interface CourseDetail {
     title: string;
   };
   introduction: {
-    distance: string;
+    //contenttypeid: 25
+    distance?: string;
     schedule?: string;
     taketime?: string;
     theme?: string;
+
+    //contenttypeid: 12
+    infocenter: string;
+    restdate: string;
+    usetime: string;
+    parking: string;
+
+    //contenttypeid: 14
+    infocenterculture: string;
+    restdateculture: string;
+    usetimeculture: string;
+    parkingculture: string;
+
+    //contenttypeid: 15
+    sponsor1: string;
+    sponsor1tel: string;
+    eventstartdate: string;
+    eventenddate: string;
+    eventplace: string;
+
+    //contenttypeid: 28
+    infocenterleports?: string;
+    restdateleports?: string;
+    usetimeleports?: string;
+    parkingleports?: string;
+
+    //contenttypeid: 32
+    infocenterlodging?: string;
+    accomcountlodging?: number;
+    parkinglodging?: string;
+    reservationlodging?: string;
+
+    //contenttypeid: 38
+    salesitem?: string;
+    fairday?: string;
+    infocentershopping?: string;
+    opentime?: string;
+
+    //contenttypeid: 39
+    infocenterfood?: string;
+    restdatefood?: string;
+    opentimefood?: string;
+    parkingfood?: string;
   };
-  course: [
+  routine?: [
+    {
+      serialnum: number;
+      infoname: string;
+      infotext: string;
+    }
+  ];
+  image?: {
+    contentid: number;
+    originimgurl: string;
+    imgname: string;
+  };
+  course?: [
     {
       subnum: number;
       subname: string;

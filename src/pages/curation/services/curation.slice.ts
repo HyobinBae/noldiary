@@ -1,10 +1,11 @@
 import { RootState } from "../../../services/store";
 import { createSlice } from "@reduxjs/toolkit";
 import { getSearchCuration } from "../../../services/api";
-import { CourseList } from "../../../types";
+import { ContentsList } from "../../../types";
 
 interface CurationState {
   courseCode: string;
+  category: string;
   contentTypeID: number;
   contentID: number;
   keyword: string;
@@ -13,11 +14,12 @@ interface CurationState {
   totalCount: number;
   isLike: boolean;
   detailNavIndex: number;
-  searchCuration: CourseList;
+  searchCuration: ContentsList;
 }
 
 const initialState: CurationState = {
   courseCode: "",
+  category: "",
   contentTypeID: 0,
   contentID: 0,
   keyword: "",
@@ -29,6 +31,7 @@ const initialState: CurationState = {
   searchCuration: {
     content: [
       {
+        contenttypeid: 0,
         contentid: 0,
         firstimage: "",
         title: "",
@@ -44,6 +47,9 @@ export const CurationSlice = createSlice({
   reducers: {
     setCourseCode: (state, action) => {
       state.courseCode = action.payload;
+    },
+    setCategory: (state, action) => {
+      state.category = action.payload;
     },
     setContentID: (state, action) => {
       state.courseCode = action.payload;
@@ -73,6 +79,7 @@ export const CurationSlice = createSlice({
       state.searchCuration = {
         content: [
           {
+            contenttypeid: 0,
             contentid: 0,
             firstimage: "",
             title: "",
@@ -97,6 +104,7 @@ export const selectSearchCurationList = (state: RootState) =>
 
 export const {
   setCourseCode,
+  setCategory,
   setContentID,
   setContentTypeID,
   setKeyword,

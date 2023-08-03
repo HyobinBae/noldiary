@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import ContentBox from "../CurationMain/ContentBox";
-import { useGetCourseListQuery } from "../../../../services/api";
+import { useGetContentsListQuery } from "../../../../services/api";
 import TourCourseNavbar from "./TourCourseNavbar";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { setContentID, setTotalCount } from "../../services/curation.slice";
@@ -16,15 +16,17 @@ const CourseList = () => {
   const pageNo = useAppSelector((state) => state.curation.pageNo);
   const totalCount = useAppSelector((state) => state.curation.totalCount);
 
-  const { data: courseArray } = useGetCourseListQuery({ categoryCode, pageNo });
+  const { data: courseArray } = useGetContentsListQuery({
+    categoryCode,
+    pageNo,
+  });
   const courseList = courseArray?.content;
 
   dispatch(setTotalCount(courseArray?.totalCount));
 
   const contentHandler = (data) => {
-    console.log(data);
     dispatch(setContentID(data));
-    navigate(`/curation/coursedetail/${data}`);
+    navigate(`/curation/detail/${data}`);
   };
 
   return (

@@ -18,10 +18,10 @@ const Curations = () => {
     <Container>
       <Carousel />
       <CurationSearchBar />
-      {searchCurationList.content[0].contentid !== 0 && keyword ? (
-        <CurationSearchList />
-      ) : (
+      {searchCurationList.content[0].contentid === 0 || !keyword ? (
         <CurationList />
+      ) : (
+        <CurationSearchList />
       )}
     </Container>
   );
