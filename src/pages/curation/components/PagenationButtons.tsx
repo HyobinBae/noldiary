@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { useAppDispatch, useAppSelector } from "../../../services/store";
 import Pagination from "@mui/material/Pagination";
-import { setPageNo } from "../../services/curation.slice";
+import { setPageNo } from "../services/curation.slice";
 
 const PagenationButtons = () => {
   const dispatch = useAppDispatch();

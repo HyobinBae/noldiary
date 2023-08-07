@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import {
   clearSearchCurationList,
   setKeyword,
+  setPageNo,
 } from "../../services/curation.slice";
 import { getSearchCuration } from "../../../../services/api";
 
@@ -12,6 +13,7 @@ const CurationSearchBar = () => {
   const dispatch = useAppDispatch();
 
   const keyword = useAppSelector((state) => state.curation.keyword);
+  const pageNo = useAppSelector((state) => state.curation.pageNo);
 
   const getKeyword = (e) => {
     dispatch(setKeyword(e.target.value));
@@ -22,7 +24,8 @@ const CurationSearchBar = () => {
       dispatch(clearSearchCurationList());
     } else if (e.key === "Enter" && keyword !== "") {
       e.preventDefault();
-      dispatch(getSearchCuration.initiate(keyword));
+      dispatch(setPageNo(1));
+      dispatch(getSearchCuration.initiate({ pageNo, keyword }));
     }
   };
 
@@ -31,7 +34,9 @@ const CurationSearchBar = () => {
       dispatch(clearSearchCurationList());
     } else {
       e.preventDefault();
-      dispatch(getSearchCuration.initiate(keyword));
+      dispatch(setPageNo(1));
+
+      dispatch(getSearchCuration.initiate({ pageNo, keyword }));
     }
   };
 

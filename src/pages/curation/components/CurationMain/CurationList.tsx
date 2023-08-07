@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { setContentTypeID } from "../../services/curation.slice";
 import { useGetContentsListByCategoryQuery } from "../../../../services/api";
+import PagenationButtons from "../PagenationButtons";
 
 const CurationList = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const category = useAppSelector((state) => state.curation.category);
+  const pageNo = 1;
 
   const { data: CurationList } = useGetContentsListByCategoryQuery({
     category,
@@ -25,8 +28,7 @@ const CurationList = () => {
     <Container>
       <CurationCategory />
       <ContentWrapper>
-        {CONTENT_LIST.map((data) => {
-          console.log(data);
+        {CurationList?.content.map((data) => {
           return (
             <ContentBox
               key={data.contentid}
@@ -38,6 +40,7 @@ const CurationList = () => {
           );
         })}
       </ContentWrapper>
+      <PagenationButtons />
     </Container>
   );
 };
@@ -66,36 +69,3 @@ const ContentWrapper = styled.div`
   width: 100%;
   margin: 0 0 20px 10px;
 `;
-
-const CONTENT_LIST = [
-  {
-    contentid: 1,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/1608017_image2_1.jpg",
-    title: "가계해변",
-  },
-  {
-    contentid: 2,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/60/2793060_image2_1.jpg",
-    title: "가덕해양파크휴게소",
-  },
-  {
-    contentid: 3,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
-    title: "고하도 전망대",
-  },
-  {
-    contentid: 4,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
-    title: "고인돌",
-  },
-  {
-    contentid: 5,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
-    title: "스타벅스",
-  },
-];

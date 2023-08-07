@@ -4,8 +4,12 @@ import ContentBox from "../CurationMain/ContentBox";
 import { useGetContentsListQuery } from "../../../../services/api";
 import TourCourseNavbar from "./TourCourseNavbar";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
-import { setContentID, setTotalCount } from "../../services/curation.slice";
-import PagenationButtons from "./PagenationButtons";
+import {
+  setContentID,
+  setContentTypeID,
+  setTotalCount,
+} from "../../services/curation.slice";
+import PagenationButtons from "../PagenationButtons";
 import { useNavigate } from "react-router-dom";
 
 const CourseList = () => {
@@ -25,8 +29,10 @@ const CourseList = () => {
   dispatch(setTotalCount(courseArray?.totalCount));
 
   const contentHandler = (data) => {
-    dispatch(setContentID(data));
-    navigate(`/curation/detail/${data}`);
+    dispatch(setContentID(data.contentid));
+    dispatch(setContentTypeID("25"));
+    console.log(setContentTypeID);
+    navigate(`/curation/detail/${data.contentid}`);
   };
 
   return (
@@ -39,7 +45,7 @@ const CourseList = () => {
             <ContentBox
               key={data.contentid}
               onClick={() => {
-                contentHandler(data.contentid);
+                contentHandler(data);
               }}
               {...data}
             />

@@ -6,9 +6,11 @@ import {
 } from "../../../../components/Navbar";
 import { useAppSelector } from "../../../../services/store";
 
-const DetailNavbar = ({ scrollRef }) => {
+const DetailNavbar = ({ scrollRef, hasRoutine }) => {
   const [selectedNav, setSelectedNav] = useState("이미지보기");
   const contentTypeID = useAppSelector((state) => state.curation.contentTypeID);
+
+  const filteredNav = DETAIL_NAV_DEFAULT.filter((data) => data.idx !== 3);
 
   const navHandler = (data) => {
     setSelectedNav(data.title);
@@ -18,7 +20,7 @@ const DetailNavbar = ({ scrollRef }) => {
   useEffect(() => {
     const handleScroll = () => {
       scrollRef.current.forEach((ref, idx) => {
-        if (ref.offsetTop - 180 < window.scrollY) {
+        if (ref?.offsetTop - 180 < window.scrollY) {
           setSelectedNav(DETAIL_NAV_COURSE[idx].title);
         }
       });
@@ -31,69 +33,95 @@ const DetailNavbar = ({ scrollRef }) => {
     };
   }, [scrollRef]);
 
-  return (
-    <>
-      {contentTypeID === 25 ? (
-        <NavWrapper>
-          {DETAIL_NAV_COURSE.map((data) => {
-            return (
-              <ButtonBox>
-                {selectedNav === data.title ? (
-                  <>
-                    <NavText
-                      key={data.idx}
-                      onClick={() => navHandler(data)}
-                      style={SelectedButtonStyle.button}
-                    >
-                      {data.title}
-                    </NavText>
-                    <Bar style={SelectedButtonStyle.bar} />
-                  </>
-                ) : (
+  if (contentTypeID === "25") {
+    return (
+      <NavWrapper>
+        {DETAIL_NAV_COURSE.map((data) => {
+          return (
+            <ButtonBox>
+              {selectedNav === data.title ? (
+                <>
                   <NavText
                     key={data.idx}
                     onClick={() => navHandler(data)}
-                    style={InitialButtonStyle.button}
+                    style={SelectedButtonStyle.button}
                   >
                     {data.title}
                   </NavText>
-                )}
-              </ButtonBox>
-            );
-          })}
-        </NavWrapper>
-      ) : (
-        <NavWrapper>
-          {DETAIL_NAV_DEFAULT.map((data) => {
-            return (
-              <ButtonBox>
-                {selectedNav === data.title ? (
-                  <>
+                  <Bar style={SelectedButtonStyle.bar} />
+                </>
+              ) : (
+                <NavText
+                  key={data.idx}
+                  onClick={() => navHandler(data)}
+                  style={InitialButtonStyle.button}
+                >
+                  {data.title}
+                </NavText>
+              )}
+            </ButtonBox>
+          );
+        })}
+      </NavWrapper>
+    );
+  } else
+    return (
+      <NavWrapper>
+        {hasRoutine
+          ? DETAIL_NAV_DEFAULT.map((data) => {
+              return (
+                <ButtonBox>
+                  {selectedNav === data.title ? (
+                    <>
+                      <NavText
+                        key={data.idx}
+                        onClick={() => navHandler(data)}
+                        style={SelectedButtonStyle.button}
+                      >
+                        {data.title}
+                      </NavText>
+                      <Bar style={SelectedButtonStyle.bar} />
+                    </>
+                  ) : (
                     <NavText
                       key={data.idx}
                       onClick={() => navHandler(data)}
-                      style={SelectedButtonStyle.button}
+                      style={InitialButtonStyle.button}
                     >
                       {data.title}
                     </NavText>
-                    <Bar style={SelectedButtonStyle.bar} />
-                  </>
-                ) : (
-                  <NavText
-                    key={data.idx}
-                    onClick={() => navHandler(data)}
-                    style={InitialButtonStyle.button}
-                  >
-                    {data.title}
-                  </NavText>
-                )}
-              </ButtonBox>
-            );
-          })}
-        </NavWrapper>
-      )}
-    </>
-  );
+                  )}
+                </ButtonBox>
+              );
+            })
+          : filteredNav.map((data) => {
+              return (
+                <ButtonBox>
+                  {selectedNav === data.title ? (
+                    <>
+                      <NavText
+                        key={data.idx}
+                        onClick={() => navHandler(data)}
+                        style={SelectedButtonStyle.button}
+                      >
+                        {data.title}
+                      </NavText>
+                      <Bar style={SelectedButtonStyle.bar} />
+                    </>
+                  ) : (
+                    <NavText
+                      key={data.idx}
+                      onClick={() => navHandler(data)}
+                      style={InitialButtonStyle.button}
+                    >
+                      {data.title}
+                    </NavText>
+                  )}
+                </ButtonBox>
+              );
+            })}
+      </NavWrapper>
+    );
 };
 export default DetailNavbar;
 

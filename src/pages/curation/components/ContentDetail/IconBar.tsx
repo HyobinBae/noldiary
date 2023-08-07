@@ -1,16 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { useAppDispatch } from "../../../../services/store";
 import { HiOutlineShare } from "react-icons/hi";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { setLike } from "../../services/curation.slice";
+import { useGetLikeQuery } from "../../../../services/api";
 
-const IconBar = () => {
+const IconBar = (contentID) => {
+  const { data: isLike } = useGetLikeQuery(contentID);
+  const token = localStorage.getItem("token");
+
   const dispatch = useAppDispatch();
-  const isLike = useAppSelector((state) => state.curation.isLike);
 
   const likeHandler = () => {
-    isLike === true ? dispatch(setLike(false)) : dispatch(setLike(true));
+    token && isLike === true
+      ? dispatch(setLike(false))
+      : dispatch(setLike(true));
   };
 
   return (

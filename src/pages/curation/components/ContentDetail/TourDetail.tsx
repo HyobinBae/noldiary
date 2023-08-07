@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useGetCourseDetailQuery } from "../../../../services/api";
+import { useGetContentDetailQuery } from "../../../../services/api";
 import { useAppSelector } from "../../../../services/store";
 import { useParams } from "react-router-dom";
 
@@ -10,16 +10,15 @@ const TourDetail = () => {
 
   const contentTypeID = useAppSelector((state) => state.curation.contentTypeID);
 
-  const { data: contentDetail } = useGetCourseDetailQuery({
+  const { data: contentDetail } = useGetContentDetailQuery({
     contentID,
     contentTypeID,
   });
-  console.log(contentDetail);
 
   return (
     <Container>
       <ImageWrapper>
-        <ImageBox src={contentDetail?.content} />
+        <ImageBox src={contentDetail?.common.firstimage} />
       </ImageWrapper>
       <Text>tourDetail</Text>
     </Container>

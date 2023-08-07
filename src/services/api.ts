@@ -12,7 +12,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://7f20-123-108-170-164.ngrok-free.app",
+  baseUrl: "http://192.168.11.30:3000",
   // baseUrl: "/data",
 });
 
@@ -175,7 +175,7 @@ export const apiSlice = createApi({
         headers: {
           Accept: "application/json",
           //ngrok cors해결
-          "ngrok-skip-browser-warning": "222",
+          // "ngrok-skip-browser-warning": "222",
         },
       }),
       transformResponse: (response: ContentsList) => {
@@ -187,7 +187,7 @@ export const apiSlice = createApi({
     }),
     getContentDetail: builder.query<
       ContentDetail,
-      { contentTypeID: number; contentID: number }
+      { contentTypeID: string; contentID: number }
     >({
       query: ({ contentTypeID, contentID }) => ({
         url: `/tour/main/detail/${contentTypeID}/${contentID}`,
@@ -195,7 +195,7 @@ export const apiSlice = createApi({
         headers: {
           Accept: "application/json",
           //ngrok cors해결
-          "ngrok-skip-browser-warning": "1",
+          // "ngrok-skip-browser-warning": "1",
         },
       }),
       transformResponse: (response: ContentDetail) => {
@@ -215,7 +215,7 @@ export const apiSlice = createApi({
         headers: {
           Accept: "application/json",
           //ngrok cors해결
-          "ngrok-skip-browser-warning": "1",
+          // "ngrok-skip-browser-warning": "1",
         },
       }),
       transformResponse: (response: ContentsList) => {
@@ -235,7 +235,7 @@ export const apiSlice = createApi({
         headers: {
           Accept: "application/json",
           //ngrok cors해결
-          "ngrok-skip-browser-warning": "1",
+          // "ngrok-skip-browser-warning": "1",
         },
       }),
       transformResponse: (response: ContentsList) => {
@@ -247,11 +247,11 @@ export const apiSlice = createApi({
     }),
     postLike: builder.mutation<
       string,
-      { contentTypeID: number; contentID: number }
+      { contentTypeID: string; contentID: number }
     >({
       query: ({ contentTypeID, contentID }) => ({
         url: `/tour/favorite`,
-        method: "PATCH",
+        method: "POST",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
@@ -260,6 +260,24 @@ export const apiSlice = createApi({
         contentID,
       }),
       transformResponse: (response: string) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    getLike: builder.query<boolean, number>({
+      query: (contentID: number) => ({
+        url: `tour/favorite/${contentID}`,
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+          // ngrok cors해결
+          // "ngrok-skip-browser-warning": "1",
+        },
+      }),
+      transformResponse: (response: boolean) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -282,6 +300,7 @@ export const {
   useGetContentDetailQuery,
   useGetSearchCurationQuery,
   usePostLikeMutation,
+  useGetLikeQuery,
   useGetContentsListByCategoryQuery,
 } = apiSlice;
 
@@ -295,5 +314,6 @@ export const {
     getContentsList,
     getContentDetail,
     getSearchCuration,
+    postLike,
   },
 } = apiSlice;

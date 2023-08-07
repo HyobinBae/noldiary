@@ -24,7 +24,6 @@ const CurationSearchList = () => {
     <Container>
       <ContentWrapper>
         {searchCurationList.content.map((data) => {
-          console.log(data);
           return (
             <ContentBox
               key={data.contentid}

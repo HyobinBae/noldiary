@@ -6,7 +6,7 @@ import { ContentsList } from "../../../types";
 interface CurationState {
   courseCode: string;
   category: string;
-  contentTypeID: number;
+  contentTypeID: string;
   contentID: number;
   keyword: string;
   courseTitle: string;
@@ -19,8 +19,8 @@ interface CurationState {
 
 const initialState: CurationState = {
   courseCode: "",
-  category: "",
-  contentTypeID: 0,
+  category: "A02030400",
+  contentTypeID: "0",
   contentID: 0,
   keyword: "",
   courseTitle: "가족코스",
@@ -31,7 +31,7 @@ const initialState: CurationState = {
   searchCuration: {
     content: [
       {
-        contenttypeid: 0,
+        contenttypeid: "0",
         contentid: 0,
         firstimage: "",
         title: "",
@@ -79,7 +79,7 @@ export const CurationSlice = createSlice({
       state.searchCuration = {
         content: [
           {
-            contenttypeid: 0,
+            contenttypeid: "0",
             contentid: 0,
             firstimage: "",
             title: "",

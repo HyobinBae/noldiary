@@ -22,7 +22,6 @@ const DiarySearchBar = () => {
   };
 
   const searchHandler = () => {
-    console.log("eeee");
     dispatch(getSearchDiary.initiate({ queryName, keyword }));
   };
 

@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../../../../services/store";
-import { setCategory } from "../../services/curation.slice";
+import { setCategory, setPageNo } from "../../services/curation.slice";
 
 const CurationCategory = () => {
   const dispatch = useAppDispatch();
 
   const categoryHandler = (data) => {
     dispatch(setCategory(data.cat));
+    dispatch(setPageNo(1));
   };
 
   return (
@@ -67,7 +68,7 @@ const TOUR_CATEGORY = [
   { title: "#이색체험", contenttypeid: 12, cat: "A02030400" },
   { title: "#전국미술관투어", contenttypeid: 14, cat: "A02060500" },
   { title: "#지역별축제", contenttypeid: 15, cat: "A02070100" },
-  { title: "#더운여름수상레포츠", contenttypeid: 28, cat: "A0303" },
+  { title: "#더운여름수상레포츠", contenttypeid: 28, cat: "A03030300" },
   { title: "#고풍한옥숙소", contenttypeid: 32, cat: "B02011600" },
   { title: "#공예/공방", contenttypeid: 38, cat: "A04010700" },
   { title: "#카페투어", contenttypeid: 39, cat: "A05020900" },

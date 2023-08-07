@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 const DiaryList = () => {
   const { data: diaryList } = useGetDiaryListQuery();
-  console.log(diaryList);
 
   return (
     <ListContainer>

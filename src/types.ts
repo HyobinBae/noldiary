@@ -74,8 +74,8 @@ export interface DiaryDetail {
 export interface ContentsList {
   content: [
     {
-      contenttypeid: number;
       contentid: number;
+      contenttypeid: string;
       firstimage: string;
       title: string;
     }
@@ -86,7 +86,7 @@ export interface ContentsList {
 export interface ContentDetail {
   common: {
     contentid: number;
-    contenttypeid: number;
+    contenttypeid: string;
     firstimage: string;
     addr1?: string;
     mapx: number;
@@ -133,10 +133,10 @@ export interface ContentDetail {
     reservationlodging?: string;
 
     //contenttypeid: 38
-    salesitem?: string;
-    fairday?: string;
     infocentershopping?: string;
+    restdateshopping?: string;
     opentime?: string;
+    salesitem?: string;
 
     //contenttypeid: 39
     infocenterfood?: string;
@@ -168,7 +168,7 @@ export interface ContentDetail {
 
 export interface Like {
   contentid: number;
-  contenttypeid: number;
+  contenttypeid: string;
   firstimage: string;
   addr1?: string;
   mapx: number;

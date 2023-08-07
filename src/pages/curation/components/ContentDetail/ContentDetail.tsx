@@ -1,16 +1,13 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { useGetContentDetailQuery } from "../../../../services/api";
-import { useAppDispatch, useAppSelector } from "../../../../services/store";
+import { useAppSelector } from "../../../../services/store";
 import { useParams } from "react-router-dom";
 import IconBar from "./IconBar";
 import DetailNavbar from "./DetailNavbar";
-
 const ContentDetail = () => {
   const { id } = useParams();
   const contentID = Number(id);
-  const numSections = 4;
-  const scrollRef = useRef(new Array(numSections).fill(null));
 
   const contentTypeID = useAppSelector((state) => state.curation.contentTypeID);
 
@@ -23,15 +20,18 @@ const ContentDetail = () => {
     return <SubInfo dangerouslySetInnerHTML={{ __html: content }} />;
   };
 
-  console.log(contentDetail);
+  const hasRoutine = contentDetail?.routine && contentDetail.routine.length > 0;
+  const numSections = hasRoutine ? 4 : 3;
+  const scrollRef = useRef(new Array(numSections).fill(null));
 
-  if (contentDetail?.common.contenttypeid === 25) {
+  console.log(contentDetail?.common.contenttypeid);
+  if (contentDetail?.common.contenttypeid === "25") {
     return (
       <Container>
         <DetailWrapper>
           <Title>{contentDetail?.common.title}</Title>
-          <IconBar />
-          <DetailNavbar scrollRef={scrollRef} />
+          {/* <IconBar contentID={contentID} /> */}
+          <DetailNavbar scrollRef={scrollRef} hasRoutine={hasRoutine} />
           <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
             <ImageBox src={contentDetail?.common.firstimage} />
           </ImageWrapper>
@@ -95,13 +95,13 @@ const ContentDetail = () => {
         <DetailWrapper>
           <Title>{contentDetail?.common.title}</Title>
           <IconBar />
-          <DetailNavbar scrollRef={scrollRef} />
+          <DetailNavbar scrollRef={scrollRef} hasRoutine={hasRoutine} />
           {!contentDetail?.image ? (
             <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
               <ImageBox src={contentDetail?.common.firstimage} />
             </ImageWrapper>
           ) : (
-            //이미지 캐러셀
+            //이미지 캐러셀로 바꾸기
             <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
               <ImageBox src={contentDetail?.image?.originimgurl} />
             </ImageWrapper>
@@ -112,96 +112,264 @@ const ContentDetail = () => {
               <DivideLine />
               <ContentOverview content={contentDetail?.common.overview} />
             </SectionWrapper>
-
-            {contentTypeID === 12 && (
-              <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
-                <SubTitle>여행지 요약</SubTitle>
-                <DivideLine />
-                <InfoContainer>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>문의 및 안내</InfoTitle>
-                    <InfoText>
-                      {contentDetail?.introduction.infocenter}
-                    </InfoText>
-                  </InfoWrapper>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>쉬는날</InfoTitle>
-                    <InfoText>{contentDetail?.introduction.restdate}</InfoText>
-                  </InfoWrapper>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>이용 시간</InfoTitle>
-                    <InfoText>{contentDetail?.introduction.usetime}</InfoText>
-                  </InfoWrapper>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>주차 시설</InfoTitle>
-                    <InfoText>{contentDetail?.introduction.parking}</InfoText>
-                  </InfoWrapper>
-                </InfoContainer>
-              </SectionWrapper>
-            )}
-
-            {contentTypeID === 14 && (
-              <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
-                <SubTitle>여행지 요약</SubTitle>
-                <DivideLine />
-                <InfoContainer>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>문의 및 안내</InfoTitle>
-                    <InfoText>
-                      {contentDetail?.introduction.infocenterculture}
-                    </InfoText>
-                  </InfoWrapper>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>쉬는날</InfoTitle>
-                    <InfoText>
-                      {contentDetail?.introduction.restdateculture}
-                    </InfoText>
-                  </InfoWrapper>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>이용 시간</InfoTitle>
-                    <InfoText>
-                      {contentDetail?.introduction.usetimeculture}
-                    </InfoText>
-                  </InfoWrapper>
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>주차 시설</InfoTitle>
-                    <InfoText>
-                      {contentDetail?.introduction.parkingculture}
-                    </InfoText>
-                  </InfoWrapper>
-                </InfoContainer>
-              </SectionWrapper>
-            )}
-
-            {/* 
-            <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
-              <SubTitle>여행지 요약</SubTitle>
-              <DivideLine />
-              <InfoContainer>
-                <InfoWrapper>
-                  <PointBox />
-                  <InfoTitle>총 거리</InfoTitle>
-                  <InfoText>{contentDetail?.introduction.distance}</InfoText>
-                </InfoWrapper>
-                {contentDetail?.introduction.taketime ? (
-                  <InfoWrapper>
-                    <PointBox />
-                    <InfoTitle>소요 시간</InfoTitle>
-                    <InfoText>{contentDetail?.introduction.taketime}</InfoText>
-                  </InfoWrapper>
-                ) : null}
-              </InfoContainer>
-            </SectionWrapper> */}
-
-            {contentDetail?.routine ? (
+            <>
+              {contentTypeID === "12" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>문의 및 안내</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.infocenter}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>쉬는날</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.restdate}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>이용 시간</InfoTitle>
+                      <InfoText>{contentDetail?.introduction.usetime}</InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주차 시설</InfoTitle>
+                      <InfoText>{contentDetail?.introduction.parking}</InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+              {contentTypeID === "14" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>문의 및 안내</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.infocenterculture}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>쉬는날</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.restdateculture}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>이용 시간</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.usetimeculture}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주차 시설</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.parkingculture}
+                      </InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+              {contentTypeID === "15" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주최자 정보</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.sponsor1}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주최자 연락처</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.sponsor1tel}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>행사 시작일</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.eventstartdate}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>행사 종료일</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.eventenddate}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>행사 장소</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.eventplace}
+                      </InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+              {contentTypeID === "28" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>문의 및 안내</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.infocenterleports}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>쉬는날</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.restdateleports}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>이용 시간</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.usetimeleports}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주차 시설</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.parkingleports}
+                      </InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+              {contentTypeID === "32" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>문의 및 안내</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.infocenterlodging}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>수용 가능 인원</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.accomcountlodging}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>예약 안내</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.reservationlodging}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주차 시설</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.parkinglodging}
+                      </InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+              {contentTypeID === "38" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>문의</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.infocentershopping}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>영업 시간</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.opentime}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>판매 품목</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.salesitem}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>쉬는 날</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.restdateshopping}
+                      </InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+              {contentTypeID === "39" && (
+                <SectionWrapper ref={(ref) => (scrollRef.current[2] = ref)}>
+                  <SubTitle>여행지 정보</SubTitle>
+                  <DivideLine />
+                  <InfoContainer>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>문의 및 안내</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.infocenterfood}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>쉬는날</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.restdatefood}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>이용 시간</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.opentimefood}
+                      </InfoText>
+                    </InfoWrapper>
+                    <InfoWrapper>
+                      <PointBox />
+                      <InfoTitle>주차 시설</InfoTitle>
+                      <InfoText>
+                        {contentDetail?.introduction.parkingfood}
+                      </InfoText>
+                    </InfoWrapper>
+                  </InfoContainer>
+                </SectionWrapper>
+              )}
+            </>
+            {hasRoutine ? (
               <SectionWrapper ref={(ref) => (scrollRef.current[3] = ref)}>
                 <SubTitle>여행지 상세</SubTitle>
                 <DivideLine />

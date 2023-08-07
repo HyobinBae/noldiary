@@ -42,7 +42,6 @@ const EditSaveModal = () => {
 
     setImageFile(imgSrc);
     getPresignedUrl(fileName);
-    console.log(diary);
   };
 
   useEffect(() => {
