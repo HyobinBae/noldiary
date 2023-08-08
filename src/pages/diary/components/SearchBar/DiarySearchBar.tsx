@@ -5,6 +5,7 @@ import FilterModal from "./FilterModal";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { setKeyword } from "../../services/diary.slice";
 import { getSearchDiary } from "../../../../services/api";
+import type {} from "redux-thunk/extend-redux";
 
 const DiarySearchBar = () => {
   const dispatch = useAppDispatch();

@@ -30,7 +30,7 @@ const ContentDetail = () => {
       <Container>
         <DetailWrapper>
           <Title>{contentDetail?.common.title}</Title>
-          {/* <IconBar contentID={contentID} /> */}
+          <IconBar contentID={contentID} />
           <DetailNavbar scrollRef={scrollRef} hasRoutine={hasRoutine} />
           <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
             <ImageBox src={contentDetail?.common.firstimage} />

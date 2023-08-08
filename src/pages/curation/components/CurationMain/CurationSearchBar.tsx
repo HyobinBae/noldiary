@@ -8,6 +8,7 @@ import {
   setPageNo,
 } from "../../services/curation.slice";
 import { getSearchCuration } from "../../../../services/api";
+import type {} from "redux-thunk/extend-redux";
 
 const CurationSearchBar = () => {
   const dispatch = useAppDispatch();

@@ -1,3 +1,4 @@
+import { Like } from "./../types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   WriteProps,
@@ -245,19 +246,32 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    postLike: builder.mutation<
-      string,
-      { contentTypeID: string; contentID: number }
-    >({
-      query: ({ contentTypeID, contentID }) => ({
+    postLike: builder.mutation<string, Like>({
+      query: (likeProps) => ({
         url: `/tour/favorite`,
         method: "POST",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: contentTypeID,
-        contentID,
+        body: likeProps,
+      }),
+      transformResponse: (response: string) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    deleteLike: builder.mutation<string, { contentID: number }>({
+      query: (contentID) => ({
+        url: `/tour/favorite`,
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: { contentid: contentID },
       }),
       transformResponse: (response: string) => {
         return response;
@@ -278,6 +292,22 @@ export const apiSlice = createApi({
         },
       }),
       transformResponse: (response: boolean) => {
+        return response;
+      },
+      transformErrorResponse: (error: { status: string | number }) => {
+        return error.status;
+      },
+    }),
+    getLikeList: builder.query<Array<Like>, number>({
+      query: (contentID: number) => ({
+        url: `tour/favorite/${contentID}`,
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+      transformResponse: (response: Array<Like>) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -315,5 +345,6 @@ export const {
     getContentDetail,
     getSearchCuration,
     postLike,
+    deleteLike,
   },
 } = apiSlice;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import ContentBox from "../CurationMain/ContentBox";
 import { useGetContentsListQuery } from "../../../../services/api";

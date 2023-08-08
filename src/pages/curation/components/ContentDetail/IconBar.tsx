@@ -3,19 +3,24 @@ import styled from "styled-components";
 import { useAppDispatch } from "../../../../services/store";
 import { HiOutlineShare } from "react-icons/hi";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { setLike } from "../../services/curation.slice";
-import { useGetLikeQuery } from "../../../../services/api";
+
+import {
+  deleteLike,
+  postLike,
+  useGetLikeQuery,
+} from "../../../../services/api";
+import type {} from "redux-thunk/extend-redux";
 
 const IconBar = (contentID) => {
-  const { data: isLike } = useGetLikeQuery(contentID);
+  const { data: isLike, error } = useGetLikeQuery(contentID);
   const token = localStorage.getItem("token");
 
   const dispatch = useAppDispatch();
 
   const likeHandler = () => {
     token && isLike === true
-      ? dispatch(setLike(false))
-      : dispatch(setLike(true));
+      ? dispatch(deleteLike.initiate(contentID))
+      : dispatch(postLike.initiate(true));
   };
 
   return (
