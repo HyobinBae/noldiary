@@ -25,6 +25,7 @@ const Header = () => {
 
   const profileIconHandler = () => {
     const token = localStorage.getItem("token");
+    console.log(token);
     token ? navigate("/setting") : navigate("/signin");
   };
 

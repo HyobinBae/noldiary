@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import ContentBox from "./ContentBox";
 
@@ -7,21 +7,37 @@ import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import {
   selectSearchCurationList,
   setContentTypeID,
+  setTotalCount,
 } from "../../services/curation.slice";
+import PagenationButtons from "../PagenationButtons";
+import { getSearchCuration } from "../../../../services/api";
 
 const CurationSearchList = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const totalCount = useAppSelector((state) => state.curation.totalCount);
+  const keyword = useAppSelector((state) => state.curation.keyword);
+  const pageNo = useAppSelector((state) => state.curation.pageNo);
+
+  const searchCurationList = useAppSelector(selectSearchCurationList);
+
+  useEffect(() => {
+    if (keyword) {
+      dispatch(getSearchCuration.initiate({ pageNo, keyword })).then((res) =>
+        dispatch(setTotalCount(res.data?.totalCount))
+      );
+    }
+  }, [dispatch, pageNo, keyword]);
 
   const contentHandler = (data) => {
     navigate(`/curation/detail/${data.contentid}`);
     dispatch(setContentTypeID(data.contenttypeid));
   };
 
-  const searchCurationList = useAppSelector(selectSearchCurationList);
-
   return (
     <Container>
+      <TotalCount>{totalCount}개의 코스가 있습니다</TotalCount>
       <ContentWrapper>
         {searchCurationList.content.map((data) => {
           return (
@@ -34,6 +50,7 @@ const CurationSearchList = () => {
             />
           );
         })}
+        <PagenationButtons />
       </ContentWrapper>
     </Container>
   );
@@ -53,6 +70,16 @@ const Container = styled.div`
   padding: 0 14%;
 `;
 
+const TotalCount = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  margin-bottom: 20px;
+  margin-left: 10px;
+`;
+
 const ContentWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -63,36 +90,3 @@ const ContentWrapper = styled.div`
   width: 100%;
   margin: 0 0 20px 10px;
 `;
-
-const CONTENT_LIST = [
-  {
-    contentid: 1,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/1608017_image2_1.jpg",
-    title: "가계해변",
-  },
-  {
-    contentid: 2,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/60/2793060_image2_1.jpg",
-    title: "가덕해양파크휴게소",
-  },
-  {
-    contentid: 3,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
-    title: "고하도 전망대",
-  },
-  {
-    contentid: 4,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
-    title: "고인돌",
-  },
-  {
-    contentid: 5,
-    firstimage:
-      "http://tong.visitkorea.or.kr/cms/resource/17/2706017_image2_1.jpg",
-    title: "스타벅스",
-  },
-];

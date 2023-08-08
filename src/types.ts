@@ -169,6 +169,7 @@ export interface ContentDetail {
 export interface Like {
   contentid: number;
   contenttypeid: string;
+  title: string;
   firstimage: string;
   addr1?: string;
   mapx: number;

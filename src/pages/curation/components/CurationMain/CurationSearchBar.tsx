@@ -4,8 +4,10 @@ import { BiSearch } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import {
   clearSearchCurationList,
+  selectSearchCurationList,
   setKeyword,
   setPageNo,
+  setTotalCount,
 } from "../../services/curation.slice";
 import { getSearchCuration } from "../../../../services/api";
 import type {} from "redux-thunk/extend-redux";
@@ -15,7 +17,7 @@ const CurationSearchBar = () => {
 
   const keyword = useAppSelector((state) => state.curation.keyword);
   const pageNo = useAppSelector((state) => state.curation.pageNo);
-
+  const tet = useAppSelector(selectSearchCurationList);
   const getKeyword = (e) => {
     dispatch(setKeyword(e.target.value));
   };
@@ -26,18 +28,21 @@ const CurationSearchBar = () => {
     } else if (e.key === "Enter" && keyword !== "") {
       e.preventDefault();
       dispatch(setPageNo(1));
-      dispatch(getSearchCuration.initiate({ pageNo, keyword }));
+      dispatch(getSearchCuration.initiate({ pageNo, keyword })).then((res) =>
+        dispatch(setTotalCount(res.data?.totalCount))
+      );
     }
   };
-
+  console.log(tet);
   const searchHandler = (e) => {
     if (keyword === "") {
       dispatch(clearSearchCurationList());
     } else {
       e.preventDefault();
       dispatch(setPageNo(1));
-
-      dispatch(getSearchCuration.initiate({ pageNo, keyword }));
+      dispatch(getSearchCuration.initiate({ pageNo, keyword })).then((res) =>
+        dispatch(setTotalCount(res.data?.totalCount))
+      );
     }
   };
 

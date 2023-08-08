@@ -69,9 +69,6 @@ export const CurationSlice = createSlice({
     setTotalCount: (state, action) => {
       state.totalCount = action.payload;
     },
-    setLike: (state, action) => {
-      state.isLike = action.payload;
-    },
     setDetailNavIndex: (state, action) => {
       state.detailNavIndex = action.payload;
     },
@@ -111,7 +108,6 @@ export const {
   setCourseTitle,
   setPageNo,
   setTotalCount,
-  setLike,
   setDetailNavIndex,
   clearSearchCurationList,
 } = CurationSlice.actions;

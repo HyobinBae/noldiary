@@ -13,7 +13,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.11.30:3000",
+  baseUrl: "http://192.168.50.50:3000",
   // baseUrl: "/data",
 });
 
@@ -246,9 +246,9 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    postLike: builder.mutation<string, Like>({
+    postLike: builder.mutation<boolean, Like>({
       query: (likeProps) => ({
-        url: `/tour/favorite`,
+        url: `/tour/like`,
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -256,24 +256,23 @@ export const apiSlice = createApi({
         },
         body: likeProps,
       }),
-      transformResponse: (response: string) => {
+      transformResponse: (response: boolean) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
         return error.status;
       },
     }),
-    deleteLike: builder.mutation<string, { contentID: number }>({
+    deleteLike: builder.mutation<boolean, number>({
       query: (contentID) => ({
-        url: `/tour/favorite`,
+        url: `/tour/like/${contentID}`,
         method: "DELETE",
         headers: {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: { contentid: contentID },
       }),
-      transformResponse: (response: string) => {
+      transformResponse: (response: boolean) => {
         return response;
       },
       transformErrorResponse: (error: { status: string | number }) => {
@@ -282,7 +281,7 @@ export const apiSlice = createApi({
     }),
     getLike: builder.query<boolean, number>({
       query: (contentID: number) => ({
-        url: `tour/favorite/${contentID}`,
+        url: `tour/like/${contentID}`,
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -300,7 +299,7 @@ export const apiSlice = createApi({
     }),
     getLikeList: builder.query<Array<Like>, number>({
       query: (contentID: number) => ({
-        url: `tour/favorite/${contentID}`,
+        url: `tour/like/list/${contentID}`,
         method: "GET",
         headers: {
           Accept: "application/json",

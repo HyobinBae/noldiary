@@ -7,9 +7,10 @@ import { setPageNo } from "../services/curation.slice";
 const PagenationButtons = () => {
   const dispatch = useAppDispatch();
 
+  const currentPage = useAppSelector((state) => state.curation.pageNo);
   const totalCount = useAppSelector((state) => state.curation.totalCount);
   const pages = Math.floor(totalCount / 12) + 1;
-  const currentPage = useAppSelector((state) => state.curation.pageNo);
+
   const pageHandler = (e, newPage) => {
     dispatch(setPageNo(newPage));
   };

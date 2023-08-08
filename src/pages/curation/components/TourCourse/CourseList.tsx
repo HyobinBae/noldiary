@@ -31,7 +31,6 @@ const CourseList = () => {
   const contentHandler = (data) => {
     dispatch(setContentID(data.contentid));
     dispatch(setContentTypeID("25"));
-    console.log(setContentTypeID);
     navigate(`/curation/detail/${data.contentid}`);
   };
 

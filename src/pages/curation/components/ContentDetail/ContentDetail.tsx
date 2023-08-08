@@ -16,21 +16,39 @@ const ContentDetail = () => {
     contentTypeID,
   });
 
+  const likeProps = {
+    contentid: Number(contentDetail?.common.contentid),
+    contenttypeid: contentDetail?.common.contenttypeid,
+    title: contentDetail?.common.title,
+    firstimage: contentDetail?.common.firstimage,
+    addr1: contentDetail?.common.addr1,
+    mapx: Number(contentDetail?.common.mapx),
+    mapy: Number(contentDetail?.common.mapy),
+  };
+  console.log(likeProps);
+
   const ContentOverview = ({ content }) => {
     return <SubInfo dangerouslySetInnerHTML={{ __html: content }} />;
+  };
+
+  const UseTime = ({ content }) => {
+    return <InfoText dangerouslySetInnerHTML={{ __html: content }} />;
+  };
+
+  const TourDetailInfo = ({ content }) => {
+    return <DetailInfo dangerouslySetInnerHTML={{ __html: content }} />;
   };
 
   const hasRoutine = contentDetail?.routine && contentDetail.routine.length > 0;
   const numSections = hasRoutine ? 4 : 3;
   const scrollRef = useRef(new Array(numSections).fill(null));
 
-  console.log(contentDetail?.common.contenttypeid);
   if (contentDetail?.common.contenttypeid === "25") {
     return (
       <Container>
         <DetailWrapper>
           <Title>{contentDetail?.common.title}</Title>
-          <IconBar contentID={contentID} />
+          <IconBar likeProps={likeProps} contentID={contentID} />
           <DetailNavbar scrollRef={scrollRef} hasRoutine={hasRoutine} />
           <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
             <ImageBox src={contentDetail?.common.firstimage} />
@@ -94,7 +112,7 @@ const ContentDetail = () => {
       <Container>
         <DetailWrapper>
           <Title>{contentDetail?.common.title}</Title>
-          <IconBar />
+          <IconBar likeProps={likeProps} contentID={contentID} />
           <DetailNavbar scrollRef={scrollRef} hasRoutine={hasRoutine} />
           {!contentDetail?.image ? (
             <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
@@ -135,7 +153,7 @@ const ContentDetail = () => {
                     <InfoWrapper>
                       <PointBox />
                       <InfoTitle>이용 시간</InfoTitle>
-                      <InfoText>{contentDetail?.introduction.usetime}</InfoText>
+                      <UseTime content={contentDetail?.introduction.usetime} />
                     </InfoWrapper>
                     <InfoWrapper>
                       <PointBox />
@@ -167,9 +185,9 @@ const ContentDetail = () => {
                     <InfoWrapper>
                       <PointBox />
                       <InfoTitle>이용 시간</InfoTitle>
-                      <InfoText>
-                        {contentDetail?.introduction.usetimeculture}
-                      </InfoText>
+                      <UseTime
+                        content={contentDetail?.introduction.usetimeculture}
+                      />
                     </InfoWrapper>
                     <InfoWrapper>
                       <PointBox />
@@ -246,9 +264,9 @@ const ContentDetail = () => {
                     <InfoWrapper>
                       <PointBox />
                       <InfoTitle>이용 시간</InfoTitle>
-                      <InfoText>
-                        {contentDetail?.introduction.usetimeleports}
-                      </InfoText>
+                      <UseTime
+                        content={contentDetail?.introduction.usetimeleports}
+                      />
                     </InfoWrapper>
                     <InfoWrapper>
                       <PointBox />
@@ -311,9 +329,7 @@ const ContentDetail = () => {
                     <InfoWrapper>
                       <PointBox />
                       <InfoTitle>영업 시간</InfoTitle>
-                      <InfoText>
-                        {contentDetail?.introduction.opentime}
-                      </InfoText>
+                      <UseTime content={contentDetail?.introduction.opentime} />
                     </InfoWrapper>
                     <InfoWrapper>
                       <PointBox />
@@ -354,9 +370,9 @@ const ContentDetail = () => {
                     <InfoWrapper>
                       <PointBox />
                       <InfoTitle>이용 시간</InfoTitle>
-                      <InfoText>
-                        {contentDetail?.introduction.opentimefood}
-                      </InfoText>
+                      <UseTime
+                        content={contentDetail?.introduction.opentimefood}
+                      />
                     </InfoWrapper>
                     <InfoWrapper>
                       <PointBox />
@@ -381,7 +397,7 @@ const ContentDetail = () => {
                           <ColorBox />
                           <DetailTitle>{data.infoname}</DetailTitle>
                         </DetailTitleWrapper>
-                        <DetailInfo>{data.infotext}</DetailInfo>
+                        <TourDetailInfo content={data.infotext} />
                       </>
                     );
                   })}
@@ -489,7 +505,7 @@ const InfoContainer = styled.div`
 const InfoWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 
   width: 100%;
   height: 100%;
@@ -497,21 +513,35 @@ const InfoWrapper = styled.div`
 `;
 
 const PointBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 5px;
   height: 18px;
   background-color: #2192ff;
+
   margin-right: 10px;
+  line-height: 1.8;
 `;
 
 const InfoTitle = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
   width: 30%;
 
+  line-height: 1.8;
   font-size: 18px;
 `;
 
 const InfoText = styled.div`
-  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 
+  width: 100%;
+  line-height: 1.8;
   font-size: 18px;
 `;
 

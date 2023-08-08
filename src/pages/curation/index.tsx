@@ -14,6 +14,7 @@ const Curations = () => {
 
   const keyword = useAppSelector((state) => state.curation.keyword);
 
+  console.log(searchCurationList);
   return (
     <Container>
       <Carousel />

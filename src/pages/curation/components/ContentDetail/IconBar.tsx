@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useAppDispatch } from "../../../../services/store";
 import { HiOutlineShare } from "react-icons/hi";
@@ -11,25 +11,34 @@ import {
 } from "../../../../services/api";
 import type {} from "redux-thunk/extend-redux";
 
-const IconBar = (contentID) => {
-  const { data: isLike, error } = useGetLikeQuery(contentID);
+const IconBar = ({ likeProps, contentID }) => {
+  const { data: isLike } = useGetLikeQuery(contentID);
   const token = localStorage.getItem("token");
 
+  const [response, setResponse] = useState(isLike);
   const dispatch = useAppDispatch();
 
   const likeHandler = () => {
-    token && isLike === true
-      ? dispatch(deleteLike.initiate(contentID))
-      : dispatch(postLike.initiate(true));
+    (token && isLike === true) || response === true
+      ? dispatch(deleteLike.initiate(likeProps.contentid)).then((res) => {
+          if ("data" in res) {
+            setResponse(res.data);
+          }
+        })
+      : dispatch(postLike.initiate(likeProps)).then((res) => {
+          if ("data" in res) {
+            setResponse(res.data);
+          }
+        });
   };
 
   return (
     <IconWrapper>
       <IconBox onClick={likeHandler}>
-        {isLike === false ? (
-          <FaRegHeart size={20} />
-        ) : (
+        {isLike === true || response === true ? (
           <FaHeart size={20} color="#ff4040" />
+        ) : (
+          <FaRegHeart size={20} />
         )}
       </IconBox>
       <IconBox>

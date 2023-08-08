@@ -5,7 +5,6 @@ import ProfileIcon from "../../../components/ProfileIcon";
 import { BsImage } from "react-icons/bs";
 import {
   useGetPresignedUrlMutation,
-  useGetUserInfoQuery,
   usePatchUserInfoMutation,
 } from "../../../services/api";
 import ColorButton from "../../../components/ColorButton";
