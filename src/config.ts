@@ -6,6 +6,6 @@ export const API = {
   signInNaver: `${BASE_URL}/auth/login/naver`,
   diary: `${BASE_URL}/diary`,
   curations: `${BASE_URL}/curations`,
-  footprints: `${BASE_URL}/footprints`,
+  likemap: `${BASE_URL}/likemap`,
   write: `${BASE_URL}/write`,
 };

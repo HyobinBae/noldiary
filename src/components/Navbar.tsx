@@ -119,5 +119,5 @@ const SelectedBar = styled.div`
 const NAVIGATION_TITLE = [
   { id: 1, navTitle: "떠나요", endpoint: "" },
   { id: 2, navTitle: "기록해요", endpoint: "diary" },
-  { id: 3, navTitle: "좋아요", endpoint: "footprints" },
+  { id: 3, navTitle: "좋아요", endpoint: "likemap" },
 ];

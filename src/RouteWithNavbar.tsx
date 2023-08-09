@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import MainHeader from "./components/MainHeader";
 import Diary from "./pages/diary";
 import Curations from "./pages/curation";
-import Footprints from "./pages/footprints";
+import LikeMap from "./pages/likemap";
 
 const RouteWithNavbar = () => {
   return (
@@ -13,7 +13,7 @@ const RouteWithNavbar = () => {
       <Routes>
         <Route path="/" element={<Curations />} />
         <Route path="/diary" element={<Diary />} />
-        <Route path="/footprints" element={<Footprints />} />
+        <Route path="/likemap" element={<LikeMap />} />
       </Routes>
     </>
   );

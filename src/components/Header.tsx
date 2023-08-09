@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../services/store";
 import { useGetUserInfoQuery } from "../services/api";
-import { setUserInfo } from "../pages/diary/services/diary.slice";
+import { setNavTitle, setUserInfo } from "../pages/diary/services/diary.slice";
 import ProfileIcon from "./ProfileIcon";
 import ColorButton from "./ColorButton";
 
@@ -20,12 +20,12 @@ const Header = () => {
     navigate("/write");
   };
   const mainHandler = () => {
+    dispatch(setNavTitle("떠나요"));
     navigate("/");
   };
 
   const profileIconHandler = () => {
     const token = localStorage.getItem("token");
-    console.log(token);
     token ? navigate("/setting") : navigate("/signin");
   };
 

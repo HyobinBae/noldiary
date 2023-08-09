@@ -297,9 +297,9 @@ export const apiSlice = createApi({
         return error.status;
       },
     }),
-    getLikeList: builder.query<Array<Like>, number>({
-      query: (contentID: number) => ({
-        url: `tour/like/list/${contentID}`,
+    getLikeList: builder.query<Array<Like>, void>({
+      query: () => ({
+        url: `tour/likelist`,
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -330,6 +330,7 @@ export const {
   useGetSearchCurationQuery,
   usePostLikeMutation,
   useGetLikeQuery,
+  useGetLikeListQuery,
   useGetContentsListByCategoryQuery,
 } = apiSlice;
 
