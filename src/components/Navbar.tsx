@@ -24,7 +24,7 @@ export const SelectedButtonStyle = {
     color: "#2192FF",
     fontWeight: 700,
   },
-  bar: { background: "#2192FF" },
+  bar: { background: "#2192FF", borderRadius: "5px" },
 };
 
 const Navbar = () => {
@@ -67,6 +67,7 @@ const Navbar = () => {
           );
         })}
       </Container>
+      <DivideLine />
     </>
   );
 };
@@ -80,6 +81,8 @@ const Container = styled.div`
   align-items: flex-start;
 
   cursor: pointer;
+  width: 100vw;
+  height: 47px;
 `;
 
 const ButtonBox = styled.button`
@@ -114,6 +117,11 @@ const SelectedBar = styled.div`
   background: #ffffff;
 
   flex: none;
+`;
+
+const DivideLine = styled.div`
+  width: 100%;
+  border: 0.5px solid #d2d2d2;
 `;
 
 const NAVIGATION_TITLE = [

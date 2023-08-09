@@ -13,8 +13,8 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.50.50:3000",
-  // baseUrl: "/data",
+  // baseUrl: "http://192.168.50.50:3000",
+  baseUrl: "/data",
 });
 
 const token = localStorage.getItem("token");
@@ -299,7 +299,8 @@ export const apiSlice = createApi({
     }),
     getLikeList: builder.query<Array<Like>, void>({
       query: () => ({
-        url: `tour/likelist`,
+        // url: `tour/likelist`,
+        url: `/likeList.json`,
         method: "GET",
         headers: {
           Accept: "application/json",

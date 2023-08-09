@@ -63,6 +63,7 @@ const Container = styled.div`
 
   padding: 10px 20px 0;
   width: 100%;
+  height: 60px;
 
   background-color: white;
 `;

@@ -21,8 +21,9 @@ import { apiSlice } from "./api";
 import write from "../pages/write/services/write.slice";
 import diary from "../pages/diary/services/diary.slice";
 import curation from "../pages/curation/services/curation.slice";
+import likemap from "../pages/likemap/services/likemap.slice";
 
-//local storage에 저장되어 새로고침해도 사라지지 않는 state!
+//local storage에 저장되어 새로고침해도 사라지지 않는 state
 const persistConfig = {
   key: "root",
   storage,
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   write,
   diary,
   curation,
+  likemap,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

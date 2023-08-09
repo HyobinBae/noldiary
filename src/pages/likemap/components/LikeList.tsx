@@ -8,6 +8,7 @@ import {
   setContentID,
   setContentTypeID,
 } from "../../curation/services/curation.slice";
+import { setSelectedMapX, setSelectedMapY } from "../services/likemap.slice";
 
 const LikeList = () => {
   const navigate = useNavigate();
@@ -21,12 +22,21 @@ const LikeList = () => {
     navigate(`/curation/detail/${data.contentid}`);
   };
 
+  const findMarkerHandler = (data) => {
+    dispatch(setSelectedMapX(data.mapx));
+    dispatch(setSelectedMapY(data.mapy));
+  };
+
   return (
     <Container>
       {likeList?.map((data) => {
         return (
           <>
-            <ContentContainer>
+            <ContentContainer
+              onClick={() => {
+                findMarkerHandler(data);
+              }}
+            >
               <ImageWrapper src={data.firstimage} />
               <TextWrapper>
                 <Title>{data.title}</Title>
@@ -56,8 +66,10 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: 420px;
-  margin: 0 20px 0px 20px;
+  width: 414px;
+  height: calc(100vh - 107px);
+  background-color: white;
+  overflow-x: scroll;
 `;
 
 const ContentContainer = styled.div`
@@ -65,13 +77,11 @@ const ContentContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: 380px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  width: 100%;
+  padding: 15px 20px 15px;
 
   &:hover {
-    background-color: black;
-    opacity: 0.3;
+    background-color: #e8e8e8;
   }
 `;
 
