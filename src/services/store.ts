@@ -27,7 +27,7 @@ import likemap from "../pages/likemap/services/likemap.slice";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["write", "diary", "curation"],
+  whitelist: ["write", "curation"],
 };
 
 const rootReducer = combineReducers({

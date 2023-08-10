@@ -514,14 +514,14 @@ const InfoWrapper = styled.div`
 
 const PointBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
   width: 5px;
   height: 18px;
   background-color: #2192ff;
 
-  margin-right: 10px;
+  margin: 5px 10px 6px 0;
   line-height: 1.8;
 `;
 
@@ -530,6 +530,7 @@ const InfoTitle = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 30%;
+  height: 100%;
 
   line-height: 1.8;
   font-size: 18px;
@@ -541,6 +542,7 @@ const InfoText = styled.div`
   align-items: flex-start;
 
   width: 100%;
+  height: 100%;
   line-height: 1.8;
   font-size: 18px;
 `;

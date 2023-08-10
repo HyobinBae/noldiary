@@ -60,9 +60,11 @@ const Box = styled.div`
 
   width: 71%;
   height: 55px;
-  border: 2px solid #2192ff;
-  border-radius: 10px;
+  border: 2px solid ${(props) => props.theme.colors.mainBlue};
+  border-radius: 50px;
+  box-shadow: 3px 3px 10px 2px #e8e8e8;
 `;
+
 const Input = styled.input`
   display: flex;
   justify-content: flex-end;
@@ -70,7 +72,7 @@ const Input = styled.input`
 
   border: none;
   width: 80%;
-  height: 100%;
+  height: 98%;
   margin-left: 20px;
 
   font-size: 18px;

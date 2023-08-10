@@ -29,12 +29,14 @@ const FilterModal = () => {
             <TextWrapper>
               <Text>{filterName}</Text>
             </TextWrapper>
+            <IconWrapper>
+              <FiChevronDown size="26" color="#8f8f8f" />
+            </IconWrapper>
           </Wrapper>
-          <FiChevronDown size="26" color="#8f8f8f" />
         </>
       ) : (
         <>
-          <Wrapper>
+          <FilterOpenWrapper>
             <TextWrapper>
               {FILTER.map((filter) => (
                 <Text
@@ -47,8 +49,10 @@ const FilterModal = () => {
                 </Text>
               ))}
             </TextWrapper>
-          </Wrapper>
-          <FiChevronUp size="26" color="#8f8f8f" />
+            <IconWrapper>
+              <FiChevronUp size="26" color="#8f8f8f" />
+            </IconWrapper>
+          </FilterOpenWrapper>
         </>
       )}
     </Container>
@@ -60,13 +64,11 @@ export default FilterModal;
 const Container = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 
-  width: 120px;
+  width: 128px;
   height: 100%;
-
-  margin-left: 40px;
-  border-radius: 5px;
+  border-radius: 50px;
 
   cursor: pointer;
   background-color: white;
@@ -77,10 +79,29 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
-  width: 100%;
+  width: 128px;
   height: 100%;
-  padding-top: 17px;
+  padding: 14px 0 0 20px;
+  border-radius: 50px;
+
   background-color: white;
+`;
+
+const FilterOpenWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 128px;
+  height: 116px;
+  padding: 14px 0 0 20px;
+  border-radius: 25px;
+
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+  background-color: white;
+
+  box-shadow: 3px 3px 10px 2px #e8e8e8;
 `;
 
 const TextWrapper = styled.div`
@@ -91,9 +112,8 @@ const TextWrapper = styled.div`
 
   width: 100%;
   height: 100%;
-  margin-left: 5px;
+  margin: 3px 5px 0 5px;
   color: #8f8f8f;
-  background-color: white;
 `;
 
 const Text = styled.div`
@@ -103,6 +123,16 @@ const Text = styled.div`
 
   margin-bottom: 15px;
   background-color: white;
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
 `;
 
 const FILTER = [

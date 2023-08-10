@@ -17,7 +17,7 @@ const CurationSearchBar = () => {
 
   const keyword = useAppSelector((state) => state.curation.keyword);
   const pageNo = useAppSelector((state) => state.curation.pageNo);
-  const tet = useAppSelector(selectSearchCurationList);
+
   const getKeyword = (e) => {
     dispatch(setKeyword(e.target.value));
   };
@@ -33,7 +33,7 @@ const CurationSearchBar = () => {
       );
     }
   };
-  console.log(tet);
+
   const searchHandler = (e) => {
     if (keyword === "") {
       dispatch(clearSearchCurationList());
@@ -80,7 +80,8 @@ const Box = styled.div`
   width: 71%;
   height: 55px;
   border: 2px solid ${(props) => props.theme.colors.mainBlue};
-  border-radius: 10px;
+  border-radius: 50px;
+  box-shadow: 3px 3px 10px 2px #e8e8e8;
 `;
 const Input = styled.input`
   display: flex;
@@ -89,7 +90,7 @@ const Input = styled.input`
 
   border: none;
   width: 100%;
-  height: 100%;
+  height: 98%;
   margin-left: 20px;
 
   font-size: 18px;

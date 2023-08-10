@@ -21,6 +21,7 @@ const KakaoLogin = () => {
       });
 
       const { access_token } = await kakaoRes.json();
+      console.log(kakaoRes.json());
 
       if (!access_token) {
         alert("카카오 로그인 실패");
