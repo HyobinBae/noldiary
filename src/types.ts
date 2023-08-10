@@ -151,11 +151,13 @@ export interface ContentDetail {
       infotext: string;
     }
   ];
-  image?: {
-    contentid: number;
-    originimgurl: string;
-    imgname: string;
-  };
+  image?: [
+    {
+      contentid: number;
+      originimgurl: string;
+      imgname: string;
+    }
+  ];
   course?: [
     {
       subnum: number;

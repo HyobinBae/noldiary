@@ -13,7 +13,6 @@ import { useAppDispatch } from "../../../../services/store";
 const Carousel = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   const clickHandler = (data) => {
     dispatch(setCourseCode(data.categoryCode));
     dispatch(setCourseTitle(data.category));

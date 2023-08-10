@@ -191,7 +191,8 @@ export const apiSlice = createApi({
       { contentTypeID: string; contentID: number }
     >({
       query: ({ contentTypeID, contentID }) => ({
-        url: `/tour/main/detail/${contentTypeID}/${contentID}`,
+        // url: `/tour/main/detail/${contentTypeID}/${contentID}`,
+        url: "/TOUR_DETAIL.json",
         method: "GET",
         headers: {
           Accept: "application/json",

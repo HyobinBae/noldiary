@@ -3,6 +3,12 @@ import styled from "styled-components";
 import { useGetContentDetailQuery } from "../../../../services/api";
 import { useAppSelector } from "../../../../services/store";
 import { useParams } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import IconBar from "./IconBar";
 import DetailNavbar from "./DetailNavbar";
 const ContentDetail = () => {
@@ -25,7 +31,6 @@ const ContentDetail = () => {
     mapx: Number(contentDetail?.common.mapx),
     mapy: Number(contentDetail?.common.mapy),
   };
-  console.log(likeProps);
 
   const ContentOverview = ({ content }) => {
     return <SubInfo dangerouslySetInnerHTML={{ __html: content }} />;
@@ -119,10 +124,41 @@ const ContentDetail = () => {
               <ImageBox src={contentDetail?.common.firstimage} />
             </ImageWrapper>
           ) : (
-            //이미지 캐러셀로 바꾸기
-            <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
-              <ImageBox src={contentDetail?.image?.originimgurl} />
-            </ImageWrapper>
+            <ImageContainer>
+              <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
+                <CarouselContainer
+                  slidesPerView={1}
+                  navigation={{
+                    nextEl: ".swiper-next",
+                    prevEl: ".swiper-prev",
+                  }}
+                  autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                  }}
+                  centeredSlides={true}
+                  touchStartPreventDefault={false}
+                  simulateTouch={false}
+                  modules={[Autoplay, Pagination, Navigation]}
+                >
+                  {contentDetail.image.map((data) => {
+                    return (
+                      <CarouselWrapper key={data.originimgurl}>
+                        <ImageBox src={data.originimgurl} />
+                      </CarouselWrapper>
+                    );
+                  })}
+                </CarouselContainer>
+              </ImageWrapper>
+              <IconWrapper>
+                <IconBox className="swiper-prev">
+                  <FiChevronLeft size="26" color="white" />
+                </IconBox>
+                <IconBox className="swiper-next">
+                  <FiChevronRight size="26" color="white" />
+                </IconBox>
+              </IconWrapper>
+            </ImageContainer>
           )}
           <IntroductionWrapper>
             <SectionWrapper ref={(ref) => (scrollRef.current[1] = ref)}>
@@ -450,16 +486,78 @@ const DivideLine = styled.div`
   margin-bottom: 20px;
 `;
 
+const ImageContainer = styled.div`
+  width: 100%;
+  height: 38vw;
+
+  position: relative;
+`;
+
 const ImageWrapper = styled.div`
   width: 100%;
   height: 38vw;
   margin-bottom: 20px;
 `;
 
+const CarouselContainer = styled(Swiper)`
+  width: 100%;
+  height: 38vw;
+  position: relative;
+  z-index: 1;
+`;
+
+const CarouselWrapper = styled(SwiperSlide)``;
+
 const ImageBox = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 70vw;
+  height: 100%;
+  padding: 0px 25px;
+
+  position: absolute;
+  top: 0;
+
+  z-index: 100;
+  background: none;
+
+  pointer-events: none;
+`;
+
+const IconBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 38px;
+  height: 38px;
+  background-color: #000000;
+  border-radius: 30px;
+  opacity: 0.5;
+  padding-left: 5.4px;
+
+  cursor: pointer;
+
+  z-index: 3;
+
+  pointer-events: auto;
+
+  & > * {
+    pointer-events: none;
+  }
+
+  &:hover {
+    background-color: #000000;
+    opacity: 1;
+  }
 `;
 
 const IntroductionWrapper = styled.div`
