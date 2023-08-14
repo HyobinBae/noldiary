@@ -101,7 +101,8 @@ const FilterOpenWrapper = styled.div`
   transition: height 0.3s ease-in-out;
   background-color: white;
 
-  box-shadow: 3px 3px 10px 2px #e8e8e8;
+  box-shadow: 1px 1px 15px 1px #929292;
+  z-index: 10;
 `;
 
 const TextWrapper = styled.div`

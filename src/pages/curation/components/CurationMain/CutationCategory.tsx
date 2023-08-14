@@ -1,10 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { useAppDispatch } from "../../../../services/store";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { setCategory, setPageNo } from "../../services/curation.slice";
+
+const SelectedButtonStyle = {
+  button: { border: "2px solid #2192FF" },
+  text: { color: "#2192FF", fontWeight: "600" },
+};
 
 const CurationCategory = () => {
   const dispatch = useAppDispatch();
+  const selectedCat = useAppSelector((state) => state.curation.category);
 
   const categoryHandler = (data) => {
     dispatch(setCategory(data.cat));
@@ -15,13 +21,26 @@ const CurationCategory = () => {
     <Container>
       {TOUR_CATEGORY.map((data) => {
         return (
-          <TextWrapper
-            onClick={() => {
-              categoryHandler(data);
-            }}
-          >
-            <Text>{data.title}</Text>
-          </TextWrapper>
+          <>
+            {selectedCat !== data.cat ? (
+              <TextWrapper
+                onClick={() => {
+                  categoryHandler(data);
+                }}
+              >
+                <Text>{data.title}</Text>
+              </TextWrapper>
+            ) : (
+              <TextWrapper
+                onClick={() => {
+                  categoryHandler(data);
+                }}
+                style={SelectedButtonStyle.button}
+              >
+                <Text style={SelectedButtonStyle.text}>{data.title}</Text>
+              </TextWrapper>
+            )}
+          </>
         );
       })}
     </Container>
@@ -46,22 +65,33 @@ const TextWrapper = styled.div`
   align-items: center;
 
   width: auto;
-  height: 100%;
+  height: 40px;
   padding: 14px;
   margin-right: 10px;
 
+  white-space: nowrap;
   border: 1px solid #8f8f8f;
   border-radius: 50px;
 
   cursor: pointer;
+
+  &:hover {
+    border: 1px solid #50aaff;
+  }
 `;
 
 const Text = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 40px;
   font-size: 14px;
   color: #8f8f8f;
+
+  &:hover {
+    color: #50aaff;
+  }
 `;
 
 const TOUR_CATEGORY = [

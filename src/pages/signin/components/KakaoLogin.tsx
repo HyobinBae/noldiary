@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { API } from "../../../config";
 import LoadingLogin from "./LoadingLogin";
+import { useAppDispatch } from "../../../services/store";
 
 export const API_KEY = process.env.REACT_APP_API_KEY_KAKAO;
 export const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL_KAKAO;
@@ -9,6 +10,7 @@ export const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL_KAKAO;
 const KakaoLogin = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const code = searchParams.get("code");
 
   const getToken = async () => {
@@ -21,7 +23,6 @@ const KakaoLogin = () => {
       });
 
       const { access_token } = await kakaoRes.json();
-      console.log(kakaoRes.json());
 
       if (!access_token) {
         alert("카카오 로그인 실패");
@@ -36,7 +37,8 @@ const KakaoLogin = () => {
         },
       });
 
-      const { accessToken } = await localRes.json();
+      const tokenObj = await localRes.json();
+      const accessToken = tokenObj.accessToken;
 
       if (!accessToken) {
         alert("카카오 로그인 실패");

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../services/store";
+import { useAppDispatch, useAppSelector } from "../services/store";
 import { useGetUserInfoQuery } from "../services/api";
 import { setNavTitle, setUserInfo } from "../pages/diary/services/diary.slice";
 import ProfileIcon from "./ProfileIcon";
@@ -26,7 +26,7 @@ const Header = () => {
 
   const profileIconHandler = () => {
     const token = localStorage.getItem("token");
-    token ? navigate("/setting") : navigate("/signin");
+    token && userInfo ? navigate("/setting") : navigate("/signin");
   };
 
   return (

@@ -13,8 +13,8 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: "http://192.168.50.50:3000",
-  baseUrl: "/data",
+  baseUrl: "http://192.168.119.210:3000",
+  // baseUrl: "/data",
 });
 
 const token = localStorage.getItem("token");
@@ -191,8 +191,8 @@ export const apiSlice = createApi({
       { contentTypeID: string; contentID: number }
     >({
       query: ({ contentTypeID, contentID }) => ({
-        // url: `/tour/main/detail/${contentTypeID}/${contentID}`,
-        url: "/TOUR_DETAIL.json",
+        url: `/tour/main/detail/${contentTypeID}/${contentID}`,
+        // url: "/TOUR_DETAIL.json",
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -300,8 +300,8 @@ export const apiSlice = createApi({
     }),
     getLikeList: builder.query<Array<Like>, void>({
       query: () => ({
-        // url: `tour/likelist`,
-        url: `/likeList.json`,
+        url: `tour/likelist`,
+        // url: `/likeList.json`,
         method: "GET",
         headers: {
           Accept: "application/json",
