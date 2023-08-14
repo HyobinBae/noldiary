@@ -8,13 +8,14 @@ import {
   usePatchUserInfoMutation,
 } from "../../../services/api";
 import ColorButton from "../../../components/ColorButton";
-import { useAppDispatch, useAppSelector } from "../../../services/store";
+
 import {
   setProfileImage,
   setBgImage,
   setNickname,
   setMessage,
 } from "../services/diary.slice";
+import { useAppDispatch, useAppSelector } from "../../../services/store";
 
 const Setting = () => {
   const [getPresignedUrl, { data: presignedUrl }] =

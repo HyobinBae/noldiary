@@ -4,8 +4,8 @@ import Carousel from "./components/CurationMain/Carousel";
 import CurationList from "./components/CurationMain/CurationList";
 import CurationSearchBar from "./components/CurationMain/CurationSearchBar";
 
-import { useAppSelector } from "../../services/store";
 import CurationSearchList from "./components/CurationMain/CurationSearchList";
+import { useAppSelector } from "../../services/store";
 
 const Curations = () => {
   const searchCurationList = useAppSelector(

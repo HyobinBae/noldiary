@@ -2,8 +2,9 @@ import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { useAppDispatch, useAppSelector } from "../../../../services/store";
+
 import { setFilterName, setSearchQuery } from "../../services/diary.slice";
+import { useAppDispatch, useAppSelector } from "../../../../services/store";
 
 const FilterModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
