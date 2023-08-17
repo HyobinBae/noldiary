@@ -57,6 +57,7 @@ const EditDetail = () => {
     dispatch(setArrivalDate(e.target.value));
   };
 
+  console.log(departure);
   return (
     <Container>
       <DetailContainer>
