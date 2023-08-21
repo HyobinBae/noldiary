@@ -27,6 +27,8 @@ const Curations = () => {
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  width: 100vw;
+`;
 
 export default Curations;

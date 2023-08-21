@@ -63,6 +63,10 @@ const Container = styled.div`
   height: 100%;
 
   padding: 0 14%;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 0 5%;
+  }
 `;
 
 const TotalCount = styled.div`
@@ -72,7 +76,6 @@ const TotalCount = styled.div`
   width: 100%;
 
   margin-bottom: 20px;
-  margin-left: 10px;
 `;
 
 const ContentWrapper = styled.div`

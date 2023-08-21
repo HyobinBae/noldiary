@@ -21,7 +21,6 @@ const Diary = () => {
 export default Diary;
 
 const Container = styled.div`
-  width: 100%;
-
+  width: 100vw;
   background-color: white;
 `;

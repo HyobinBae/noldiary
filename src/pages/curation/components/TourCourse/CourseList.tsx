@@ -61,13 +61,17 @@ export default CourseList;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
 
   width: 100%;
   height: 100%;
 
-  padding: 0 14%;
+  padding: 0 15vw;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 0 5vw;
+  }
 `;
 
 const TotalCount = styled.div`

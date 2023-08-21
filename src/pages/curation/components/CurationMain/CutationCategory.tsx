@@ -56,7 +56,8 @@ const Container = styled.div`
 
   width: 100%;
   height: 40px;
-  margin: 0 0 20px 10px;
+  margin-bottom: 20px;
+  overflow-x: scroll;
 `;
 
 const TextWrapper = styled.div`
@@ -84,6 +85,7 @@ const Text = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   height: 40px;
   font-size: 14px;

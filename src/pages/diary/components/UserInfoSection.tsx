@@ -37,8 +37,9 @@ const UserInfoSection = () => {
           </>
         ) : (
           <>
-            <NickName>닉네임</NickName>
-            <Message>메세지</Message>
+            {/* <NickName>닉네임</NickName>
+            <Message>메세지</Message> */}
+            <LoginMessage>로그인 하세요</LoginMessage>
           </>
         )}
       </Wrapper>
@@ -81,6 +82,9 @@ const Container = styled.div`
 
   background-color: #bbbbbb;
   position: relative;
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 300px;
+  }
 `;
 
 const BackgroundWrapper = styled.div`
@@ -176,6 +180,17 @@ const Message = styled.div`
 
   margin-bottom: 10px;
   font-size: 12px;
+  font-weight: 600;
+  color: white;
+`;
+
+const LoginMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 32px 0 15px;
+  font-size: 26px;
   font-weight: 600;
   color: white;
 `;

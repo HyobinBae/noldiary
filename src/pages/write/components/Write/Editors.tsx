@@ -144,8 +144,8 @@ const Editors = () => {
 
 export default Editors;
 const QuillEditor = styled(ReactQuill)`
-  margin-top: 30px;
-  height: 100vh;
+  margin: 10px 0 30px;
+  height: 90vh;
 
   ::placeholder {
     font-size: 40px;
@@ -153,6 +153,14 @@ const QuillEditor = styled(ReactQuill)`
   .ql-toolbar {
     .ql-formats {
       margin-right: 10px;
+    }
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    margin: 10px 0 30px;
+    height: 86vh;
+
+    .ql-container {
+      height: 78vh;
     }
   }
 `;

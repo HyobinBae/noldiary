@@ -2,7 +2,6 @@ import React from "react";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { useNavigate } from "react-router-dom";
 import {
-  setContentTypeID,
   setCourseCode,
   setCourseTitle,
   setPageNo,
@@ -51,15 +50,15 @@ const TourCourseNavbar = () => {
                 <>
                   <ButtonText style={SelectedButtonStyle.button}>
                     {title.navTitle}
+                    <SelectedBar style={SelectedButtonStyle.bar} />
                   </ButtonText>
-                  <SelectedBar style={SelectedButtonStyle.bar} />
                 </>
               ) : (
                 <>
                   <ButtonText style={InitialButtonStyle.button}>
                     {title.navTitle}
+                    <SelectedBar style={InitialButtonStyle.bar} />
                   </ButtonText>
-                  <SelectedBar style={InitialButtonStyle.bar} />
                 </>
               )}
             </ButtonBox>
@@ -79,8 +78,14 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
+  width: 70vw;
+  overflow-x: scroll;
+
   cursor: pointer;
-  width: 100%;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90vw;
+  }
 `;
 
 const ButtonBox = styled.button`
@@ -97,20 +102,32 @@ const ButtonBox = styled.button`
   padding: 0;
 
   cursor: pointer;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 85px;
+    margin: 0 5px;
+    flex-wrap: nowrap;
+  }
 `;
 
 const ButtonText = styled.div`
-  padding: 10px 0;
+  width: auto;
+  padding: 10px 0 0;
 
   font-size: 18px;
-
   color: #8f8f8f;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 85px;
+    flex-wrap: nowrap;
+  }
 `;
 
 const SelectedBar = styled.div`
-  width: 60%;
+  width: 100%;
   height: 4px;
   border-radius: 2px;
+  margin-top: 9px;
 
   background: #ffffff;
 
@@ -121,6 +138,9 @@ const Line = styled.div`
   width: 70vw;
   border: 0.5px solid #c7c7c7;
   margin-bottom: 20px;
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90vw;
+  }
 `;
 
 const NAVIGATION_LIST = [

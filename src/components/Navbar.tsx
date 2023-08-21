@@ -52,15 +52,15 @@ const Navbar = () => {
                 <>
                   <ButtonText style={SelectedButtonStyle.button}>
                     {title.navTitle}
+                    <SelectedBar style={SelectedButtonStyle.bar} />
                   </ButtonText>
-                  <SelectedBar style={SelectedButtonStyle.bar} />
                 </>
               ) : (
                 <>
                   <ButtonText style={InitialButtonStyle.button}>
                     {title.navTitle}
+                    <SelectedBar style={InitialButtonStyle.bar} />
                   </ButtonText>
-                  <SelectedBar style={InitialButtonStyle.bar} />
                 </>
               )}
             </ButtonBox>
@@ -99,10 +99,15 @@ const ButtonBox = styled.button`
   padding: 0;
 
   cursor: pointer;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: calc(90% / 3);
+  }
 `;
 
 const ButtonText = styled.div`
-  padding: 10px 0;
+  width: auto;
+  padding: 10px 0 0;
 
   font-size: 20px;
   font-weight: 600;
@@ -111,8 +116,10 @@ const ButtonText = styled.div`
 `;
 
 const SelectedBar = styled.div`
-  width: 60%;
+  width: 100%;
   height: 4px;
+  border-radius: 2px;
+  margin-top: 9px;
 
   background: #ffffff;
 

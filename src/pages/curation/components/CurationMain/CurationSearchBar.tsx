@@ -82,6 +82,10 @@ const Box = styled.div`
   border: 2px solid ${(props) => props.theme.colors.mainBlue};
   border-radius: 50px;
   box-shadow: 3px 3px 10px 2px #e8e8e8;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 const Input = styled.input`
   display: flex;

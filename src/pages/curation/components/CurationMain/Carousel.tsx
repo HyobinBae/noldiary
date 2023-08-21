@@ -76,6 +76,10 @@ const Container = styled.div`
   background-color: #bbbbbb;
 
   position: relative;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 300px;
+  }
 `;
 
 const CarouselWrapper = styled(Swiper)`
@@ -136,6 +140,10 @@ const TextWrapper = styled.div`
 
   position: absolute;
   z-index: 10;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 30px 50px;
+  }
 `;
 
 const TextBox = styled.div`
@@ -157,8 +165,14 @@ const TitleBox = styled.div`
 
   color: white;
   font-size: 38px;
+  line-height: 1.4;
 
   width: 100%;
+  word-break: keep-all;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 30px;
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -176,6 +190,10 @@ const IconWrapper = styled.div`
   background: none;
 
   pointer-events: none;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    padding: 0px 14px;
+  }
 `;
 
 const IconBox = styled.div`

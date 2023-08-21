@@ -156,6 +156,10 @@ const ButtonBox = styled.button`
   border-style: none;
 
   cursor: pointer;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: calc(90% / 4);
+  }
 `;
 
 const NavText = styled.div`
