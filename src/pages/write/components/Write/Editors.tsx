@@ -150,7 +150,9 @@ const QuillEditor = styled(ReactQuill)`
   ::placeholder {
     font-size: 40px;
   }
-  .ql-container {
-    border: none;
+  .ql-toolbar {
+    .ql-formats {
+      margin-right: 10px;
+    }
   }
 `;

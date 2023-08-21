@@ -46,12 +46,14 @@ const WriteDetail = () => {
         <DetailContainer>
           <DateDetail
             type="date"
+            placeholder="날짜 선택"
             value={departureDate}
             onChange={departureDateHandler}
           />
           <TinyDetail>~</TinyDetail>
           <DateDetail
             type="date"
+            placeholder="날짜 선택"
             value={arrivalDate}
             onChange={arrivalDateHandler}
           />
@@ -75,15 +77,21 @@ const DetailContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  width: 90%;
 `;
 
 const Title = styled.div`
   display: flex;
   align-items: center;
-  margin: 3px 5px;
+  margin: 3px 10px 3px 5px;
 
   width: 10%;
   height: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 10%;
+    height: 40px;
+  }
 `;
 
 const Detail = styled.input`
@@ -93,10 +101,15 @@ const Detail = styled.input`
   border: none;
   outline: none;
 
-  width: 50%;
+  width: 70%;
   height: 40px;
 
   font-size: 14px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 70%;
+    height: 40px;
+  }
 `;
 
 const DateDetail = styled.input`
@@ -108,17 +121,21 @@ const DateDetail = styled.input`
 
   width: 15vw;
   height: 40px;
-
   font-size: 14px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 130px;
+    height: 40px;
+  }
 `;
 
 const TinyDetail = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3px 5px;
+  margin: 3px 3px;
 
-  width: 40px;
+  width: 20px;
   height: 40px;
 
   border: none;

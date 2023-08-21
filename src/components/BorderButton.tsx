@@ -30,7 +30,7 @@ const Button = styled.div<{ width: string; height: string }>`
 
   margin-right: 10px;
   background-color: white;
-  color: ${(props) => props.theme.colors.mainBlue};
+  color: ${({ theme }) => theme.colors.mainBlue};
 
   cursor: pointer;
 `;

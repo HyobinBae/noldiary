@@ -17,4 +17,9 @@ const MainContainer = styled.main`
   justify-content: flex-start;
 
   margin: 10px 5px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 88vw;
+    height: 100vh;
+  }
 `;

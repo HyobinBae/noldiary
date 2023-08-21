@@ -27,7 +27,7 @@ const Button = styled.div<{ width: string; height: string }>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
 
-  background-color: ${(props) => props.theme.colors.mainBlue};
+  background-color: ${({ theme }) => theme.colors.mainBlue};
   color: white;
 
   cursor: pointer;
