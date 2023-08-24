@@ -13,7 +13,7 @@ import {
 } from "../types";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://13.124.16.221",
+  baseUrl: "http://www.noldiary.com",
   // baseUrl: "/data",
 });
 

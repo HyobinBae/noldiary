@@ -58,7 +58,7 @@ const Box = styled.div`
   justify-content: flex-end;
   align-items: center;
 
-  width: 71%;
+  width: 70%;
   height: 55px;
   border: 2px solid ${(props) => props.theme.colors.mainBlue};
   border-radius: 50px;

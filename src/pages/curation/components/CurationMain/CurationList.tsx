@@ -56,10 +56,10 @@ export default CurationList;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: centers;
   align-items: flex-start;
 
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
   padding: 0 14%;
@@ -83,8 +83,36 @@ const ContentWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
 
+  width: 100%;
+  margin-bottom: 20px;
+
   flex-wrap: wrap;
 
-  width: 100%;
-  margin: 0 0 20px 10px;
+  & > * {
+    flex: 0 0 calc((70vw / 3) - 4px);
+    margin-right: 15px;
+    margin-bottom: 15px;
+
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+
+    @media ${({ theme }) => theme.device.mobile} {
+      flex: 0 0 calc((100% / 2) - 5px);
+      margin-right: 10px;
+      margin-bottom: 10px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 10px;
+      }
+
+      &:nth-child(2n):nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
 `;

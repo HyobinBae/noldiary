@@ -26,20 +26,28 @@ const ContentBox = (props: ContentProps) => {
 
 export default ContentBox;
 
-const Container = styled.div`
+const Container = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 22vw;
-  height: 20vw;
+  width: calc((70vw / 3) - 10px);
+  height: calc((58vw / 3) - 20px);
   border-radius: 8px;
   border: 0.5px solid #efefef;
 
-  margin: 0 2vw 2vw 0;
+  box-shadow: 3px 3px 10px 2px #e8e8e8;
 
   cursor: pointer;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: calc(90% / 2);
+    height: 30vw;
+    border-radius: 8px;
+    border: 0.5px solid #efefef;
+  }
 `;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -80,21 +88,26 @@ const ImageBox = styled.img`
 const CoverSheet = styled.div`
   position: absolute;
   width: 100%;
-  height: 60px;
+  height: 52px;
   border-radius: 0 0 8px 8px;
 
   background-color: black;
-  opacity: 0.3;
+  opacity: 0.4;
 
   z-index: 1;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 40px;
+  }
 `;
+
 const Title = styled.div`
-  font-size: 20px;
+  font-size: 18px;
   color: white;
 
   width: 100%;
-  height: 60px;
-  padding: 20px 20px;
+  height: 52px;
+  padding: 16px 16px;
 
   overflow: hidden;
   white-space: nowrap;
@@ -103,4 +116,10 @@ const Title = styled.div`
 
   position: absolute;
   z-index: 10;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+    height: 40px;
+    padding: 12px 12px;
+  }
 `;

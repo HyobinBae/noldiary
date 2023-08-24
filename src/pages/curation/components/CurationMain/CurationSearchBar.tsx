@@ -69,15 +69,16 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
+  height: 55px;
   margin-bottom: 40px;
 `;
 
 const Box = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
-  width: 71%;
+  width: 70%;
   height: 55px;
   border: 2px solid ${(props) => props.theme.colors.mainBlue};
   border-radius: 50px;
@@ -87,6 +88,7 @@ const Box = styled.div`
     width: 90%;
   }
 `;
+
 const Input = styled.input`
   display: flex;
   justify-content: flex-end;

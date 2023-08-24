@@ -454,7 +454,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100%;
+  width: 100vw;
   height: 100%;
 `;
 
@@ -466,6 +466,10 @@ const DetailWrapper = styled.div`
 
   width: 70vw;
   height: 100%;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 
 const Title = styled.div`
@@ -474,10 +478,16 @@ const Title = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 60px;
+  margin: 20px 0;
 
   font-size: 28px;
   font-weight: 600;
+
+  word-break: keep-all;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 24px;
+  }
 `;
 
 const DivideLine = styled.div`

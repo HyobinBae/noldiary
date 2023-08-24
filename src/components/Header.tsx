@@ -61,7 +61,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 10px 20px 0;
+  padding: 10px 20px;
   width: 100%;
   height: 60px;
 

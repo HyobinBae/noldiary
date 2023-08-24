@@ -64,13 +64,13 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
 
-  width: 100%;
+  width: 100vw;
   height: 100%;
 
-  padding: 0 15vw;
+  padding: 0 14%;
 
   @media ${({ theme }) => theme.device.mobile} {
-    padding: 0 5vw;
+    padding: 0 5%;
   }
 `;
 
@@ -78,14 +78,41 @@ const TotalCount = styled.div`
   margin-bottom: 20px;
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.ul`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 
+  width: 100%;
+  margin-bottom: 20px;
+
   flex-wrap: wrap;
 
-  width: 100%;
+  & > * {
+    flex: 0 0 calc((70vw / 3) - 10px);
+    margin-right: 15px;
+    margin-bottom: 15px;
 
-  margin-bottom: 20px;
+    &:nth-child(3n) {
+      margin-right: 0;
+    }
+
+    @media ${({ theme }) => theme.device.mobile} {
+      flex: 0 0 calc((100% / 2) - 5px);
+      margin-right: 10px;
+      margin-bottom: 10px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      &:nth-child(3n) {
+        margin-right: 10px;
+      }
+
+      &:nth-child(2n):nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
 `;

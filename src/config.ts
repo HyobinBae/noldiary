@@ -1,4 +1,4 @@
-export const BASE_URL = "http://13.124.16.221";
+export const BASE_URL = "http://www.noldiary.com";
 export const API = {
   kakaoAuth: "https://kauth.kakao.com/oauth/token",
   naverAuth: "https://nid.naver.com/oauth2.0/token",
