@@ -62,13 +62,19 @@ const InfoContainer = styled.div`
   height: 280px;
 
   background-color: #ffffff;
-  border: 3px solid #2192ff;
+  border: 1px solid #e8e8e8;
   border-right-width: 2px;
   border-right-style: none;
   border-top: none;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0px 0px 8px 8px;
 
   padding: 20px 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    border: 1px solid #e8e8e8;
+    height: 260px;
+    border-radius: 0 0 8px 8px;
+  }
 `;
 
 const Container = styled.div`
@@ -101,6 +107,10 @@ const InfoTitle = styled.div`
 
   color: #8f8f8f;
   font-size: 12px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 10px;
+  }
 `;
 
 const InfoContent = styled.div`
@@ -114,6 +124,10 @@ const InfoContent = styled.div`
 
   .p {
     width: 100px;
+  }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
   }
 `;
 
@@ -135,6 +149,11 @@ const Content = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+    height: 140px;
+  }
 `;
 
 const IconBox = styled.div`

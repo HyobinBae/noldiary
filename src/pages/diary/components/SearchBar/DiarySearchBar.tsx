@@ -51,6 +51,10 @@ const Container = styled.div`
 
   width: 100%;
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: 20px;
+  }
 `;
 
 const Box = styled.div`

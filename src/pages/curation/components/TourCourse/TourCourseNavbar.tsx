@@ -83,6 +83,10 @@ const Container = styled.div`
 
   cursor: pointer;
 
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   @media ${({ theme }) => theme.device.mobile} {
     width: 90vw;
   }

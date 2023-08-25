@@ -47,6 +47,10 @@ const Box = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 
 const Header = styled.header`

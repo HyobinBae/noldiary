@@ -52,7 +52,9 @@ const ContentDetail = () => {
     return (
       <Container>
         <DetailWrapper>
-          <Title>{contentDetail?.common.title}</Title>
+          <TitleBox>
+            <Title>{contentDetail?.common.title}</Title>
+          </TitleBox>
           <IconBar likeProps={likeProps} contentID={contentID} />
           <DetailNavbar scrollRef={scrollRef} hasRoutine={hasRoutine} />
           <ImageWrapper ref={(ref) => (scrollRef.current[0] = ref)}>
@@ -472,21 +474,36 @@ const DetailWrapper = styled.div`
   }
 `;
 
-const Title = styled.div`
+const TitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 100%;
+  height: auto;
   margin: 20px 0;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin: 10px 0;
+    text-align: center;
+  }
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 
   font-size: 28px;
   font-weight: 600;
+  line-height: 1.2;
 
   word-break: keep-all;
 
   @media ${({ theme }) => theme.device.mobile} {
     font-size: 24px;
+    margin: 10px 0 10px;
   }
 `;
 
@@ -494,6 +511,10 @@ const DivideLine = styled.div`
   width: 100%;
   border: 0.5px solid #d2d2d2;
   margin-bottom: 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: 10px;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -501,17 +522,27 @@ const ImageContainer = styled.div`
   height: 38vw;
 
   position: relative;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 60vw;
+    margin-bottom: 10px;
+  }
 `;
 
 const ImageWrapper = styled.div`
   width: 100%;
   height: 38vw;
   margin-bottom: 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 60vw;
+    margin-bottom: 20px;
+  }
 `;
 
 const CarouselContainer = styled(Swiper)`
   width: 100%;
-  height: 38vw;
+  height: 100%;
   position: relative;
   z-index: 1;
 `;
@@ -530,7 +561,7 @@ const IconWrapper = styled.div`
   align-items: center;
 
   width: 70vw;
-  height: 100%;
+  height: auto;
   padding: 0px 25px;
 
   position: absolute;
@@ -573,6 +604,10 @@ const IconBox = styled.div`
 const IntroductionWrapper = styled.div`
   width: 100%;
   margin-top: 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-top: 10px;
+  }
 `;
 
 const SectionWrapper = styled.div``;
@@ -587,6 +622,12 @@ const SubTitle = styled.div`
 
   font-size: 24px;
   font-weight: 600;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: auto;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
 `;
 
 const SubInfo = styled.div`
@@ -597,6 +638,12 @@ const SubInfo = styled.div`
 
   font-size: 18px;
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+    height: auto;
+    margin-bottom: 20px;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -606,7 +653,7 @@ const InfoContainer = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-bottom: 20px;
 `;
 
@@ -616,8 +663,12 @@ const InfoWrapper = styled.div`
   align-items: flex-start;
 
   width: 100%;
-  height: 100%;
+  height: auto;
   margin-bottom: 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: 10px;
+  }
 `;
 
 const PointBox = styled.div`
@@ -638,10 +689,16 @@ const InfoTitle = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 30%;
-  height: 100%;
+  height: auto;
 
   line-height: 1.8;
   font-size: 18px;
+  font-weight: 600;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 48%;
+    font-size: 14px;
+  }
 `;
 
 const InfoText = styled.div`
@@ -650,9 +707,13 @@ const InfoText = styled.div`
   align-items: flex-start;
 
   width: 100%;
-  height: 100%;
+  height: auto;
   line-height: 1.8;
   font-size: 18px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+  }
 `;
 
 const DetailTitleWrapper = styled.div`
@@ -661,8 +722,12 @@ const DetailTitleWrapper = styled.div`
   align-items: center;
 
   width: 100%;
-  height: 40px;
+  height: auto;
   margin-bottom: 10px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: 10px;
+  }
 `;
 
 const ColorBox = styled.div`
@@ -670,15 +735,28 @@ const ColorBox = styled.div`
   height: 24px;
   background-color: #2192ff;
   margin-right: 10px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    height: 18px;
+  }
 `;
 
 const DetailTitle = styled.div`
   width: 100%;
   font-size: 24px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 18px;
+  }
 `;
 
 const DetailInfo = styled.div`
   width: 100%;
   font-size: 18px;
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
 `;

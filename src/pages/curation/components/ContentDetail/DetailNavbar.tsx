@@ -40,16 +40,14 @@ const DetailNavbar = ({ scrollRef, hasRoutine }) => {
           return (
             <ButtonBox>
               {selectedNav === data.title ? (
-                <>
-                  <NavText
-                    key={data.idx}
-                    onClick={() => navHandler(data)}
-                    style={SelectedButtonStyle.button}
-                  >
-                    {data.title}
-                  </NavText>
+                <NavText
+                  key={data.idx}
+                  onClick={() => navHandler(data)}
+                  style={SelectedButtonStyle.button}
+                >
+                  {data.title}
                   <Bar style={SelectedButtonStyle.bar} />
-                </>
+                </NavText>
               ) : (
                 <NavText
                   key={data.idx}
@@ -72,16 +70,14 @@ const DetailNavbar = ({ scrollRef, hasRoutine }) => {
               return (
                 <ButtonBox>
                   {selectedNav === data.title ? (
-                    <>
-                      <NavText
-                        key={data.idx}
-                        onClick={() => navHandler(data)}
-                        style={SelectedButtonStyle.button}
-                      >
-                        {data.title}
-                      </NavText>
+                    <NavText
+                      key={data.idx}
+                      onClick={() => navHandler(data)}
+                      style={SelectedButtonStyle.button}
+                    >
+                      {data.title}
                       <Bar style={SelectedButtonStyle.bar} />
-                    </>
+                    </NavText>
                   ) : (
                     <NavText
                       key={data.idx}
@@ -98,16 +94,14 @@ const DetailNavbar = ({ scrollRef, hasRoutine }) => {
               return (
                 <ButtonBox>
                   {selectedNav === data.title ? (
-                    <>
-                      <NavText
-                        key={data.idx}
-                        onClick={() => navHandler(data)}
-                        style={SelectedButtonStyle.button}
-                      >
-                        {data.title}
-                      </NavText>
+                    <NavText
+                      key={data.idx}
+                      onClick={() => navHandler(data)}
+                      style={SelectedButtonStyle.button}
+                    >
+                      {data.title}
                       <Bar style={SelectedButtonStyle.bar} />
-                    </>
+                    </NavText>
                   ) : (
                     <NavText
                       key={data.idx}
@@ -128,8 +122,8 @@ export default DetailNavbar;
 const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
 
   width: 100%;
   height: 52px;
@@ -158,26 +152,29 @@ const ButtonBox = styled.button`
   cursor: pointer;
 
   @media ${({ theme }) => theme.device.mobile} {
-    width: calc(90% / 4);
+    width: calc(100% / 4);
   }
 `;
 
 const NavText = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: auto;
+  padding: 12px 0 0;
 
-  padding: 11px 0 10px 0;
-
-  font-size: 18px;
+  font-size: 20px;
 
   cursor: pointer;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 14px;
+    padding: 15px 0 0;
+  }
 `;
 
 const Bar = styled.div`
-  width: 60%;
+  width: 100%;
   height: 4px;
   border-radius: 2px;
+  margin-top: 11px;
 
   background: #ffffff;
 

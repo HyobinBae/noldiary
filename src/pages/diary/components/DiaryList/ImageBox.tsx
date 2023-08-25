@@ -29,7 +29,7 @@ const TitleBox = styled.div`
   height: 50px;
   background-color: #2192ff;
 
-  border-radius: 15px 15px 0 0;
+  border-radius: 8px 8px 0 0;
 `;
 const Title = styled.div`
   font-size: 24px;
@@ -47,11 +47,11 @@ const ContentBox = styled.div`
 
   background-color: #ffffff;
 
-  border: 3px solid #2192ff;
-  border-left-width: 3px;
+  border: 1px solid #e8e8e8;
+  border-left-width: 2px;
   border-left-style: dashed;
   border-top: none;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 8px 8px;
 `;
 
 const Image = styled.img`

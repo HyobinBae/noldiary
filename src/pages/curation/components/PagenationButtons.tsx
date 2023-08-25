@@ -37,4 +37,12 @@ const Container = styled.div`
   align-items: center;
 
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    .css-10w330c-MuiButtonBase-root-MuiPaginationItem-root {
+      min-width: 28px;
+      height: 26px;
+      padding: 0 3px;
+    }
+  }
 `;

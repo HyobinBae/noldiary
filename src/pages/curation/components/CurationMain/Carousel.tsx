@@ -79,6 +79,7 @@ const Container = styled.div`
 
   @media ${({ theme }) => theme.device.mobile} {
     height: 300px;
+    margin-bottom: 20px;
   }
 `;
 

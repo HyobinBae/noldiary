@@ -82,8 +82,10 @@ const Container = styled.div`
 
   background-color: #bbbbbb;
   position: relative;
+
   @media ${({ theme }) => theme.device.mobile} {
     height: 300px;
+    margin-bottom: 20px;
   }
 `;
 

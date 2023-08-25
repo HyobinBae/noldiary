@@ -49,10 +49,18 @@ const Container = styled(Link)`
   justify-content: center;
   align-items: center;
 
-  width: 80%;
+  width: 70%;
   margin-bottom: 40px;
 
   cursor: pointer;
+  box-shadow: 3px 3px 10px 2px #e8e8e8;
+  border-radius: 8px 8px 8px 8px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: none;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -61,7 +69,13 @@ const InfoContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 62%;
+  width: 70%;
+  border-radius: 8px 8px 8px 8px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+    box-shadow: 3px 3px 10px 2px #e8e8e8;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -70,5 +84,8 @@ const ImageContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
 
-  width: 28%;
+  width: 30%;
+  @media ${({ theme }) => theme.device.mobile} {
+    display: none;
+  }
 `;

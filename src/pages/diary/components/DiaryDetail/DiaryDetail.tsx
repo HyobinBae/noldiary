@@ -41,6 +41,10 @@ const Container = styled.div`
 
 const LineContainer = styled.div`
   width: 50%;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 
 const DiaryMain = styled.main`
@@ -50,6 +54,10 @@ const DiaryMain = styled.main`
   width: 70%;
 
   margin-top: 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
 
 const Content = styled.div`
@@ -61,4 +69,12 @@ const Content = styled.div`
   width: 70%;
 
   line-height: 2;
+
+  img {
+    max-width: 100%;
+  }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+  }
 `;

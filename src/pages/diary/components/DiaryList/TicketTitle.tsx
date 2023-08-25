@@ -23,10 +23,19 @@ const TitleBox = styled.div`
   padding-left: 20px;
   background-color: #2192ff;
 
-  border-radius: 15px 15px 0 0;
+  border-radius: 8px 8px 0 0;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+  }
 `;
+
 const Title = styled.div`
-  padding-left: 20px;
+  padding-left: 10px;
   font-size: 20px;
   color: #ffffff;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-size: 18px;
+  }
 `;

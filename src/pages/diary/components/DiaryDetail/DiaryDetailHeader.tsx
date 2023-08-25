@@ -55,6 +55,10 @@ const HeaderContainer = styled.header`
   align-items: center;
 
   width: 100%;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100vw;
+  }
 `;
 
 const TitleBox = styled.div`
@@ -78,6 +82,13 @@ const TitleBox = styled.div`
     padding: 10px 0px;
     font-size: 30px;
   }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+    height: 46px;
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
 `;
 
 const InfoContainer = styled.div`
@@ -88,6 +99,13 @@ const InfoContainer = styled.div`
 
   width: 50%;
   color: #bbbbbb;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+    height: 46px;
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
 `;
 
 const Container = styled.div`

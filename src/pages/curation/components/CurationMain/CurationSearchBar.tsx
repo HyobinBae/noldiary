@@ -4,7 +4,6 @@ import { BiSearch } from "react-icons/bi";
 import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import {
   clearSearchCurationList,
-  selectSearchCurationList,
   setKeyword,
   setPageNo,
   setTotalCount,
@@ -71,6 +70,10 @@ const Container = styled.div`
   width: 100%;
   height: 55px;
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-bottom: 20px;
+  }
 `;
 
 const Box = styled.div`

@@ -58,6 +58,10 @@ const Container = styled.div`
   height: 40px;
   margin-bottom: 20px;
   overflow-x: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const TextWrapper = styled.div`
