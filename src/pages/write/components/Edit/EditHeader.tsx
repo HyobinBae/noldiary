@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DivideLine from "../../../../components/DivideLine";
 import EditDetail from "./EditDetail";
 import styled from "styled-components";
@@ -6,14 +6,16 @@ import { useAppDispatch, useAppSelector } from "../../../../services/store";
 import { setTitle } from "../../services/write.slice";
 
 const EditHeader = () => {
+  const [edited, setEdited] = useState(false);
   const dispatch = useAppDispatch();
   const editedTitle = useAppSelector((state) => state.write.diary.title);
   const prevTitle = useAppSelector((state) => state.diary.getDiaryDetail.title);
 
-  const title = editedTitle ? editedTitle : prevTitle;
+  const title = edited ? editedTitle : prevTitle;
 
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setTitle(e.target.value));
+    setEdited(true);
   };
 
   return (

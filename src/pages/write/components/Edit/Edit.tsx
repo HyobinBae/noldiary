@@ -60,8 +60,16 @@ const Header = styled.header`
 
   width: 760px;
   margin: 25px 0;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90vw;
+  }
 `;
 
 const Box = styled.div`
   width: 760px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90vw;
+  }
 `;

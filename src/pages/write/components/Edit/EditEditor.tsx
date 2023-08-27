@@ -159,6 +159,16 @@ const QuillEditor = styled(ReactQuill)`
     font-size: 40px;
   }
   .ql-container {
-    border: none;
+    .ql-formats {
+      margin-right: 10px;
+    }
+  }
+  @media ${({ theme }) => theme.device.mobile} {
+    margin: 10px 0 30px;
+    height: 86vh;
+
+    .ql-container {
+      height: 78vh;
+    }
   }
 `;
