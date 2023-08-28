@@ -561,7 +561,7 @@ const IconWrapper = styled.div`
   align-items: center;
 
   width: 70vw;
-  height: auto;
+  height: 38vw;
   padding: 0px 25px;
 
   position: absolute;
@@ -571,6 +571,12 @@ const IconWrapper = styled.div`
   background: none;
 
   pointer-events: none;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+    height: 60vw;
+    margin-bottom: 20px;
+  }
 `;
 
 const IconBox = styled.div`

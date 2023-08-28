@@ -122,7 +122,7 @@ export default DetailNavbar;
 const NavWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: flex-start;
 
   width: 100%;
