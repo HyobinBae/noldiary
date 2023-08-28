@@ -183,7 +183,7 @@ const Setting = () => {
           />
         </ImageWrapper>
       </ImageContainer>
-      <Wrapper>
+      <TextWrapper>
         <Box>
           <Title>닉네임</Title>
           <ContentWrapper>
@@ -203,8 +203,8 @@ const Setting = () => {
         </Box>
         <Description>놀다이어리에서 사용할 닉네임입니다</Description>
         <DivideLine />
-      </Wrapper>
-      <Wrapper>
+      </TextWrapper>
+      <TextWrapper>
         <Box>
           <Title>상태메시지</Title>
           <ContentWrapper>
@@ -226,7 +226,7 @@ const Setting = () => {
           내 일기 페이지의 프로필에 공개되는 상태메시지입니다
         </Description>
         <DivideLine />
-      </Wrapper>
+      </TextWrapper>
 
       <ButtonBox>
         <ColorButton
@@ -245,11 +245,16 @@ export default Setting;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 
-  width: 100%;
+  width: 100vw;
   padding-top: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100vw;
+    padding-top: 20px;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -260,6 +265,16 @@ const ImageContainer = styled.div`
   width: 50%;
   height: 300px;
   margin-bottom: 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 90%;
+    height: 100%;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -267,6 +282,84 @@ const ImageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+  }
+`;
+
+const Label = styled.label`
+  display: inline-block;
+
+  width: 100%;
+  height: 46px;
+  margin-top: 10px;
+
+  border-radius: 5px;
+
+  background-color: #2192ff;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  text-align: center;
+  line-height: 45px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #50aaff;
+  }
+
+  @media ${({ theme }) => theme.device.mobile} {
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+`;
+
+const ProfileImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  background-color: #ffffff;
+`;
+
+const ProfileImageUploader = styled.input`
+  display: none;
+`;
+
+const ThumbnailImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const BgImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 500px;
+  height: 200px;
+  overflow: hidden;
+
+  background-color: #ababab;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+  }
+`;
+
+const BgImageUploader = styled.input`
+  display: none;
 `;
 
 const VerticalLine = styled.div`
@@ -274,9 +367,12 @@ const VerticalLine = styled.div`
   margin: 0 10px 0;
 
   border-right: 1px solid #d2d2d2;
+  @media ${({ theme }) => theme.device.mobile} {
+    display: none;
+  }
 `;
 
-const Wrapper = styled.div`
+const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -284,7 +380,12 @@ const Wrapper = styled.div`
 
   width: 50%;
   margin-bottom: 10px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+  }
 `;
+
 const Box = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -292,6 +393,10 @@ const Box = styled.div`
 
   width: 100%;
   margin-bottom: 20px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+  }
 `;
 
 const Title = styled.div`
@@ -302,6 +407,10 @@ const Title = styled.div`
   width: 26%;
   font-size: 18px;
   font-weight: 600;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 40%;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -309,6 +418,10 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+  }
 `;
 
 const Content = styled.div`
@@ -373,72 +486,6 @@ const Description = styled.div`
   color: #ababab;
   margin-bottom: 10px;
 `;
-
-const Label = styled.label`
-  display: inline-block;
-
-  width: 100%;
-  height: 46px;
-  margin-top: 10px;
-
-  border-radius: 5px;
-
-  background-color: #2192ff;
-  color: white;
-
-  font-size: 16px;
-  font-weight: 600;
-
-  text-align: center;
-  line-height: 45px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #50aaff;
-  }
-`;
-
-const ProfileImageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-
-  background-color: #ffffff;
-`;
-
-const ProfileImageUploader = styled.input`
-  display: none;
-`;
-
-const ThumbnailImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
-const BgImageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  width: 500px;
-  height: 200px;
-  overflow: hidden;
-
-  background-color: #ababab;
-`;
-
-const BgImageUploader = styled.input`
-  display: none;
-`;
-
 const ButtonBox = styled.div`
   margin-top: 20px;
 `;

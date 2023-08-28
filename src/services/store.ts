@@ -22,6 +22,7 @@ import write from "../pages/write/services/write.slice";
 import diary from "../pages/diary/services/diary.slice";
 import curation from "../pages/curation/services/curation.slice";
 import likemap from "../pages/likemap/services/likemap.slice";
+import signin from "../pages/signin/services/signin.slice";
 
 //local storage에 저장되어 새로고침해도 사라지지 않는 state
 const persistConfig = {
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   diary,
   curation,
   likemap,
+  signin,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

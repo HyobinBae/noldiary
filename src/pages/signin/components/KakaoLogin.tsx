@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { API } from "../../../config";
 import LoadingLogin from "./LoadingLogin";
 import { useAppDispatch } from "../../../services/store";
+import { setAccessToken } from "../services/signin.slice";
 
 export const API_KEY = process.env.REACT_APP_API_KEY_KAKAO;
 export const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL_KAKAO;
@@ -45,6 +46,7 @@ const KakaoLogin = () => {
         navigate("/signin");
       } else {
         localStorage.setItem("token", accessToken);
+        dispatch(setAccessToken(accessToken));
         navigate("/");
       }
     } catch (error) {
