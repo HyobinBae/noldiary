@@ -70,6 +70,12 @@ const Container = styled.div`
   height: calc(100vh - 107px);
   background-color: white;
   overflow-x: scroll;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100vw;
+    height: 40vh;
+    order: 2;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -95,6 +101,11 @@ const ImageWrapper = styled.img`
   margin-right: 10px;
   border-radius: 5px;
   object-fit: cover;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 60px;
+    height: 60px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -102,8 +113,13 @@ const TextWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 100%;
 
   margin-right: 10px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 65%;
+  }
 `;
 
 const Title = styled.div`
@@ -118,6 +134,13 @@ const Title = styled.div`
   text-overflow: ellipsis;
   word-wrap: break-word;
   display: block;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
 `;
 
 const Address = styled.div`
@@ -131,12 +154,20 @@ const Address = styled.div`
   text-overflow: ellipsis;
   word-wrap: break-word;
   display: block;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
 `;
 
 const IconWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
   height: 100%;
 
   opacity: 0.5;

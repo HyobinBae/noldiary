@@ -4,6 +4,7 @@ import DiaryDetailHeader from "./DiaryDetailHeader";
 import { useGetDiaryDetailQuery } from "../../../../services/api";
 import { useParams } from "react-router-dom";
 import DivideLine from "../../../../components/DivideLine";
+import ReactQuill from "react-quill";
 
 const DiaryDetail = () => {
   const { id } = useParams();
@@ -11,6 +12,7 @@ const DiaryDetail = () => {
   const { data: diaryDetail } = useGetDiaryDetailQuery(id ?? "");
 
   const contents = diaryDetail?.contents;
+  console.log(contents);
 
   return (
     <>
@@ -20,7 +22,11 @@ const DiaryDetail = () => {
           <DivideLine />
         </LineContainer>
         <DiaryMain>
-          <Content dangerouslySetInnerHTML={{ __html: contents || "" }} />
+          {/* <Content
+            id="editor"
+            dangerouslySetInnerHTML={{ __html: contents || "" }}
+          /> */}
+          <Content value={contents} readOnly={true} theme={"bubble"} />
         </DiaryMain>
       </Container>
     </>
@@ -60,10 +66,10 @@ const DiaryMain = styled.main`
   }
 `;
 
-const Content = styled.div`
+const Content = styled(ReactQuill)`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
 
   width: 70%;
@@ -74,7 +80,16 @@ const Content = styled.div`
     max-width: 100%;
   }
 
-  @media ${({ theme }) => theme.device.mobile} {
+  @media screen and (max-width: 500px) {
     width: 100%;
+  }
+
+  .ql-container {
+    width: 100%;
+    padding: 0px;
+  }
+  .ql-editor {
+    width: 100%;
+    padding: 0px;
   }
 `;

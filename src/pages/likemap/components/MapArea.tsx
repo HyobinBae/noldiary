@@ -96,9 +96,14 @@ const Container = styled.div`
   justify-content: flex-end;
   width: calc(100vw - 414px);
   height: calc(100vh - 107px);
+  order: 2;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100vw;
+    height: calc(60vh - 107px);
+  }
 `;
 
 const MapWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
 `;

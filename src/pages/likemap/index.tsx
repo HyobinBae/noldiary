@@ -11,8 +11,8 @@ const LikeMap = () => {
     <Container>
       {userInfo ? (
         <>
-          <LikeList />
           <MapArea />
+          <LikeList />
         </>
       ) : (
         <LoginMessage />
@@ -23,9 +23,18 @@ const LikeMap = () => {
 
 const Container = styled.div`
   display: flex;
-  justify-content: flex-start;
-  width: 100%;
-  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-end;
+
+  width: 100vw;
+  height: calc(100vh - 107px);
+
+  @media ${({ theme }) => theme.device.mobile} {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
 `;
 
 export default LikeMap;
