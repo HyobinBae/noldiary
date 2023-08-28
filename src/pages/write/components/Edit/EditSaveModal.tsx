@@ -197,6 +197,11 @@ const Container = styled.div`
   height: 428px;
   padding: 10px;
   background-color: white;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 90%;
+    height: auto;
+  }
 `;
 
 const SettingContainer = styled.div`
@@ -206,6 +211,11 @@ const SettingContainer = styled.div`
 
   width: 100%;
   margin-bottom: 15px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    flex-direction: column;
+    margin-bottom: 5px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -216,6 +226,11 @@ const Wrapper = styled.div`
 
   width: calc(100% / 2);
   padding: 20px 40px;
+
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 100%;
+    padding: 10px 20px;
+  }
 `;
 
 const SettingBox = styled.div`

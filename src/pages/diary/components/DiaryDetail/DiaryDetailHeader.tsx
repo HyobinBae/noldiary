@@ -63,8 +63,7 @@ const HeaderContainer = styled.header`
 
 const TitleBox = styled.div`
   display: flex;
-
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
   width: 50%;
@@ -85,9 +84,13 @@ const TitleBox = styled.div`
 
   @media ${({ theme }) => theme.device.mobile} {
     width: 90%;
-    height: 46px;
+    height: auto;
     margin-bottom: 10px;
-    font-size: 28px;
+
+    font-size: 24px;
+    line-height: 1.4;
+
+    word-break: keep-all;
   }
 `;
 
